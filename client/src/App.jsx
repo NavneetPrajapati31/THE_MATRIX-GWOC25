@@ -12,7 +12,7 @@ import CartPage from "./pages/CartPage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { logout, setUser } from "./redux/state";
-import AboutUs from "./pages/AboutUS";
+import AboutUs from "./pages/AboutUs";
 import ContactFormModal from "./components/contactForm";
 import Wishlist from "./pages/Wishlist";
 import BuyNow from "./pages/BuyNow";
