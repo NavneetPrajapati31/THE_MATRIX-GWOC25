@@ -9,6 +9,7 @@ import OrderSuccess from "./OrderSuccess";
 import Navbar from "../includes/Navbar";
 
 const BuyNow = () => {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user?.user);
   const userId = user?._id;
@@ -42,7 +43,7 @@ const BuyNow = () => {
       newAddress.pincode
     ) {
       try {
-        const response = await fetch("http://localhost:3001/auth/add-address", {
+        const response = await fetch(`${URL}/auth/add-address`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -90,17 +91,14 @@ const BuyNow = () => {
 
     if (selectedPayment === "RAZORPAY") {
       try {
-        const response = await fetch(
-          "http://localhost:3001/payment-related/create-order",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              amount: totalAmount * 100, // Razorpay expects amount in paise
-              currency: "INR",
-            }),
-          }
-        );
+        const response = await fetch(`${URL}/payment-related/create-order`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            amount: totalAmount * 100, // Razorpay expects amount in paise
+            currency: "INR",
+          }),
+        });
 
         const order = await response.json();
 
@@ -121,7 +119,7 @@ const BuyNow = () => {
           image: `/images/logo.jpg`,
           handler: async function (response) {
             const verificationResponse = await fetch(
-              "http://localhost:3001/payment-related/verify-payment",
+              `${URL}/payment-related/verify-payment`,
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -137,7 +135,7 @@ const BuyNow = () => {
 
             if (verificationResponse.ok) {
               const orderResponse = await fetch(
-                "http://localhost:3001/orders-related/place-order",
+                `${URL}/orders-related/place-order`,
                 {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -205,42 +203,39 @@ const BuyNow = () => {
         alert("Payment failed: " + error.message);
       }
     } else if (selectedPayment === "COD") {
-      const orderResponse = await fetch(
-        "http://localhost:3001/orders-related/place-order",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            userId: user._id,
-            products:
-              cartItems && cartItems.length > 0
-                ? cartItems.map((item) => ({
+      const orderResponse = await fetch(`${URL}/orders-related/place-order`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: user._id,
+          products:
+            cartItems && cartItems.length > 0
+              ? cartItems.map((item) => ({
+                  product: {
+                    _id: item._id,
+                    title: item.name,
+                    price: item.price,
+                    image: item.images?.item.images[0],
+                  },
+                  quantity: item.quantity,
+                }))
+              : [
+                  {
                     product: {
-                      _id: item._id,
-                      title: item.name,
-                      price: item.price,
-                      image: item.images?.item.images[0],
+                      _id: product._id,
+                      title: product.name,
+                      price: product.price,
+                      image: product.images[0],
                     },
-                    quantity: item.quantity,
-                  }))
-                : [
-                    {
-                      product: {
-                        _id: product._id,
-                        title: product.name,
-                        price: product.price,
-                        image: product.images[0],
-                      },
-                      quantity: 1,
-                    },
-                  ],
-            totalAmount,
-            paymentMethod: "COD",
-            address: selectedAddress,
-            paymentStatus: "Pending",
-          }),
-        }
-      );
+                    quantity: 1,
+                  },
+                ],
+          totalAmount,
+          paymentMethod: "COD",
+          address: selectedAddress,
+          paymentStatus: "Pending",
+        }),
+      });
 
       const orderResult = await orderResponse.json();
 
@@ -257,9 +252,7 @@ const BuyNow = () => {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3001/auth/user/${user?._id}`
-      );
+      const response = await fetch(`${URL}/auth/user/${user?._id}`);
       const updatedUser = await response.json();
 
       if (response.ok) {
@@ -729,15 +722,3 @@ const BuyNow = () => {
 };
 
 export default BuyNow;
-
-/**
- *    {savings > 0 && (
-                                    <p className="text-danger fw-semibold small mb-3">
-                                        <i className="bi bi-tag me-1"></i>Your Savings: ₹{savings}
-                                    </p>
-                                )}
-
-                                    const savings = cartItems.reduce((total, item) => total + (item.discount || 0) * item.quantity, 0);
-    
-
- */

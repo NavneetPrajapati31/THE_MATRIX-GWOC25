@@ -4,6 +4,7 @@ import "../styles/OrdersPage.css";
 import { useSelector } from "react-redux";
 
 const OrdersPage = () => {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const invoiceRef = useRef();
@@ -19,9 +20,7 @@ const OrdersPage = () => {
 
     const fetchOrders = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:3001/orders-related/user/${userId}`
-        );
+        const response = await fetch(`${URL}/orders-related/user/${userId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch orders");
         }

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
   const user = useSelector((state) => state.user?.user);
   const userId = user?._id;
@@ -17,7 +18,7 @@ const CartPage = () => {
 
   useEffect(() => {
     if (userId) {
-      fetch(`http://localhost:3001/cart-related/${userId}`)
+      fetch(`${URL}/cart-related/${userId}`)
         .then((response) => response.json())
         .then((data) => {
           setCart(data);

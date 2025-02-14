@@ -7,6 +7,7 @@ import ExploreMore from "./ExploreMore";
 import { useSelector } from "react-redux";
 
 const Filter = () => {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
@@ -70,7 +71,7 @@ const Filter = () => {
   const fetchProducts = async (pageNumber) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/product-related/getProducts?page=${pageNumber}&limit=12`
+        `${URL}/product-related/getProducts?page=${pageNumber}&limit=12`
       );
       const data = await response.json();
       if (data.success) {

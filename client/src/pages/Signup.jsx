@@ -38,14 +38,11 @@ export default function Signup() {
     setMessage("");
 
     try {
-      const response = await fetch(
-        "http://localhost:3001/auth/send-otp-email",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: form.email }),
-        }
-      );
+      const response = await fetch(`${URL}/auth/send-otp-emai`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email }),
+      });
 
       const data = await response.json();
       if (response.ok) {
@@ -67,14 +64,11 @@ export default function Signup() {
     setMessage("");
 
     try {
-      const verifyOtpRes = await fetch(
-        "http://localhost:3001/auth/verify-otp",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: form.email, otp: form.otp }),
-        }
-      );
+      const verifyOtpRes = await fetch(`${URL}/auth/verify-otp`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email, otp: form.otp }),
+      });
 
       const verifyData = await verifyOtpRes.json();
       if (!verifyOtpRes.ok) {
@@ -84,7 +78,7 @@ export default function Signup() {
       }
 
       // Proceed with registration after OTP verification
-      const registerRes = await fetch("http://localhost:3001/auth/register", {
+      const registerRes = await fetch(`${URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -121,7 +115,7 @@ export default function Signup() {
 
     // Send Google user data to backend
     try {
-      const response = await fetch("http://localhost:3001/auth/google-login", {
+      const response = await fetch(`${URL}/auth/google-login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(googleUser),

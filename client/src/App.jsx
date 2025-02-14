@@ -21,6 +21,7 @@ import BlogPage from "./pages/BlogPage";
 import BlogPostDetail from "./components/BlogPostDetail";
 
 function App() {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   const dispatch = useDispatch();
   const { token, user } = useSelector((state) => state.user);
 
@@ -28,7 +29,7 @@ function App() {
     const fetchUser = async () => {
       if (token && !user) {
         try {
-          const response = await fetch("http://localhost:3001/auth/user", {
+          const response = await fetch(`${URL}/auth/user`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           const data = await response.json();

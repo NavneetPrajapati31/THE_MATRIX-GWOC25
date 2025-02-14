@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Wishlist = () => {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   // Sample wishlist data (replace with API data if needed)
   const navigate = useNavigate();
   const [wishlistItems, setWishlistItems] = useState([]);
@@ -21,7 +22,7 @@ const Wishlist = () => {
       if (!userId) return;
       try {
         const response = await fetch(
-          `http://localhost:3001/wishlist-related/get/${userId}`
+          `${URL}/wishlist-related/get/${userId}`
         );
         const data = await response.json();
 
@@ -47,7 +48,7 @@ const Wishlist = () => {
     if (!userId) return;
     try {
       const response = await fetch(
-        `http://localhost:3001/wishlist-related/${userId}`,
+        `${URL}/wishlist-related/${userId}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },

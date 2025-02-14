@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product, userId }) => {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   console.log(userId);
@@ -14,9 +15,7 @@ const ProductCard = ({ product, userId }) => {
   useEffect(() => {
     const fetchWishlist = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:3001/wishlist-related/get/${userId}`
-        );
+        const response = await fetch(`${URL}/wishlist-related/get/${userId}`);
         const data = await response.json();
         // setIsWishlisted(data.wishlist.includes(product._id));
         setIsWishlisted(data.wishlist.some((i) => i._id === product._id));
@@ -32,16 +31,13 @@ const ProductCard = ({ product, userId }) => {
 
   const handleWishlistToggle = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3001/wishlist-related/${userId}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ productId: product._id }),
-        }
-      );
+      const response = await fetch(`${URL}/wishlist-related/${userId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId: product._id }),
+      });
 
       const data = await response.json();
 

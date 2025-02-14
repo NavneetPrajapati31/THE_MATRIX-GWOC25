@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/EditSareeModal.css";
 
 const EditSareeModal = ({ saree, onClose }) => {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   const [sareeName, setSareeName] = useState(saree.name);
   const [sareeDesc, setSareeDesc] = useState(saree.description);
   const [category, setCategory] = useState(saree.category);
@@ -34,7 +35,7 @@ const EditSareeModal = ({ saree, onClose }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3001/saree-related/update-saree/${saree._id}`,
+        `${URL}/saree-related/update-saree/${saree._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

@@ -11,6 +11,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box } from "@mui/material";
 
 const ProductDetails = () => {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -71,7 +72,7 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/product-related/get-details/${productId}`
+          `${URL}/product-related/get-details/${productId}`
         );
         const data = await response.json();
         if (response.ok) {
@@ -99,7 +100,7 @@ const ProductDetails = () => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:3001/cart-related/add", {
+      const response = await fetch(`${URL}/cart-related/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -191,7 +192,7 @@ const ProductDetails = () => {
     });
     try {
       const response = await axios.post(
-        `http://localhost:3001/review-related/products/${productId}/reviews/${userId}`,
+        `${URL}/review-related/products/${productId}/reviews/${userId}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -214,7 +215,7 @@ const ProductDetails = () => {
   const fetchReviews = async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/review-related/products/${productId}/reviews`
+        `${URL}/review-related/products/${productId}/reviews`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch reviews");
