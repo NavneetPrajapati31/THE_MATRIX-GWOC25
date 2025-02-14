@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { login, setUser } from "../redux/state"; // Import Redux actions
 
 export default function Signup() {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   const [form, setForm] = useState({
     name: "",
     email: "",
