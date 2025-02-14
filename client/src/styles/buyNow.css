@@ -1,0 +1,348 @@
+.yash-buy-now {
+  margin-top: 30px;
+  font-family: "Arial", sans-serif;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.order-summary {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.summary-box p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.saved-address {
+  font-size: 12px;
+  font-weight: bold;
+  color: #007bff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.yash-input {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.yash-confirm-btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  font-size: 18px;
+  background: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.yash-confirm-btn:hover {
+  background: #e44d26;
+}
+
+.payment-page-yash {
+  font-family: Arial, sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.balance-section {
+  margin-bottom: 20px;
+}
+
+.balance-text {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.code-section {
+  display: flex;
+  gap: 10px;
+}
+
+.code-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.apply-button {
+  padding: 8px 16px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.payment-method-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-method-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  /* border: 1px solid black !important; */
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.payment-method-item:hover {
+  background-color: #ffffff;
+}
+
+.payment-method-item.disabled {
+  background-color: #f9f9f9;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.bank-details,
+.choose-option,
+.unavailable-text {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.card-icons {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.card-icon {
+  font-size: 12px;
+  color: #666;
+}
+
+.payment-card {
+  background: #fff;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.payment-method-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.payment-method-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.payment-method-item:hover {
+  background: #e5e5e5;
+}
+
+.payment-method-item input {
+  display: none;
+}
+
+.payment-method-item label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.payment-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.main-text-options {
+  font-size: 14px !important;
+  font-weight: 500;
+  text-align: left;
+  border-bottom: none !important;
+}
+
+.new-address-add {
+  font-size: larger;
+  cursor: pointer;
+}
+
+.address-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-check-label {
+  color: #222;
+}
+
+.payment-method-item {
+  border: none; /* Default transparent border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px; /* Add some padding */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+.payment-method-item.selected-payment {
+  border: 1px solid black !important;
+}
+
+.disabled-payment {
+  pointer-events: none; /* Disable pointer events */
+  opacity: 0.6; /* Reduce opacity to indicate it's disabled */
+}
+
+.disabled-payment .form-check-input {
+  cursor: not-allowed; /* Show not-allowed cursor on the radio button */
+}
+
+.checkout-card {
+  padding: 20px !important;
+  border: none;
+}
+
+.checkout-summary {
+  margin-left: 35px;
+  align-items: start !important;
+  background-color: #fff;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 8px;
+  box-shadow: 10px 2px 10px rgba(0, 0, 0, 1);
+  padding: 20px;
+  width: 380px;
+  height: auto;
+  font-size: 13px;
+}
+
+.selected-btn {
+  font-size: 12px;
+  padding: 10px 15px;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.selected-btn:hover {
+  border: 1px solid rgb(61, 61, 61);
+  background-color: rgb(61, 61, 61);
+  color: white;
+}
+
+.radio-btn .form-check-input {
+  background-color: #333;
+  border: 2px solid #555;
+}
+
+.radio-btn .form-check-input:checked {
+  background-color: black; /* Bootstrap Primary Blue */
+  border-color: black;
+}
+
+.radio-btn .form-check-input:not(:checked) {
+  background-color: transparent; /* Bootstrap Primary Blue */
+  border-color: transparent;
+}
+
+.radio-btn .form-check-input:focus {
+  box-shadow: 0 0 5px rgba(70, 70, 70, 0.5);
+}
+
+.address-box {
+  transition: all 0.3s ease-in-out;
+}
+
+.address-box:hover {
+  background: #e5e5e5 !important;
+}
+
+.checkout-card {
+  background: #fff; /* White card background */
+  border-radius: 12px; /* Rounded edges */
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.checkout-card h5 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+.review-item {
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  justify-content: flex-start; /* Align items to the left */
+  border-bottom: 1px solid #eaeaea;
+  padding: 0;
+  gap: 15px; /* Adds spacing between image & details */
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-img-thumbnail {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+.review-item-details {
+  flex: 1;
+  margin-left: 0px; /* Removes unnecessary left margin */
+  text-align: left; /* Ensures all text is left-aligned */
+}
+
+.review-item-details p {
+  margin: 3px 0;
+}
+
+.review-item-details .fw-semibold {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.text-success {
+  font-size: 12px;
+  font-weight: 400;
+  color: #0a8800;
+}
+
+.text-muted {
+  font-size: 12px;
+  color: #777;
+  font-weight: 400;
+}

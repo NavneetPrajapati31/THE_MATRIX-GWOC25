@@ -1,0 +1,298 @@
+/* -------------------------- */
+/*        General Styles      */
+/* -------------------------- */
+
+nav {
+  font-family: Arial, sans-serif;
+  background: white;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+/* Ensure the navbar container spans the full viewport width */
+.custom-navbar-width {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* Logo Styling */
+.navbar-brand h2 {
+  margin-top: 5px;
+  font-family: "Bodoni Moda", serif;
+  font-size: 22px;
+}
+@media (max-width<500px) {
+  .navbar-brand h2 {
+    font-size: 15px;
+  }
+}
+.btn {
+  width: fit-content;
+}
+
+/* Navbar Icons */
+.nav-icons {
+  cursor: pointer;
+  color: black;
+  transition: color 0.3s ease-in-out;
+  opacity: 0.75;
+}
+
+.nav-icons:hover {
+  color: #555;
+}
+
+/* -------------------------- */
+/*        Sidebar Styles      */
+/* -------------------------- */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px; /* Hidden off-screen initially */
+  width: 250px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease-in-out;
+  padding: 20px;
+  z-index: 1050;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  position: absolute;
+  top: 15px;
+  left: 15px; /* Positioned to the left for better UX */
+  cursor: pointer;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;
+}
+
+.sidebar-menu li {
+  margin: 15px 0;
+}
+
+.sidebar-menu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  display: block;
+  padding: 10px;
+  transition: background 0.2s;
+}
+
+.sidebar-menu a:hover {
+  background: #f5f5f5;
+}
+
+/* Overlay for Sidebar */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 1049;
+}
+
+.sidebar-overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Remove default focus outline and box-shadow from form controls */
+.form-control:focus {
+  box-shadow: none !important;
+  outline: none !important;
+  border: transparent 1px;
+}
+
+/* -------------------------- */
+/*         Link Styles        */
+/* -------------------------- */
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 6px 0;
+}
+
+ul li a {
+  position: relative;
+  display: block;
+  padding: 4px 0;
+  font-family: Lato, sans-serif;
+  color: #ecf0f1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  font-size: 13px !important;
+}
+
+ul li a::after {
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: black;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+ul li a:hover {
+  opacity: 0.6;
+}
+
+ul li a:hover::after {
+  opacity: 1;
+}
+
+/* -------------------------- */
+/*     Responsive Adjustments */
+/* -------------------------- */
+
+/* Hide the search bar on devices 768px and below for a cleaner mobile view */
+@media (max-width: 768px) {
+  form[role="search"] {
+    display: none !important;
+  }
+
+  /* You can adjust the logo font size on smaller screens if needed */
+  .navbar-brand h2 {
+    font-size: 20px;
+  }
+}
+
+/* For medium devices (up to 1030px) */
+@media (max-width: 1030px) {
+  /* (If you have extra category buttons elsewhere, hide them here) */
+  .categories {
+    display: none;
+  }
+
+  /* If you use a menu-icon class, ensure it is visible */
+  .menu-icon {
+    display: block;
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  /* Hide any bottom navigation if present */
+  .bottom-nav {
+    display: none;
+  }
+}
+
+/* For small devices (up to 480px) */
+@media (max-width: 480px) {
+  nav {
+    padding: 8px 10px;
+  }
+
+  .navbar-brand h2 {
+    font-size: 18px;
+  }
+
+  .sidebar {
+    width: 240px;
+  }
+
+  .sidebar-menu a {
+    font-size: 16px;
+    padding: 8px;
+  }
+}
+
+/* For extra-small devices (up to 360px) */
+@media (max-width: 360px) {
+  nav {
+    padding: 6px 8px;
+  }
+
+  .navbar-brand h2 {
+    font-size: 16px;
+  }
+
+  .nav-icons {
+    color: #222222;
+    font-size: 16px;
+  }
+}
+
+/* Container for the account dropdown should be positioned relative */
+.account-menu-container {
+  position: relative;
+  cursor: pointer;
+}
+
+/* The dropdown menu */
+.account-dropdown {
+  text-align: left;
+  font-size: 13px;
+  width: 170px;
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-dropdown-item {
+  text-decoration: none;
+  color: #333;
+  transition: background 0.2s ease;
+  padding-bottom: 5px;
+}
+
+.account-dropdown-item:hover {
+  background: #f0f0f0;
+}
+
+.user-initial-circle {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  border: 2px solid #4d4d4d !important;
+  color: #4d4d4d !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 100 !important;
+  cursor: pointer;
+  margin-right: 10px;
+}

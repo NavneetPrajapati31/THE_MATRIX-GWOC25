@@ -1,0 +1,407 @@
+.filter-products-yash {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  padding: 20px;
+}
+
+.accordion-item {
+  border: none !important;
+  border-bottom: 1px solid #ccc !important; /* Added thin border-bottom for separation */
+  box-shadow: none !important;
+}
+
+.accordion-button::after {
+  display: none !important; /* Removes default Bootstrap arrow */
+}
+
+.accordion-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-weight: 500 !important;
+  box-shadow: none;
+  padding-left: 0 !important;
+  color: black !important;
+  font-size: 13px !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background: none !important; /* Ensures no background when active */
+  box-shadow: none !important;
+}
+
+.accordion-collapse {
+  border: none !important;
+}
+
+.accordion-body {
+  padding-top: 5px !important;
+  padding-left: 0px !important;
+}
+
+.josefin-sans-josefin {
+  font-family: "Josefin Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 25px;
+}
+
+.price-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  margin-top: 0px;
+}
+
+.price-range p {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #333;
+}
+
+.count {
+  font-weight: bold;
+  color: #666;
+}
+
+.price-input-container {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.currency-symbol {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.price-input-container input {
+  border: none;
+  outline: none;
+  width: 60px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.apply-button {
+  width: 100%;
+  padding: 10px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.apply-button:hover {
+  background: #404040;
+}
+
+.filter-subheading {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 8px; /* Reduced gap */
+}
+
+.price-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Reduced gap */
+}
+
+.price-input-container {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Reduced space between inputs */
+}
+
+.subcategories-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.subcategory-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.subcategory-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  font-size: 12px;
+  padding: 2px 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+.subcategory-list li .count {
+  color: gray;
+  font-size: 12px;
+  min-width: 40px; /* Ensures all counts align properly */
+  text-align: right;
+  margin-left: auto; /* Pushes the count to the right */
+}
+
+.color-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 5px 0;
+}
+
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.color-circle:hover {
+  transform: scale(1.1);
+}
+
+.size-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 300px; /* Adjust as needed */
+}
+
+.size-button {
+  padding: 6px 12px;
+  border: 1px solid #535353;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 400;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.size-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.size-button.selected {
+  background-color: black;
+  color: white;
+  font-weight: 600;
+}
+
+/* Container for the grid */
+.product-grid-container {
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Grid layout for product cards */
+.product-grid-yash {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
+  gap: 14px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Style for each product card */
+.product-card-wrapper-yash {
+  background: #fff;
+  border-radius: 0 !important;
+  transition: transform 0.3s ease-in-out;
+  /* Use flex to center the image within the card */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Remove fixed heights to avoid cropping */
+  overflow: hidden;
+}
+
+/* Ensure images scale down and maintain aspect ratio */
+.product-card-wrapper-yash img {
+  width: 100%;
+  height: 350px !important;
+  border-radius: 0;
+}
+
+/* Tablet: 3 columns */
+@media (max-width: 1024px) {
+  .product-grid-yash {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile: 2 columns */
+@media (max-width: 768px) {
+  .product-grid-yash {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .product-img {
+    width: 150px;
+  }
+}
+
+.product-card-wrapper:hover {
+  transform: translateY(-5px);
+}
+
+.floating-filter-btn {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .filter-products-yash .col-md-2 {
+    display: none;
+  }
+
+  /* Floating button styles */
+  .floating-filter-btn {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .floating-filter-btn:hover {
+    background-color: #444;
+  }
+
+  /* Filter overlay panel */
+  .mobile-filter-panel {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    transition: bottom 0.4s ease-in-out;
+    z-index: 2000;
+    overflow-y: auto;
+  }
+
+  /* Show the filter panel when active */
+  .mobile-filter-panel.active {
+    bottom: 0;
+  }
+
+  /* Close button */
+  .close-filter-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+.product-card-wrapper a {
+  display: block;
+  text-decoration: none; /* Ensures no underline */
+}
+
+/* FILTER SIDEBAR */
+
+.filter-yash {
+  width: 250px; /* Fixed width for sidebar */
+  height: auto; /* Full screen height */
+  background: white;
+  position: fixed;
+  top: 0;
+  left: -300px; /* Hide it by default */
+  transition: left 0.3s ease-in-out;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.filter-yash.open {
+  left: 0;
+  padding: 20px;
+}
+
+.floating-filter-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  z-index: 1001;
+}
+
+.floating-filter-btn:hover {
+  background: #444;
+}
+
+@media (min-width: 1024px) {
+  .filter-yash {
+    position: static;
+    width: 250px;
+    left: 0;
+    box-shadow: none;
+  }
+
+  .floating-filter-btn {
+    display: none; /* Hide button on large screens */
+  }
+}
+
+.filter-yash.open {
+  display: block;
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  top: 2%;
+}
+
+/* Hide the floating filter button on larger screens (desktop) */
+@media (min-width: 1025px) {
+  .floating-filter-btn {
+    display: none;
+  }
+}

@@ -1,0 +1,67 @@
+.yash-orders-container {
+    max-width: 1200px;  
+    margin: auto;
+  }
+  
+  .yash-order-card {
+    margin-bottom: 20px;
+  }
+
+  .yash-orders-title {
+    text-align: left;
+  }
+
+  .my-title {
+    font-size: 32px;
+  }
+
+  .yash-orders-highlight {
+    font-size: 29px;
+  }
+  
+  .yash-order-image {
+    width: 80px;
+    height: auto;
+    object-fit: cover; 
+  }
+  
+  .yash-track-order-btn {
+    padding: 8px 12px;
+    font-size: 0.875rem;
+  }
+  
+  .yash-status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .yash-order-id { 
+    font-weight: 500;
+    color: #333;
+    font-size: 12px;
+    position: relative;
+    bottom: 25px;
+    background-color: white;
+    padding: 0px 5px;
+  }
+  
+  .yash-order-name {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .yash-order-details {
+    font-size: 0.875rem;
+    color: #666;
+  }
+  
+  .yash-order-date, .yash-order-delivery {
+    font-size: 0.875rem;
+    color: #666;
+  }
+  
+  .yash-order-status {
+    font-size: 0.875rem;
+  }

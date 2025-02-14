@@ -1,0 +1,51 @@
+require("dotenv").config(); 
+const express = require("express");
+const http = require("http");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const app = express();
+
+//importing routes
+const authRoutes  = require('./routes/auth.js')
+const newSareeAdd = require('./routes/addNewSaree.js')
+const productGet = require('./routes/products.js')
+const cartRoutes = require("./routes/cart");
+const paymentRoutes = require("./routes/payments.js")
+const reviewSection = require("./routes/reviewSection.js")
+const addingWishList = require("./routes/addingWishList.js")
+const orders = require("./routes/orders.js")
+//defining the cors
+ 
+app.use(cors({
+    origin: ["http://localhost:5173"], 
+    methods: ["GET", "POST", "PUT", "DELETE"], 
+    allowedHeaders: ["Content-Type", "Authorization"], 
+    credentials: true,  
+    optionsSuccessStatus: 200 
+}));
+
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+
+//defining the routes
+app.use('/auth',authRoutes);
+app.use('/saree-related',newSareeAdd)
+app.use('/product-related',productGet );
+app.use("/cart-related", cartRoutes);
+app.use("/payment-related",paymentRoutes);
+app.use("/review-related",reviewSection)
+app.use('/wishlist-related',addingWishList)
+app.use('/orders-related', orders);
+
+
+
+//statring the server
+const server = http.createServer(app);
+const PORT = process.env.PORT || 3001;
+
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017', {
+    dbName: "Kashvi_Saree"
+})
+    .then(() => {
+        server.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
+    }).catch((err) => console.log(`Database connection error: ${err.message}`));
