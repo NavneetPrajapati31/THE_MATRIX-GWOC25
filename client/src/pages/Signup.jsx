@@ -38,7 +38,7 @@ export default function Signup() {
     setMessage("");
 
     try {
-      const response = await fetch(`${URL}/auth/send-otp-emai`, {
+      const response = await fetch(`${URL}/auth/send-otp-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: form.email }),
