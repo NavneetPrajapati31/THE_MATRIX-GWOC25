@@ -235,7 +235,7 @@ const Navbar = () => {
             <a href="/product-listing?category=Regional">Regional</a>
           </li>
           <li>
-            <a href="/product-listing?category=Banarasiya">Banarasiya</a>
+            <a href="/product-listing?category=Banarasi">Banarasiya</a>
           </li>
           <li>
             <a href="/about-us">About us</a>
