@@ -9,11 +9,11 @@
 .upload-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 8px;
+  width: max-content;
 }
 
-.upload-section {
+.upload-section-yash {
   display: flex;
   gap: 10px;
   margin-bottom: 15px;

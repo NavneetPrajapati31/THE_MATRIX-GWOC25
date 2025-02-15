@@ -131,7 +131,7 @@ const NewProductAdd = () => {
       {errorAdding && <p className="message-succ-fail error">{errorAdding}</p>}
 
       <label>Saree Images</label>
-      <div className="upload-section">
+      <div className="upload-section-yash">
         {[...Array(4)].map((_, index) => (
           <div key={index} className="upload-wrapper">
             <input

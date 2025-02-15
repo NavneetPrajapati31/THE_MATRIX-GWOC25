@@ -5,6 +5,7 @@ import ProductCard from "./Productcard";
 import Pagination from "./Pagination";
 import ExploreMore from "./ExploreMore";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const Filter = () => {
   const URL = import.meta.env.VITE_BACKEND_URL;
@@ -21,6 +22,7 @@ const Filter = () => {
   const [selectedOccasion, setSelectedOccasion] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const user = useSelector((state) => state.user?.user);
 
@@ -68,16 +70,39 @@ const Filter = () => {
     { name: "Stone work", count: 193 },
   ];
 
+  const location = useLocation();
+
+  const params = new URLSearchParams(location.search);
+
+  const searchQuery = new URLSearchParams(location.search).get("search");
+
+  useEffect(() => {
+    if (searchQuery) {
+      fetch(`http://localhost:3001/saree-related/search?search=${searchQuery}`)
+        .then((response) => response.json())
+        .then((data) => setProducts(data))
+        .catch((error) => console.error("Error fetching data:", error));
+    }
+  }, [searchQuery]);
+
+  const category = params.get("category");
+
   const fetchProducts = async (pageNumber) => {
+    let fetchProductsUrl;
+    if (category) {
+      fetchProductsUrl = `http://localhost:3001/product-related/getProducts?category=${category}&page=${pageNumber}&limit=12`;
+    } else {
+      fetchProductsUrl = `http://localhost:3001/product-related/getProducts?page=${pageNumber}&limit=12`;
+    }
+
     try {
-      const response = await fetch(
-        `${URL}/product-related/getProducts?page=${pageNumber}&limit=12`
-      );
+      const response = await fetch(fetchProductsUrl);
       const data = await response.json();
       if (data.success) {
         setProducts(data.products);
         setTotalPages(data.totalPages);
         setPage(data.currentPage);
+        setLoading(false);
       }
     } catch (error) {
       console.error("Error fetching products:", error);
