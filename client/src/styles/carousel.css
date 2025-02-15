@@ -47,27 +47,3 @@
   color: #a36a4a;
   opacity: 1;
 }
-
-/* Responsive */
-@media (max-width: 1024px) {
-  .carousel-slide img {
-    height: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .carousel-slide img {
-    height: 300px;
-  }
-
-  .slick-prev,
-  .slick-next {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-slide img {
-    height: 250px;
-  }
-}

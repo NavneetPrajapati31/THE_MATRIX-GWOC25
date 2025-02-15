@@ -55,7 +55,7 @@ const NewProducts = ({ type, productId }) => {
                 />
                 <p className="wishlist-item-name ">{product.name}</p>
                 <p className="wishlist-item-price " style={{ marginTop: "0" }}>
-                  MRP <span className="price">{product.price}</span>
+                  MRP <span className="price">₹{product.price}</span>
                 </p>
               </div>
             </Link>

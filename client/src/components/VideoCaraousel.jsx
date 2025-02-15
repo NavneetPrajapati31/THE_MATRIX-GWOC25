@@ -3,7 +3,7 @@ import "../styles/videocaraousel.css";
 import VolumeUpOutlinedIcon from "@mui/icons-material/VolumeUpOutlined";
 import VolumeOffOutlinedIcon from "@mui/icons-material/VolumeOffOutlined";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 const initialVideos = [
   { id: 1, src: "/Videos/VID-20250204-WA0022.mp4" },
@@ -77,10 +77,10 @@ const VideoCarousel = () => {
         })}
 
         <button className="prev-btn" onClick={handlePrev}>
-          <ArrowBackIosIcon fontSize="small" />
+          <ArrowBackIosNewIcon fontSize="medium" />
         </button>
         <button className="next-btn" onClick={handleNext}>
-          <ArrowForwardIosIcon fontSize="small" />
+          <ArrowForwardIosIcon fontSize="medium" />
         </button>
       </div>
     </div>
