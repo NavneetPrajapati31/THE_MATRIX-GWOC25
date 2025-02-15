@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 export default function ForgotPassword() {
+  const temp = import.meta.env.VITE_BACKEND_URL;
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -8,17 +9,15 @@ export default function ForgotPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const response = await fetch("http://localhost:3001/auth/forgot-password", {
+    const response = await fetch(`${temp}/auth/forgot-password`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
     });
 
-    
-
     const data = await response.json();
     setMessage(data.message);
-    setLoading(false)
+    setLoading(false);
   };
 
   return (
@@ -32,7 +31,10 @@ export default function ForgotPassword() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button type="submit" disabled={loading} > {loading?'Resetting Link' : ' Send Reset Link' }</button>
+        <button type="submit" disabled={loading}>
+          {" "}
+          {loading ? "Resetting Link" : " Send Reset Link"}
+        </button>
       </form>
       {message && <p>{message}</p>}
     </div>

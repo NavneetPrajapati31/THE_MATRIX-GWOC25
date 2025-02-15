@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import "../styles/orderContainer.css";
 
 const OrderContainer = () => {
+  const temp = import.meta.env.VITE_BACKEND_URL;
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:3001/orders-related/admin/orders"
-        );
+        const response = await fetch(`${temp}/orders-related/admin/orders`);
         const data = await response.json();
         setOrders(data);
       } catch (error) {
@@ -23,7 +22,7 @@ const OrderContainer = () => {
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/orders-related/admin/orders/${orderId}`,
+        `${temp}/orders-related/admin/orders/${orderId}`,
         {
           method: "PUT",
           headers: {

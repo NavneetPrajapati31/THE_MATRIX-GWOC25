@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function ResetPassword() {
+  const temp = import.meta.env.VITE_BACKEND_URL;
   const { token } = useParams();
   const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
@@ -10,8 +11,8 @@ export default function ResetPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
-    const response = await fetch(`http://localhost:3001/auth/reset-password/${token}`, {
+    setLoading(true);
+    const response = await fetch(`${temp}/auth/reset-password/${token}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ newPassword }),
@@ -34,10 +35,12 @@ export default function ResetPassword() {
           onChange={(e) => setNewPassword(e.target.value)}
           required
         />
-        <button type="submit" disabled={loading} > {loading?'Reseting your password':'Reset Password'}   </button>
+        <button type="submit" disabled={loading}>
+          {" "}
+          {loading ? "Reseting your password" : "Reset Password"}{" "}
+        </button>
       </form>
       {message && <p>{message}</p>}
-
     </div>
   );
 }

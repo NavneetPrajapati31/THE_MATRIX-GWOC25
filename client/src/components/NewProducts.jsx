@@ -3,6 +3,7 @@ import "../styles/newproducts.css"; // Import custom CSS
 import { Link } from "react-router-dom";
 
 const NewProducts = ({ type, productId }) => {
+  const temp = import.meta.env.VITE_BACKEND_URL;
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -10,9 +11,9 @@ const NewProducts = ({ type, productId }) => {
       try {
         let url = "";
         if (type === "latest") {
-          url = "http://localhost:3001/product-related/products/latest";
+          url = `${temp}/product-related/products/latest`;
         } else if (type === "similar" && productId) {
-          url = `http://localhost:3001/product-related/similar/${productId}`;
+          url = `${temp}/product-related/similar/${productId}`;
         }
 
         const response = await fetch(url);
