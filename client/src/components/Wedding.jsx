@@ -18,7 +18,7 @@ const Wedding = () => {
 
       <div className="wedding-grid">
         <div className="wedding-card wedding-image-container">
-          <Link>
+          <Link to="/product-listing">
             <img
               src="https://www.koskii.com/cdn/shop/products/koskii-black-sequins-georgette-designer-saree-saus0021890_black_4_1800x1800.jpg?v=1663334015"
               alt=""
@@ -29,7 +29,7 @@ const Wedding = () => {
           </Link>
         </div>
         <div className="wedding-card wedding-image-container">
-          <Link>
+          <Link to="/product-listing">
             <img
               src="https://www.koskii.com/cdn/shop/files/koskii-white-sequins-shimmergeorgette-designer-saree-saus0031899_white_1_1800x1800.jpg?v=1693978281"
               alt=""

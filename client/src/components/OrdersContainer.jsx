@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import "../styles/orderContainer.css";
 
 const OrderContainer = () => {
-  const URL = import.meta.env.VITE_BACKEND_URL;
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch(`${URL}/orders-related/admin/orders`);
+        const response = await fetch(
+          "http://localhost:3001/orders-related/admin/orders"
+        );
         const data = await response.json();
         setOrders(data);
       } catch (error) {
@@ -22,7 +23,7 @@ const OrderContainer = () => {
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
       const response = await fetch(
-        `${URL}/orders-related/admin/orders/${orderId}`,
+        `http://localhost:3001/orders-related/admin/orders/${orderId}`,
         {
           method: "PUT",
           headers: {
@@ -44,19 +45,26 @@ const OrderContainer = () => {
     }
   };
 
+  console.log(orders);
+
   return (
     <div className="orders-container-yash">
       {orders.map((order) => (
-        <div key={order._id} className="order-card-yash">
-          {/* Order Left Section (Image) */}
-          <div className="order-image">
+        <div className="order-card-yash">
+          <div className="order-image" key={order._id}>
             {order.products.map((item, index) => (
-              <img
-                key={index}
-                src={item.product.image || "fallback-image-url"}
-                alt={item.product.title}
-                className="order-product-image"
-              />
+              <div className="saree-id-img">
+                <span className="saree-id-admin bold">
+                  {" "}
+                  Saree-Id: {item.product.sareeId}
+                  <img
+                    key={index}
+                    src={item.product.image || "fallback-image-url"}
+                    alt={item.product.title}
+                    className="order-product-image"
+                  />
+                </span>
+              </div>
             ))}
           </div>
 

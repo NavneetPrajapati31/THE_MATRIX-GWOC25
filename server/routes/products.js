@@ -6,22 +6,20 @@ const router = express.Router();
 // Route to fetch paginated products (with optional category filter)
 router.get("/getProducts", async (req, res) => {
   try {
-    let { page = 1, limit = 5, category } = req.query; // Default: page 1, limit 5
+    let { page = 1, limit = 5, category } = req.query;
     page = parseInt(page);
     limit = parseInt(limit);
 
     let filter = {};
     if (category) {
-      filter.category = category; // Filter products by category if provided
+      filter.category = category;
     }
 
     const products = await Product.find(filter)
-      .skip((page - 1) * limit) // Skip previous pages
-      .limit(limit); // Get only the required products
+      .skip((page - 1) * limit)
+      .limit(limit);
 
     const totalProducts = await Product.countDocuments(filter); // Total products in DB (filtered)
-
-    console.log(totalProducts);
 
     res.json({
       success: true,
@@ -47,6 +45,37 @@ router.get("/get-details/:id", async (req, res) => {
   } catch (error) {
     console.error("Error fetching product details:", error);
     res.status(500).json({ message: "Server Error" });
+  }
+});
+
+router.get("/products/latest", async (req, res) => {
+  try {
+    const latestProducts = await Product.find()
+      .sort({ createdAt: -1 })
+      .limit(5);
+    res.json(latestProducts);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching latest products", error });
+  }
+});
+
+router.get("/similar/:productId", async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const currentProduct = await Product.findById(productId);
+
+    if (!currentProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    const similarProducts = await Product.find({
+      category: currentProduct.category,
+      _id: { $ne: productId },
+    }).limit(5);
+
+    res.json(similarProducts);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching similar products", error });
   }
 });
 

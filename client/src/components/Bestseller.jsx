@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/newproducts.css"; // Import custom CSS
 
 const products = [
@@ -45,21 +46,22 @@ const Bestseller = () => {
 
       <div className="product-grid">
         {products.map((product, index) => (
-          <div key={index} className="product-card">
-            <img
-              src={product.img}
-              alt={product.title}
-              className="product-img"
-            />
-            {/* Product Name & Price */}
-            <p className="wishlist-item-name text-start">{product.title}</p>
-            <p
-              className="wishlist-item-price text-start"
-              style={{ marginTop: "0" }}
-            >
-              MRP <span className="price">{product.price}</span>
-            </p>
-          </div>
+          <>
+            <Link to={`/product-details/${product._id}`}>
+              <div key={index} className="product-card">
+                <img
+                  src={product.img}
+                  alt={product.title}
+                  className="new-product-img"
+                />
+                {/* Product Name & Price */}
+                <p className="wishlist-item-name ">{product.title}</p>
+                <p className="wishlist-item-price " style={{ marginTop: "0" }}>
+                  MRP <span className="price">{product.price}</span>
+                </p>
+              </div>
+            </Link>
+          </>
         ))}
       </div>
     </div>

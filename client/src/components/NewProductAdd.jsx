@@ -4,7 +4,6 @@ import imageCompression from "browser-image-compression";
 import "../styles/newProductAdd.css";
 
 const NewProductAdd = () => {
-  const temp = import.meta.env.VITE_BACKEND_URL;
   const [loading, setLoading] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState("");
   const [errorAdding, setErrorAdding] = useState("");
@@ -25,9 +24,11 @@ const NewProductAdd = () => {
   const [color, setColor] = useState("");
   const [price, setPrice] = useState("");
   const [featured, setFeatured] = useState(false);
+  const [bestSelling, setBestSelling] = useState(false);
   const [images, setImages] = useState([]);
 
-  // Handle File Upload & Compression
+  console.log(bestSelling);
+
   const handleFileUpload = async (e, index) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -65,7 +66,7 @@ const NewProductAdd = () => {
       setProgressBar(70);
     }, 5000);
 
-    if (!sareeName || !sareeDesc || !price || !color || images.length === 0) {
+    if (!sareeName || !sareeDesc || !price || !color || images.length < 4) {
       setErrorAdding("Please fill all required fields and upload images.");
       setLoading(false);
       return;
@@ -82,21 +83,25 @@ const NewProductAdd = () => {
     formData.append("occasion", occasion);
     formData.append("color", color);
     formData.append("featured", featured);
+    formData.append("bestSelling", bestSelling);
 
     images.forEach(({ file }) => formData.append("images", file));
 
     try {
-      const response = await fetch(`${temp}/saree-related/add-saree`, {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "http://localhost:3001/saree-related/add-saree",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
       setLoading(false);
       setProgressBar(100);
       setProgressText("Done! Your saree is added!");
-      setShowSuccessAnimation(true); // Show success animation
+      setShowSuccessAnimation(true);
 
       setTimeout(() => {
         setProgressBar(0);
@@ -118,6 +123,7 @@ const NewProductAdd = () => {
       setColor("");
       setPrice("");
       setFeatured(false);
+      setBestSelling(false);
       setImages([]);
     } catch (error) {
       console.error("Error:", error);
@@ -277,6 +283,15 @@ const NewProductAdd = () => {
           />
           <label htmlFor="featured">Add to Featured</label>
         </div>
+        <div className="featured-checkbox">
+          <input
+            type="checkbox"
+            id="bestSelling"
+            checked={bestSelling}
+            onChange={(e) => setBestSelling(e.target.checked)}
+          />
+          <label htmlFor="bestSelling">Add to Best selling</label>
+        </div>
         <div className="btn-div">
           <button
             type="submit"
@@ -294,7 +309,7 @@ const NewProductAdd = () => {
           <div className="progress-bar-container">
             <div
               className="progress-bar"
-              style={{ width: `${progressBar}%` }}
+              style={{ width: `${progressBar}% ` }}
             ></div>
           </div>
           <p className="progress-text">{progressText}</p>

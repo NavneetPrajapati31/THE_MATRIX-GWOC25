@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login, setUser } from "../redux/state"; // Import Redux actions
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
@@ -123,7 +123,9 @@ export default function Login() {
                   placeholder="Password*"
                   required
                 />
-                <p className="forgot-password">Forgot Password?</p>
+                <p className="forgot-password">
+                  <Link to="/forgot-password">Forgot Password?</Link>
+                </p>
                 <button className="login-btn" type="submit" disabled={loading}>
                   {loading ? "Logging in..." : "LOGIN"}
                 </button>

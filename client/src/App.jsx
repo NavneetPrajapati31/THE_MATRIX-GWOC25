@@ -19,6 +19,9 @@ import BuyNow from "./pages/BuyNow";
 import OrdersPage from "./components/OrdersPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostDetail from "./components/BlogPostDetail";
+import ScrollToTop from "./components/ScrollToTop.jsx";
+import ForgotPassword from "./pages/ForgetPassword.jsx";
+import ResetPassword from "./pages/ResetPass.jsx";
 
 function App() {
   const URL = import.meta.env.VITE_BACKEND_URL;
@@ -50,6 +53,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<IndexPage />} />
           <Route path="/signup" element={<Signup />} />
@@ -68,6 +72,8 @@ function App() {
           <Route path="/contact-us" element={<ContactFormModal />} />
           <Route path="/blogs" element={<BlogPage />} />
           <Route path="/blogdetails" element={<BlogPostDetail />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
         </Routes>
       </BrowserRouter>
     </>

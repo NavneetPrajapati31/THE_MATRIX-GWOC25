@@ -181,6 +181,31 @@ ul li a:hover::after {
 /* -------------------------- */
 
 /* Hide the search bar on devices 768px and below for a cleaner mobile view */
+
+/* For medium devices (up to 1030px) */
+@media (max-width: 1030px) {
+  /* (If you have extra category buttons elsewhere, hide them here) */
+  .categories {
+    display: none !important;
+  }
+
+  ul li a {
+    display: none !important;
+  }
+
+  /* If you use a menu-icon class, ensure it is visible */
+  .menu-icon {
+    display: block;
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  /* Hide any bottom navigation if present */
+  .bottom-nav {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   form[role="search"] {
     display: none !important;
@@ -190,11 +215,6 @@ ul li a:hover::after {
   .navbar-brand h2 {
     font-size: 20px;
   }
-}
-
-/* For medium devices (up to 1030px) */
-@media (max-width: 1030px) {
-  /* (If you have extra category buttons elsewhere, hide them here) */
   .categories {
     display: none;
   }
@@ -245,6 +265,20 @@ ul li a:hover::after {
   .nav-icons {
     color: #222222;
     font-size: 16px;
+  }
+}
+
+/* Hide categories on devices smaller than 1168px */
+@media (max-width: 1167px) {
+  .categories {
+    display: none;
+  }
+}
+
+/* Show categories on devices 1168px and larger */
+@media (min-width: 1168px) {
+  .categories {
+    display: block;
   }
 }
 

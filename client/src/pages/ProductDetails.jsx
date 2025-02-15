@@ -9,6 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box } from "@mui/material";
+import NewProducts from "../components/NewProducts";
 
 const ProductDetails = () => {
   const URL = import.meta.env.VITE_BACKEND_URL;
@@ -374,7 +375,6 @@ const ProductDetails = () => {
                 ></div>
               </div>
             </div>
-            {/* Product Details Section */}
             <div className="product-disc">
               <div className="product-details-container">
                 <h2 className="product-desc-h2">{product.name}</h2>
@@ -475,6 +475,9 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+
+      <NewProducts type="similar" productId={product._id} />
+
       {/* Product Reviews Section */}
       <div className="product-reviews">
         <h3 className="title">Customer Reviews</h3>

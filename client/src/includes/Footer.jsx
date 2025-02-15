@@ -8,16 +8,8 @@ const Footer = () => {
         <div className="footer-column">
           <h3>DESIGNER WEAR</h3>
           <ul>
-            <li>Salwar Kameez</li>
             <li>Sarees</li>
-            <li>Lehengas</li>
-            <li>Gowns</li>
-            <li>Kidswear</li>
             <li>Saree Blouse</li>
-            <li>Kurtis</li>
-            <li>IndoWestern Styles</li>
-            <li>Mens</li>
-            <li>Accessories</li>
             <li>Bridal Dresses</li>
             <li>Celebrity Wear</li>
           </ul>
@@ -26,15 +18,15 @@ const Footer = () => {
         <div className="footer-column">
           <h3>ABOUT US</h3>
           <ul>
-            <li>About Us</li>
-            <li>Contact Us</li>
-            <li>Blog</li>
-            <li>Web Stories</li>
-            <li>Press</li>
-            <li>Careers</li>
-            <li>KALKI Boutique</li>
-            <li>Fashion Show</li>
-            <li>Buying Guide</li>
+            <li link="/dashboard">About Us</li>
+            <li link="/dashboard">Contact Us</li>
+            <li link="/dashboard">Blog</li>
+            <li link="/dashboard">Web Stories</li>
+            <li link="/dashboard">Press</li>
+            <li link="/dashboard">Careers</li>
+            <li link="/dashboard">KASHVI Boutique</li>
+            <li link="/dashboard">Fashion Show</li>
+            <li link="/dashboard">Buying Guide</li>
           </ul>
         </div>
 
@@ -83,14 +75,6 @@ const Footer = () => {
           <div className="contact-section text-start">
             <h3>GET IN TOUCH</h3>
             <p>+91 (22) 4890 0416 (INDIA)</p>
-            <p>+1 (408) 520 9415 (US)</p>
-            <p>+44 (20) 7193 0887 (UK)</p>
-            <p>+61 (02) 8006 4667 (AUS)</p>
-          </div>
-
-          <div className="email-section text-start">
-            <h3>EMAIL US ON</h3>
-            <p>kashvicreation10@gmail.com</p>
           </div>
         </div>
       </div>

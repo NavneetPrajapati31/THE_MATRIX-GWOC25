@@ -84,21 +84,26 @@ const BuyNow = () => {
       return;
     }
 
+    console.log("yash");
+
     const totalAmount =
       cartItems && cartItems.length > 0
         ? cartTotal + deliveryCharge
         : product.price + deliveryCharge;
 
-    if (selectedPayment === "RAZORPAY") {
+    if (selectedPayment === "razorpay") {
       try {
-        const response = await fetch(`${URL}/payment-related/create-order`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            amount: totalAmount * 100, // Razorpay expects amount in paise
-            currency: "INR",
-          }),
-        });
+        const response = await fetch(
+          "http://localhost:3001/payment-related/create-order",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              amount: totalAmount * 100, // Razorpay expects amount in paise
+              currency: "INR",
+            }),
+          }
+        );
 
         const order = await response.json();
 
@@ -116,10 +121,10 @@ const BuyNow = () => {
             cartItems && cartItems.length > 0
               ? "Payment for Cart Items"
               : `Payment for ${product.title}`,
-          image: `/images/logo.jpg`,
+          image: "/images/logo.jpg",
           handler: async function (response) {
             const verificationResponse = await fetch(
-              `${URL}/payment-related/verify-payment`,
+              "http://localhost:3001/payment-related/verify-payment",
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -135,7 +140,7 @@ const BuyNow = () => {
 
             if (verificationResponse.ok) {
               const orderResponse = await fetch(
-                `${URL}/orders-related/place-order`,
+                "http://localhost:3001/orders-related/place-order",
                 {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -146,6 +151,7 @@ const BuyNow = () => {
                         ? cartItems.map((item) => ({
                             product: {
                               _id: item._id,
+                              sareeId: item.sareeId,
                               title: item.name,
                               price: item.price,
                               image: item.image,
@@ -156,6 +162,7 @@ const BuyNow = () => {
                             {
                               product: {
                                 _id: product._id,
+                                sareeId: product.sareeId,
                                 title: product.name,
                                 price: product.price,
                                 image: product.images[0],
@@ -176,9 +183,6 @@ const BuyNow = () => {
               if (orderResponse.ok) {
                 alert("Payment Successful! Order placed.");
                 setShowSuccess(true);
-                if (cartItems && cartItems.length > 0) {
-                  clearCart();
-                }
               } else {
                 alert("Failed to save order: " + orderResult.error);
               }
@@ -202,47 +206,51 @@ const BuyNow = () => {
         console.error("Payment error:", error);
         alert("Payment failed: " + error.message);
       }
-    } else if (selectedPayment === "COD") {
-      const orderResponse = await fetch(`${URL}/orders-related/place-order`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: user._id,
-          products:
-            cartItems && cartItems.length > 0
-              ? cartItems.map((item) => ({
-                  product: {
-                    _id: item._id,
-                    title: item.name,
-                    price: item.price,
-                    image: item.images?.item.images[0],
-                  },
-                  quantity: item.quantity,
-                }))
-              : [
-                  {
+    } else if (selectedPayment === "cod") {
+      const orderResponse = await fetch(
+        "http://localhost:3001/orders-related/place-order",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userId: user._id,
+            products:
+              cartItems && cartItems.length > 0
+                ? cartItems.map((item) => ({
                     product: {
-                      _id: product._id,
-                      title: product.name,
-                      price: product.price,
-                      image: product.images[0],
+                      _id: item._id,
+                      sareeId: item.sareeId,
+                      title: item.name,
+                      price: item.price,
+                      image: item.image,
                     },
-                    quantity: 1,
-                  },
-                ],
-          totalAmount,
-          paymentMethod: "COD",
-          address: selectedAddress,
-          paymentStatus: "Pending",
-        }),
-      });
+                    quantity: item.quantity,
+                  }))
+                : [
+                    {
+                      product: {
+                        _id: product._id,
+                        sareeId: product.sareeId,
+                        title: product.name,
+                        price: product.price,
+                        image: product.images[0],
+                      },
+                      quantity: 1,
+                    },
+                  ],
+            totalAmount,
+            paymentMethod: "cod",
+            address: selectedAddress,
+            paymentStatus: "Pending",
+          }),
+        }
+      );
 
       const orderResult = await orderResponse.json();
 
       if (orderResponse.ok) {
-        alert(`Order placed successfully!`);
-        // if (cartItems && cartItems.length > 0) {
-        // }
+        alert("Order placed successfully!");
+
         navigate("/");
       } else {
         alert("Failed to place order: " + orderResult.error);
@@ -338,7 +346,7 @@ const BuyNow = () => {
               <div className="payment-method-container">
                 {[
                   {
-                    id: "RAZORPAY",
+                    id: "razorpay",
                     label: "Razorpay",
                     // img: "/images/razorpayImg.png",
                   },
@@ -349,7 +357,7 @@ const BuyNow = () => {
                     disabled: true,
                   },
                   {
-                    id: "COD",
+                    id: "cod",
                     label: "Cash on Delivery",
                     // img: "/images/codImg.png",
                   },

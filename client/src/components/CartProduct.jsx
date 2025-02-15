@@ -44,6 +44,7 @@ export default function CartProduct({ product, onRemove, onQuantityChange }) {
 
     calculateDeliveryDate();
   }, [product]);
+  
 
   return (
     <div className="cart-item d-flex mb-3">

@@ -179,6 +179,9 @@ const Navbar = () => {
                       <Link to="/dashboard" className="account-dropdown-item">
                         Admin
                       </Link>
+                      <Link to="/orders" className="account-dropdown-item">
+                        Order History
+                      </Link>
                       <a
                         role="button"
                         className="account-dropdown-item"

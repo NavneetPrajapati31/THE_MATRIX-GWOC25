@@ -18,7 +18,7 @@ const IndexPage = () => {
       <Navbar />
       <Carousel />
       <VideoCarousel />
-      <NewProducts />
+      <NewProducts type="latest" />
       <FeaturedCollections />
       <Wedding />
       <Bestseller />

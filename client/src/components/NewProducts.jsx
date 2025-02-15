@@ -1,34 +1,31 @@
+import { useEffect, useState } from "react";
 import "../styles/newproducts.css"; // Import custom CSS
+import { Link } from "react-router-dom";
 
-const products = [
-  {
-    img: "https://www.koskii.com/cdn/shop/files/koskii-purple-stonework-semicrepe-designer-saree-saus0034824_purple_1_1_1400x.jpg?v=1719829414",
-    title: "Light Blue Crushed Tissue Saree Embro...",
-    price: "₹ 11,995",
-  },
-  {
-    img: "https://www.koskii.com/cdn/shop/files/koskii-purple-stonework-semicrepe-designer-saree-saus0034824_purple_1_1_1400x.jpg?v=1719829414",
-    title: "Green Bandhani Lehenga Set With Za...",
-    price: "₹ 23,799",
-  },
-  {
-    img: "https://www.koskii.com/cdn/shop/files/koskii-purple-stonework-semicrepe-designer-saree-saus0034824_purple_1_1_1400x.jpg?v=1719829414",
-    title: "Royal Blue Bandhani Lehenga Set Wit...",
-    price: "₹ 23,799",
-  },
-  {
-    img: "https://www.koskii.com/cdn/shop/files/koskii-purple-stonework-semicrepe-designer-saree-saus0034824_purple_1_1_1400x.jpg?v=1719829414",
-    title: "Beige Palazzo Set With Beads Sequin...",
-    price: "₹ 22,499",
-  },
-  {
-    img: "https://www.koskii.com/cdn/shop/files/koskii-purple-stonework-semicrepe-designer-saree-saus0034824_purple_1_1_1400x.jpg?v=1719829414",
-    title: "Orange Floral Print Pleated Gown Wit...",
-    price: "₹ 20,990",
-  },
-];
+const NewProducts = ({ type, productId }) => {
+  const [products, setProducts] = useState([]);
 
-const NewProducts = () => {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        let url = "";
+        if (type === "latest") {
+          url = "http://localhost:3001/product-related/products/latest";
+        } else if (type === "similar" && productId) {
+          url = `http://localhost:3001/product-related/similar/${productId}`;
+        }
+
+        const response = await fetch(url);
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [type, productId]);
+
   return (
     <div className="container">
       <h2
@@ -40,26 +37,28 @@ const NewProducts = () => {
           marginBottom: "20px",
         }}
       >
-        New Arrivals
+        {type === "latest"
+          ? "New Arrivals"
+          : "Similar Products with same Category"}
       </h2>
 
       <div className="product-grid">
         {products.map((product, index) => (
-          <div key={index} className="product-card">
-            <img
-              src={product.img}
-              alt={product.title}
-              className="product-img"
-            />
-            {/* Product Name & Price */}
-            <p className="wishlist-item-name text-start">{product.title}</p>
-            <p
-              className="wishlist-item-price text-start"
-              style={{ marginTop: "0" }}
-            >
-              MRP <span className="price">{product.price}</span>
-            </p>
-          </div>
+          <>
+            <Link to={`/product-details/${product._id}`}>
+              <div key={index} className="product-card">
+                <img
+                  src={product.images[0]}
+                  alt={product.name}
+                  className="new-product-img"
+                />
+                <p className="wishlist-item-name ">{product.name}</p>
+                <p className="wishlist-item-price " style={{ marginTop: "0" }}>
+                  MRP <span className="price">{product.price}</span>
+                </p>
+              </div>
+            </Link>
+          </>
         ))}
       </div>
     </div>

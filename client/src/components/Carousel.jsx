@@ -34,7 +34,7 @@ export default function Carousel() {
           style={{ cursor: "pointer" }}
         >
           <img
-            src="https://static.showit.co/1200/frBJ4TKwRJyiTnZjEL9C5Q/59335/ombrebyhj_le-9529.jpg"
+            src="https://i.pinimg.com/originals/67/0e/49/670e49f72ecd161dc2e8972b5b9ba54d.jpg"
             className="d-block w-100"
             style={{
               width: "100%", // Ensures full width
@@ -81,7 +81,7 @@ export default function Carousel() {
           style={{ cursor: "pointer" }}
         >
           <img
-            src="https://i.pinimg.com/originals/67/0e/49/670e49f72ecd161dc2e8972b5b9ba54d.jpg"
+            src="https://assets.vogue.in/photos/5ce41bf11dc2676095c774db/16:9/w_1280,c_limit/Anita-Dongres-Pichhwai-Collection.jpg"
             className="d-block w-100"
             style={{
               width: "100%", // Ensures full width
