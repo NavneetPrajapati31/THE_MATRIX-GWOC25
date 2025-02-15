@@ -10,7 +10,7 @@ const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
 const otpHolder = {};
 
-const temp = import.meta.env.VITE_BACKEND_URL;
+const temp = process.env.FRONTEND_URL;
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
