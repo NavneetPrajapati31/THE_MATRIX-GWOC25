@@ -4,7 +4,7 @@ import imageCompression from "browser-image-compression";
 import "../styles/newProductAdd.css";
 
 const NewProductAdd = () => {
-  const URL = import.meta.env.VITE_BACKEND_URL;
+  const temp = import.meta.env.VITE_BACKEND_URL;
   const [loading, setLoading] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState("");
   const [errorAdding, setErrorAdding] = useState("");
@@ -86,7 +86,7 @@ const NewProductAdd = () => {
     images.forEach(({ file }) => formData.append("images", file));
 
     try {
-      const response = await fetch(`${URL}/saree-related/add-saree`, {
+      const response = await fetch(`${temp}/saree-related/add-saree`, {
         method: "POST",
         body: formData,
       });
