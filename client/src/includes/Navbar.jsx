@@ -74,25 +74,25 @@ const Navbar = () => {
               <li className="nav-item ms-4">
                 <a
                   className="nav-link active"
-                  href="/product-listing?category=Linen"
+                  href="/product-listing?category=Chiffon"
                 >
-                  Linen
+                  Chiffon
                 </a>
               </li>
               <li className="nav-item ms-4">
                 <a
                   className="nav-link active"
-                  href="/product-listing?category=Regional"
+                  href="/product-listing?category=Handloom"
                 >
-                  Regional
+                  Handloom
                 </a>
               </li>
               <li className="nav-item ms-4">
                 <a
                   className="nav-link active"
-                  href="/product-listing?category=Banarasiya"
+                  href="/product-listing?category=Banarasi"
                 >
-                  Banarasiya
+                  Banarasi
                 </a>
               </li>
               <li className="nav-item ms-4">
@@ -229,13 +229,13 @@ const Navbar = () => {
             <a href="/product-listing?category=Cotton">Cotton</a>
           </li>
           <li>
-            <a href="/product-listing?category=Linen">Linen</a>
+            <a href="/product-listing?category=Chiffon">Chiffon</a>
           </li>
           <li>
-            <a href="/product-listing?category=Regional">Regional</a>
+            <a href="/product-listing?category=Handloom">Handloom</a>
           </li>
           <li>
-            <a href="/product-listing?category=Banarasi">Banarasiya</a>
+            <a href="/product-listing?category=Banarasi">Banarasi</a>
           </li>
           <li>
             <a href="/about-us">About us</a>
