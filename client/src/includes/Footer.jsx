@@ -82,9 +82,12 @@ const Footer = () => {
         <div className="contact-email-container">
           <div className="contact-section text-start">
             <h3>GET IN TOUCH</h3>
-
-            <p>+91 93764 21333 </p>
-            <p>+91 72909 09696 </p>
+            <a href="tel:9376421333">
+              <p>+91 93764 21333 </p>
+            </a>
+            <a href="tel:7290909696">
+              <p>+91 72909 09696 </p>
+            </a>
           </div>
         </div>
       </div>

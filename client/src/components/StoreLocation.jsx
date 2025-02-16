@@ -1,4 +1,5 @@
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import { Link } from "react-router-dom";
 
 const StoreLocation = () => {
   return (
@@ -21,20 +22,18 @@ const StoreLocation = () => {
 
           {/* Buttons (Responsive Alignment) */}
           <div className="d-flex flex-column flex-sm-row gap-3 mt-4">
-            <button
-              className="btn btn-outline-dark d-flex align-items-center justify-content-center"
-              style={{ fontSize: "12px", padding: "10px 20px" }}
-            >
-              GET DIRECTION
-              <ArrowForwardIosOutlinedIcon fontSize="small" className="ms-2" />
-            </button>
-            <button
-              className="btn btn-outline-dark d-flex align-items-center justify-content-center"
-              style={{ fontSize: "12px", padding: "10px 20px" }}
-            >
-              BOOK APPOINTMENT
-              <ArrowForwardIosOutlinedIcon fontSize="small" className="ms-2" />
-            </button>
+            <Link to="https://www.google.com/maps?ll=21.194516,72.841811&z=13&t=m&hl=en&gl=IN&mapclient=embed&cid=5015915195930841336">
+              <button
+                className="btn btn-outline-dark d-flex align-items-center justify-content-center"
+                style={{ fontSize: "12px", padding: "10px 20px" }}
+              >
+                GET DIRECTION
+                <ArrowForwardIosOutlinedIcon
+                  fontSize="small"
+                  className="ms-2"
+                />
+              </button>
+            </Link>
           </div>
         </div>
 

@@ -38,9 +38,7 @@ const NewProducts = ({ type, productId }) => {
           marginBottom: "20px",
         }}
       >
-        {type === "latest"
-          ? "New Arrivals"
-          : "Similar Products with same Category"}
+        {type === "latest" ? "New Arrivals" : "Similar Products"}
       </h2>
 
       <div className="product-grid">

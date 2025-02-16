@@ -534,7 +534,7 @@ const ProductDetails = () => {
         </div>
       </div>
       <NewProducts type="similar" productId={product._id} />
-      Product Reviews Section
+
       <div className="product-reviews">
         <h3 className="title">Customer Reviews</h3>
         <div className="review-form">
@@ -596,16 +596,24 @@ const ProductDetails = () => {
             const reviewNumber = index + 1;
             const stars =
               reviewNumber <= 5
-                ? "⭐".repeat(reviewNumber)
+                ? "★".repeat(reviewNumber)
                 : `Review ${reviewNumber}`;
+
+            // console.log(review.user);
+            // console.log(userId);
 
             return (
               <div key={index} className="yash-review">
                 {/* Left Side: User Name & Review Number / Stars */}
                 <div className="yash-review-left">
-                  <p>{review.text}</p>
                   <p>
-                    <strong>{review.userName}</strong> - {stars}
+                    <i>{review.text}</i>
+                  </p>
+                  <p className="mb-2">
+                    <strong style={{ marginRight: "8px" }}>
+                      {review.userName}
+                    </strong>{" "}
+                    {stars}
                   </p>
                   <div className="yash-review-media">
                     {review.images?.map((img, i) => (
@@ -623,19 +631,32 @@ const ProductDetails = () => {
                 <div className="yash-review-right">
                   {editingIndex === index ? (
                     <div className="yash-review-edit-form">
-                      <textarea
-                        value={editText}
-                        onChange={(e) => setEditText(e.target.value)}
-                        className="yash-review-textarea"
-                      />
-                      <input
-                        type="number"
-                        value={editRating}
-                        onChange={(e) => setEditRating(e.target.value)}
-                        min="1"
-                        max="5"
-                        className="yash-review-rating-input"
-                      />
+                      <div style={{ display: "flex", flexDirection: "column" }}>
+                        <textarea
+                          value={editText}
+                          onChange={(e) => setEditText(e.target.value)}
+                          className="yash-review-textarea"
+                        />
+
+                        {/* Star Slider Input */}
+
+                        <div className="yash-review-rating-slider">
+                          <input
+                            type="range"
+                            min="1"
+                            max="5"
+                            step="1"
+                            value={editRating}
+                            onChange={(e) => setEditRating(e.target.value)}
+                            className="yash-review-star-slider"
+                          />
+                          <div className="stars">
+                            {"★".repeat(editRating) +
+                              "☆".repeat(5 - editRating)}
+                          </div>
+                        </div>
+                      </div>
+
                       <div className="yash-review-button-group">
                         <button
                           onClick={() => handleSave(index)}
@@ -645,27 +666,29 @@ const ProductDetails = () => {
                         </button>
                         <button
                           onClick={() => setEditingIndex(null)}
-                          className="yash-review-button yash-review-cancel-button"
+                          className="yash-review-button"
                         >
                           Cancel
                         </button>
                       </div>
                     </div>
                   ) : (
-                    <div className="yash-review-button-group">
-                      <button
-                        onClick={() => handleEdit(index, review)}
-                        className="yash-review-button"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDelete(index)}
-                        className="yash-review-button yash-review-delete-button"
-                      >
-                        Delete
-                      </button>
-                    </div>
+                    review.user === userId && (
+                      <div className="yash-review-button-group">
+                        <button
+                          onClick={() => handleEdit(index, review)}
+                          className="yash-review-button"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDelete(index)}
+                          className="yash-review-button yash-review-delete-button"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )
                   )}
                 </div>
               </div>
