@@ -203,7 +203,7 @@ const BuyNow = () => {
         console.error("Payment error:", error);
         alert("Payment failed: " + error.message);
       }
-    } else if (selectedPayment === "cod") {
+    } else if (selectedPayment === "COD") {
       const orderResponse = await fetch(`${temp}/orders-related/place-order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -234,7 +234,7 @@ const BuyNow = () => {
                   },
                 ],
           totalAmount,
-          paymentMethod: "cod",
+          paymentMethod: "COD",
           address: selectedAddress,
           paymentStatus: "Pending",
         }),
@@ -351,7 +351,7 @@ const BuyNow = () => {
                     disabled: true,
                   },
                   {
-                    id: "cod",
+                    id: "COD",
                     label: "Cash on Delivery",
                     // img: "/images/codImg.png",
                   },

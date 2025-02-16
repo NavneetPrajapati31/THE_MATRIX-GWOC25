@@ -35,7 +35,7 @@ const ProductDetails = () => {
   ];
 
   // Helper function to show flash messages with fade in/out transition.
-  const showFlash = (message, imageUrl, duration = 2500) => {
+  const showFlash = (message, imageUrl, duration = 1000) => {
     setFlash(message);
     setFlashImage(imageUrl);
     setTimeout(() => {
@@ -106,6 +106,7 @@ const ProductDetails = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userId: user._id,
+          sareeId: product.sareeId,
           productId: product._id,
           name: product.name,
           price: product.price,
@@ -379,7 +380,7 @@ const ProductDetails = () => {
               <div className="product-details-container">
                 <h2 className="product-desc-h2">{product.name}</h2>
                 <p style={{ fontSize: "13px", marginBottom: "5px" }}>
-                  Style No {product.styleNo}
+                  Style No {product.sareeId}
                 </p>
                 <p className="productdetails-price">₹ X,XXX</p>
                 <p style={{ fontSize: "12px", color: "grey" }}>
@@ -416,7 +417,7 @@ const ProductDetails = () => {
                     <div className="details-column">
                       <p className="product-desc-p">
                         <strong>Design No :</strong>
-                        <br /> K155TBC406Y
+                        <br /> {product.sareeId}
                       </p>
                       <p className="product-desc-p">
                         <strong>Fabric :</strong>

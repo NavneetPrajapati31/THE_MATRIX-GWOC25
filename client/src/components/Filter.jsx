@@ -6,9 +6,12 @@ import Pagination from "./Pagination";
 import ExploreMore from "./ExploreMore";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Filter = () => {
-  const temp = import.meta.env.VITE_BACKEND_URL;
+  const temp = "http://localhost:3001";
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
@@ -23,9 +26,8 @@ const Filter = () => {
   const [selectedType, setSelectedType] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
-
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
   const user = useSelector((state) => state.user?.user);
-
   const userId = user?._id;
 
   const filters = [
@@ -96,7 +98,7 @@ const Filter = () => {
 
   useEffect(() => {
     if (searchQuery) {
-      fetch(`${temp}/saree-related/search?search=${searchQuery}`)
+      fetch(`http://localhost:3001/saree-related/search?search=${searchQuery}`)
         .then((response) => response.json())
         .then((data) => setProducts(data))
         .catch((error) => console.error("Error fetching data:", error));
@@ -104,13 +106,16 @@ const Filter = () => {
   }, [searchQuery]);
 
   const category = params.get("category");
+  const occasion = params.get("occasion");
 
   const fetchProducts = async (pageNumber) => {
     let fetchProductsUrl;
     if (category) {
-      fetchProductsUrl = `${temp}/product-related/getProducts?category=${category}&page=${pageNumber}&limit=12`;
+      fetchProductsUrl = `http://localhost:3001/product-related/getProducts?category=${category}&page=${pageNumber}&limit=12`;
+    } else if (occasion) {
+      fetchProductsUrl = `http://localhost:3001/product-related/getProducts?occasion=${occasion}&page=${pageNumber}&limit=12`;
     } else {
-      fetchProductsUrl = `${temp}/product-related/getProducts?page=${pageNumber}&limit=12`;
+      fetchProductsUrl = `http://localhost:3001/product-related/getProducts?page=${pageNumber}&limit=12`;
     }
 
     try {
@@ -168,6 +173,16 @@ const Filter = () => {
     console.log(color);
   };
 
+  const sortOptions = [
+    "Trending",
+    "Best Sellers",
+    "Price: high to low",
+    "Price: low to high",
+    "Featured",
+  ];
+
+  const [selectedSort, setSelectedSort] = useState("Trending");
+
   const filteredProducts = products
     .filter(
       (product) =>
@@ -193,18 +208,22 @@ const Filter = () => {
     .filter((product) =>
       selectedOccasion ? product.occasion === selectedOccasion : true
     )
-    .filter((product) => (selectedType ? product.type === selectedType : true));
-
-  console.log(filteredProducts);
+    .filter((product) => (selectedType ? product.type === selectedType : true))
+    .sort((a, b) => {
+      if (selectedSort === "Price: low to high") return a.price - b.price;
+      if (selectedSort === "Price: high to low") return b.price - a.price;
+      if (selectedSort === "Featured") return b.featured - a.featured;
+      if (selectedSort === "Best Sellers") return b.bestSeller - a.bestSeller;
+      return 0;
+    });
 
   return (
     <div className=" mt-3 px-0" style={{ maxWidth: "100vw" }}>
-      {/*className="row "*/}
       <div className="filter-products-yash">
         <div
           className={`filter-yash ${
-            isFilterOpen ? "open" : ""
-          }  col-md-2 me-4 mt-1`}
+            showMobileFilters ? "mobile-active" : ""
+          } col-md-2 me-4 mt-1`}
         >
           <div className="accordion" id="filtersAccordion">
             <h6
@@ -270,6 +289,7 @@ const Filter = () => {
                             onClick={() => handleSubcategory(item.name)}
                           >
                             {item.name}{" "}
+                            <span className="count">{item.count}</span>
                           </button>
                         ))}
                       </div>
@@ -307,6 +327,7 @@ const Filter = () => {
                             onClick={() => handleFabricSelect(fabric.name)}
                           >
                             {fabric.name}{" "}
+                            <span className="count">{fabric.count}</span>
                           </button>
                         ))}
                       </div>
@@ -323,6 +344,7 @@ const Filter = () => {
                             onClick={() => handleOccasion(occasion.name)}
                           >
                             {occasion.name}{" "}
+                            <span className="count">{occasion.count}</span>
                           </button>
                         ))}
                       </div>
@@ -337,6 +359,7 @@ const Filter = () => {
                             onClick={() => handleType(type.name)}
                           >
                             {type.name}{" "}
+                            <span className="count">{type.count}</span>
                           </button>
                         ))}
                       </div>
@@ -349,6 +372,15 @@ const Filter = () => {
             ))}
           </div>
         </div>
+
+        {window.innerWidth < 750 && (
+          <button
+            className="floating-filter-btn"
+            onClick={() => setShowMobileFilters(!showMobileFilters)}
+          >
+            {showMobileFilters ? "Close Filters" : "Filter +"}
+          </button>
+        )}
 
         <button
           className="floating-filter-btn"
@@ -364,7 +396,7 @@ const Filter = () => {
           <h2 className="text-start mb-4 josefin-sans-josefin">
             Discover the Latest Saree (साड़ी) Collection for Women
           </h2>
-          <p className="text-start mb-4">
+          <p className="text-start mb-1">
             Young or aged, preferring classic or contemporary, sarees are a
             versatile choice of Indian clothing that can cater to all kinds of
             personalities and preferences. Women have been enthralled with the
@@ -373,7 +405,35 @@ const Filter = () => {
             festival, or informal get-together.
           </p>
           <div className="filter-dropdowns-container w-100vw">
-            <FilterDropdowns />
+            <div className="d-flex align-items-center justify-content-end  ">
+              <span className="me-2" style={{ fontSize: "13px" }}>
+                Sort By
+              </span>
+              <Dropdown onSelect={(eventKey) => setSelectedSort(eventKey)}>
+                <Dropdown.Toggle
+                  variant="outline-dark"
+                  className="custom-dropdown sort-dropdown"
+                  style={{ fontSize: "12px", padding: "2px 12px" }}
+                >
+                  {selectedSort}
+                  <span className="text-end">
+                    <ExpandMoreIcon />
+                  </span>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className="rounded-sort-dropdown">
+                  {sortOptions.map((option, index) => (
+                    <Dropdown.Item
+                      key={index}
+                      eventKey={option}
+                      active={selectedSort === option}
+                    >
+                      {option}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
           </div>
 
           <div className="product-grid-container">
@@ -393,6 +453,15 @@ const Filter = () => {
           </div>
           <Pagination totalPages={totalPages} page={page} setPage={setPage} />
           <ExploreMore />
+
+          {window.innerWidth < 750 && (
+            <button
+              className="floating-filter-btn"
+              onClick={() => setShowMobileFilters(!showMobileFilters)}
+            >
+              {showMobileFilters ? "Close Filters" : "Filter +"}
+            </button>
+          )}
         </div>
       </div>
     </div>

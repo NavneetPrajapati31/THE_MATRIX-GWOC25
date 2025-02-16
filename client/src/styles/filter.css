@@ -12,7 +12,7 @@
 }
 
 .accordion-button::after {
-  display: none !important; /* Removes default Bootstrap arrow */
+  display: none !important;
 }
 
 .accordion-button {
@@ -31,7 +31,7 @@
 }
 
 .accordion-button:not(.collapsed) {
-  background: none !important; /* Ensures no background when active */
+  background: none !important;
   box-shadow: none !important;
 }
 
@@ -155,9 +155,9 @@
 .subcategory-list li .count {
   color: gray;
   font-size: 12px;
-  min-width: 40px; /* Ensures all counts align properly */
+  min-width: 40px;
   text-align: right;
-  margin-left: auto; /* Pushes the count to the right */
+  margin-left: auto;
 }
 
 .color-filter {
@@ -184,7 +184,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  max-width: 300px; /* Adjust as needed */
+  max-width: 300px;
 }
 
 .size-button {
@@ -210,7 +210,6 @@
   font-weight: 600;
 }
 
-/* Container for the grid */
 .product-grid-container {
   width: 100%;
   padding: 0;
@@ -219,43 +218,36 @@
   overflow: hidden;
 }
 
-/* Grid layout for product cards */
 .product-grid-yash {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
+  grid-template-columns: repeat(4, 1fr);
   gap: 14px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-/* Style for each product card */
 .product-card-wrapper-yash {
   background: #fff;
   border-radius: 0 !important;
   transition: transform 0.3s ease-in-out;
-  /* Use flex to center the image within the card */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Remove fixed heights to avoid cropping */
   overflow: hidden;
 }
 
-/* Ensure images scale down and maintain aspect ratio */
 .product-card-wrapper-yash img {
   width: 100%;
   height: 350px !important;
   border-radius: 0;
 }
 
-/* Tablet: 3 columns */
 @media (max-width: 1024px) {
   .product-grid-yash {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Mobile: 2 columns */
 @media (max-width: 768px) {
   .product-grid-yash {
     grid-template-columns: repeat(2, 1fr);
@@ -273,135 +265,171 @@
   display: none;
 }
 
-@media (max-width: 1024px) {
-  .filter-products-yash .col-md-2 {
+.product-card-wrapper a {
+  display: block;
+  text-decoration: none;
+}
+
+.filter-yash {
+  position: relative;
+  top: 30px;
+  height: 100vh;
+  background-color: white;
+  z-index: 1000;
+  padding: 10px;
+}
+
+@media (max-width: 750px) {
+  .filter-yash {
     display: none;
   }
 
-  /* Floating button styles */
   .floating-filter-btn {
     display: block;
     position: fixed;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #000;
+    background-color: #007bff;
     color: white;
     padding: 12px 20px;
-    border-radius: 50px;
     font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    z-index: 1000;
+    z-index: 1050000;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   }
+}
 
-  .floating-filter-btn:hover {
-    background-color: #444;
-  }
-
-  /* Filter overlay panel */
-  .mobile-filter-panel {
+@media (max-width: 750px) {
+  .filter-yash.mobile-active {
+    display: block;
     position: fixed;
-    bottom: -100%;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: white;
-    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+    height: 100vh;
+    background-color: white;
+    z-index: 1100;
     padding: 20px;
-    transition: bottom 0.4s ease-in-out;
-    z-index: 2000;
     overflow-y: auto;
+
+    transition: bottom 0.4s ease-in-out;
   }
 
-  /* Show the filter panel when active */
-  .mobile-filter-panel.active {
-    bottom: 0;
-  }
-
-  /* Close button */
   .close-filter-btn {
+    display: block;
     position: absolute;
     top: 10px;
-    right: 15px;
+    right: 10px;
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
   }
 }
-.product-card-wrapper a {
-  display: block;
-  text-decoration: none; /* Ensures no underline */
+
+.no-products-message {
+  width: 70vw;
+  padding: auto;
+  margin: 100px 30px;
 }
 
-/* FILTER SIDEBAR */
-
-.filter-yash {
-  width: 250px; /* Fixed width for sidebar */
-  height: auto; /* Full screen height */
-  background: white;
+.flash-message {
   position: fixed;
-  top: 0;
-  left: -300px; /* Hide it by default */
-  transition: left 0.3s ease-in-out;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  overflow-y: auto;
-}
-
-.filter-yash.open {
-  left: 0;
-  padding: 20px;
-}
-
-.floating-filter-btn {
-  position: fixed;
-  bottom: 20px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: black;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 9999; /* Increased z-index to ensure it's on top */
   font-size: 16px;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  z-index: 1001;
+  /* Temporarily remove animation to test visibility */
+  /* animation: fadeInOut 3s forwards; */
 }
 
-.floating-filter-btn:hover {
-  background: #444;
-}
-
-@media (min-width: 1024px) {
-  .filter-yash {
-    position: static;
-    width: 250px;
-    left: 0;
-    box-shadow: none;
+/* You can re-enable this animation later if needed */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
   }
-
-  .floating-filter-btn {
-    display: none; /* Hide button on large screens */
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
-.filter-yash.open {
-  display: block;
-  position: absolute;
-  width: 100vw;
-  height: 100%;
-  top: 2%;
+/* Flash Modal Container with Blurred Overlay */
+/* FLASH CONTAINER (Full-Screen Overlay) */
+.flash-container {
+  position: fixed;
+  /* inset: 0 is shorthand for top:0; right:0; bottom:0; left:0; */
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Slightly dark overlay + blur */
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+
+  /* Layer on top of everything */
+  z-index: 9998;
+
+  /* Start hidden */
+  opacity: 0;
+  pointer-events: none;
+
+  /* Fade transition for container visibility */
+  transition: opacity 0.4s ease;
 }
 
-/* Hide the floating filter button on larger screens (desktop) */
-@media (min-width: 1025px) {
-  .floating-filter-btn {
-    display: none;
-  }
+/* When visible, the container becomes interactive and fades in */
+.flash-container.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* FLASH MODAL (The Card) */
+.flash-modal {
+  /* Card-like styling */
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 30px 40px;
+  width: 450px;
+  max-width: 450px !important;
+  text-align: center;
+
+  /* Scale in slightly */
+  transform: scale(0.95);
+  transition: transform 0.4s ease;
+}
+
+/* When the container is visible, the modal scales to normal size */
+.flash-container.visible .flash-modal {
+  transform: scale(1);
+}
+
+/* FLASH ICON (Your Large SVG) */
+.flash-icon {
+  width: 150px; /* Adjust as desired */
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* FLASH TEXT (Message) */
+.flash-text {
+  margin-top: 0;
+  font-size: 15px;
+  font-weight: 400;
+  color: #333;
 }

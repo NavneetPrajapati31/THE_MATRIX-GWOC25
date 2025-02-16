@@ -1,28 +1,30 @@
 import { useEffect, useState } from "react";
 import "../styles/orderContainer.css";
+import { useNavigate } from "react-router-dom";
 
 const OrderContainer = () => {
-  const temp = import.meta.env.VITE_BACKEND_URL;
   const [orders, setOrders] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch(`${temp}/orders-related/admin/orders`);
+        const response = await fetch(
+          "http://localhost:3001/orders-related/admin/orders"
+        );
         const data = await response.json();
         setOrders(data);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
     };
-
     fetchOrders();
   }, []);
 
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
       const response = await fetch(
-        `${temp}/orders-related/admin/orders/${orderId}`,
+        `http://localhost:3001/orders-related/admin/orders/${orderId}`,
         {
           method: "PUT",
           headers: {
@@ -44,43 +46,169 @@ const OrderContainer = () => {
     }
   };
 
+  const navigateToProductDetails = (orderId) => {
+    navigate(`/order/order-details/admin/${orderId}`);
+  };
+
+  const handlePrintInvoice = (order) => {
+    const subtotal = order.products.reduce(
+      (acc, item) => acc + item.product.price * item.quantity,
+      0
+    );
+
+    const invoiceContent = `
+            <html>
+            <head>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 20px; }
+                    .invoice-container { width: 80%; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+                    .header { text-align: center; margin-bottom: 20px; }
+                    .header h2 { margin-bottom: 5px; }
+                    .header p { margin: 0; font-size: 14px; color: gray; }
+                    .details, .product-details { margin-bottom: 20px; }
+                    .details p, .product-details p { margin: 4px 0; }
+                    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+                    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                    th { background: #f8f8f8; }
+                    .total-container { text-align: right; margin-top: 20px; font-weight: bold; }
+                    .footer { text-align: center; margin-top: 30px; font-size: 14px; color: gray; }
+                </style>
+            </head>
+            <body>
+                <div class="invoice-container">
+                    <div class="header">
+                        <h2>Kashvi Sarees</h2>
+                        <p>123, Fashion Street, Surat, Gujarat, India</p>
+                        <p>GST No: 24AAJCS3178L1Z2 | Contact: +91 98765 43210</p>
+                    </div>
+    
+                    <hr/>
+    
+                    <div class="details">
+                        <h4>Invoice Details</h4>
+                        <p><strong>Order ID:</strong> ${order._id}</p>
+                        <p><strong>Date:</strong> ${new Date(
+                          order.createdAt
+                        ).toDateString()}</p>
+                        <p><strong>Payment Status:</strong> ${
+                          order.paymentStatus
+                        }</p>
+                    </div>
+    
+                    <div class="details">
+                        <h4>Customer Details</h4>
+                        <p><strong>Name:</strong> ${order.address.name}</p>
+                        <p><strong>Email:</strong> ${
+                          order.address.email || "Not Available"
+                        }</p>
+                        <p><strong>Phone:</strong> ${
+                          order.address.phone || "Not Available"
+                        }</p>
+                        <p><strong>Delivery Address:</strong> ${
+                          order.address.street
+                        }, ${order.address.city}, ${order.address.state} - ${
+      order.address.pincode
+    }</p>
+                    </div>
+    
+                    <div class="product-details">
+                        <h4>Product Details</h4>
+                        <table>
+                            <tr>
+                                <th>#</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                            </tr>
+                            ${order.products
+                              .map(
+                                (item, index) => `
+                                    <tr>
+                                        <td>${index + 1}</td>
+                                        <td>${item.product.title} (Design ID: ${
+                                  item.product.sareeId
+                                })</td>
+                                        <td>₹${item.product.price}</td>
+                                        <td>${item.quantity}</td>
+                                        <td>₹${
+                                          item.product.price * item.quantity
+                                        }</td>
+                                    </tr>
+                                `
+                              )
+                              .join("")}
+                        </table>
+                    </div>
+    
+                    <div class="total-container">
+                        <p>Subtotal: ₹${subtotal.toFixed(2)}</p>
+                        <p><strong>Grand Total: ₹${subtotal.toFixed(
+                          2
+                        )}</strong></p>
+                    </div>
+    
+                    <div class="footer">
+                        <p>Thank you for shopping with Kashvi Sarees!</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `;
+    const printWindow = window.open();
+    printWindow.document.write(invoiceContent);
+    printWindow.document.close();
+    printWindow.print();
+  };
+
   console.log(orders);
 
   return (
     <div className="orders-container-yash">
       {orders.map((order) => (
-        <div className="order-card-yash">
-          <div className="order-image" key={order._id}>
-            {order.products.map((item, index) => (
-              <div className="saree-id-img">
+        <div className="order-card-yash" key={order._id}>
+          {/* Order Image Section */}
+          <div className="order-image">
+            {order.products.slice(0, 1).map((item, index) => (
+              <div className="saree-id-img" key={index}>
                 <span className="saree-id-admin bold">
-                  {" "}
-                  Saree-Id: {item.product.sareeId}
-                  <img
-                    key={index}
-                    src={item.product.image || "fallback-image-url"}
-                    alt={item.product.title}
-                    className="order-product-image"
-                  />
+                  Design-Id: {item.product.sareeId}
                 </span>
+                <img
+                  src={item.product.image || "fallback-image-url"}
+                  alt={item.product.title}
+                  className="order-product-image"
+                />
               </div>
             ))}
+            {order.products.length >= 2 && (
+              <div
+                className="additional-products"
+                onClick={() => navigateToProductDetails(order._id)}
+              >
+                +{order.products.length - 1} more
+              </div>
+            )}
           </div>
 
-          {/* Order Details */}
           <div className="order-details">
             <p className="order-items">
-              {order.products.map((item, index) => (
+              {order.products.slice(0, 2).map((item, index) => (
                 <span key={index}>
                   {item.product.title} x {item.quantity}
                   {index !== order.products.length - 1 ? ", " : ""}
                 </span>
               ))}
+              {order.products.length > 2 && (
+                <span className="additional-items">
+                  , +{order.products.length - 2} more
+                </span>
+              )}
             </p>
             <p className="order-address">
               <strong>{order.address.name || "Unnamed User"}</strong>
             </p>
-            <p>
+            <p className="order-address">
               {order.address.street}, {order.address.city},{" "}
               {order.address.state} - {order.address.pincode}
             </p>
@@ -160,6 +288,13 @@ const OrderContainer = () => {
             {order.orderStatus === "Delivered" && (
               <span className="delivered-status">✅ Order Delivered</span>
             )}
+
+            <button
+              onClick={() => handlePrintInvoice(order)}
+              className="print-invoice-btn-all"
+            >
+              Print Invoice
+            </button>
           </div>
         </div>
       ))}

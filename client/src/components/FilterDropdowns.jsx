@@ -16,12 +16,12 @@ const FilterDropdowns = () => {
   const sortOptions = [
     "Trending",
     "Best Sellers",
-    "New",
     "Price: high to low",
     "Price: low to high",
-    "Biggest Saving",
+    "Featured",
   ];
 
+  const [selectedSort, setSelectedSort] = useState("Trending");
   const Occasions = [
     { name: "Wedding", count: 233 },
     { name: "Festive", count: 619 },
@@ -46,8 +46,6 @@ const FilterDropdowns = () => {
     { name: "Net", count: 41 },
     { name: "Silk", count: 155 },
   ];
-
-  const [selectedSort, setSelectedSort] = useState("Trending");
 
   return (
     <div className="filter-dropdowns-container d-flex justify-content-between align-items-center flex-wrap gap-3">

@@ -1,193 +1,237 @@
-/* Order Container */
 .orders-container-yash {
-  max-width: 1200px;
+  max-width: 100%;
   margin: auto;
   padding: 20px;
-  background-color: #f5f5f5;
+  border-radius: 10px;
 }
 
-/* Order Card */
 .order-card-yash {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
   padding: 20px;
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+  margin-bottom: 15px;
+  gap: 20px;
+  transition: 0.3s;
+  color: #374151;
+  transition: 0.5s ease;
 
-.order-card-yash:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Order Image */
-.order-image {
-  flex: 1;
-  min-width: 200px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  border: 1px solid #c5c4c4;
 }
 
 .saree-id-img {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
+  font-size: small;
 }
 
 .saree-id-admin {
-  font-size: 12px;
-  color: #333;
-  margin-bottom: 5px;
+  position: relative;
+  bottom: 0;
+  background-color: white;
 }
 
-.order-product-image {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 4px;
-  border: 1px solid #e0e0e0;
-  transition: transform 0.3s ease;
-  object-position: top;
-}
-
-.order-product-image:hover {
-  transform: scale(1.1);
-}
-
-/* Order Details */
-.order-details {
+.order-image {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 2;
-  min-width: 200px;
-  padding: 0 20px;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px;
+  max-width: 200px;
+}
+
+.order-images img {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.order-image img {
+  width: 60px;
+  height: auto;
+}
+
+.order-details {
+  font-size: 15px;
+  color: #333;
 }
 
 .order-items {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
+  max-width: 250px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
   text-align: left;
-  justify-content: center;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
+.additional-products {
+  cursor: pointer;
+  color: #007bff;
+  font-style: italic;
+}
 .order-address {
-  margin-top: 3rem;
-  font-size: 14px;
-  color: #666;
+  max-width: 250px;
+  margin-top: 5px;
+  font-weight: bold;
+  color: #4b5563;
   text-align: left;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Order Summary */
-.order-summary {
-  flex: 1;
-  min-width: 150px;
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.admin-summary p {
-  margin: 5px 0;
+.admin-summary {
+  text-align: left;
   font-size: 14px;
-  color: #333;
+  color: #374151;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: none !important;
 }
 
-/* Order Status */
 .order-status {
-  flex: 1;
-  min-width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 10px;
 }
 
 .order-status-dropdown {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
   font-size: 14px;
-  transition: border-color 0.3s ease;
+  background: #ffffff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-.order-status-dropdown:focus {
-  outline: none;
-  border-color: #000;
+.order-status-dropdown:hover {
+  border-color: #007bff;
 }
 
 /* Status Buttons */
 .status-btn {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
+  padding: 8px 14px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 14px;
-  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-weight: bold;
+  transition: all 0.3s;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.status-btn:hover {
-  opacity: 0.8;
-}
-
+/* Confirm Order */
 .status-btn.confirm {
-  background-color: #4caf50;
-  color: white;
-}
-.status-btn.pack {
-  background-color: #ffc107;
-  color: black;
-}
-.status-btn.ship {
-  background-color: #2196f3;
-  color: white;
-}
-.status-btn.deliver {
-  background-color: #9c27b0;
+  background-color: #007bff;
   color: white;
 }
 
+.status-btn.confirm:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Pack Order */
+.status-btn.pack {
+  background-color: #ff9800;
+  color: white;
+}
+
+.status-btn.pack:hover {
+  background-color: #e68900;
+  transform: scale(1.05);
+}
+
+/* Ship Order */
+.status-btn.ship {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.status-btn.ship:hover {
+  background-color: #138496;
+  transform: scale(1.05);
+}
+
+/* Deliver Order */
+.status-btn.deliver {
+  background-color: #28a745;
+  color: white;
+}
+
+.status-btn.deliver:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Delivered Status */
 .delivered-status {
   font-size: 14px;
   font-weight: bold;
-  color: #4caf50;
+  color: green;
+  text-align: center;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .order-card-yash {
     flex-direction: column;
+    text-align: center;
+    gap: 15px;
   }
 
-  .order-image,
-  .order-details,
-  .order-summary,
+  .order-image img {
+    width: 50px;
+  }
+
   .order-status {
-    width: 100%;
-    padding: 10px 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
   }
 
-  .order-status-dropdown,
+  .order-status-dropdown {
+    width: 100%;
+    text-align: center;
+  }
+
   .status-btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .order-card-yash {
+    padding: 15px;
+  }
+
+  .order-details {
+    font-size: 14px;
+  }
+
+  .order-items {
+    font-size: 14px;
+  }
+
+  .order-status {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .status-btn {
+    padding: 6px 12px;
+    font-size: 12px;
   }
 }

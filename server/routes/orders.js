@@ -1,6 +1,110 @@
 const express = require("express");
 const Order = require("../models/OrdersAdmin");
+const nodemailer = require("nodemailer");
+const { default: mongoose } = require("mongoose");
 const router = express.Router();
+// const PDFDocument = require("pdfkit");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEYS,
+  api_secret: process.env.API_SECRET,
+});
+
+// const generateInvoicePDF = (order) => {
+//   const doc = new PDFDocument({ margin: 20 });
+
+//   doc.fontSize(14).text(Invoice #${order._id}, { align: "center" }).moveDown(0.5);
+
+//   doc.fontSize(10).text(Customer: ${order.address.name});
+//   doc.text(Total: ₹${order.totalAmount}).moveDown(0.5);
+
+//   doc.fontSize(10).text("Products:", { underline: true });
+
+//   order.products.forEach((item) => {
+//     doc.text(${item.product.name} - Qty: ${item.quantity} - ₹${item.product.price});
+//   });
+
+//   doc.text("Thank you!", { align: "center" });
+
+//   const pdfPath = invoices/invoice_${order._id}.pdf;
+//   return { doc, pdfPath };
+// };
+
+/**
+   *  const generateInvoicePDF = (order) => {
+    const doc = new PDFDocument({ margin: 40 });
+  
+    // Header
+    doc
+      .fontSize(18)
+      .text("Kashvi Sarees", { align: "center" })
+      .fontSize(10)
+      .text("123 Saree Street, Mumbai, India", { align: "center" })
+      .text("Phone: +91 1234567890 | Email: info@kashvisarees.com", { align: "center" })
+      .moveDown(1);
+  
+    // Invoice title
+    doc
+      .fontSize(14)
+      .text(Invoice #${order._id}, { align: "center" })
+      .moveDown(1);
+  
+    // Customer details
+    doc
+      .fontSize(10)
+      .text(Customer: ${order.address.name})
+      .text(Address: ${order.address.street}, ${order.address.city}, ${order.address.pincode})
+      .moveDown(1);
+  
+    // Order summary
+    doc
+      .fontSize(12)
+      .text(Total: ₹${order.totalAmount})
+      .text(Payment: ${order.paymentMethod} (Status: ${order.paymentStatus}))
+      .moveDown(1);
+  
+    // Products Table
+    doc
+      .fontSize(12)
+      .text("Products Ordered", { underline: true })
+      .moveDown(0.5);
+  
+    // Table headers
+    const startY = doc.y;
+    doc
+      .text("Product", 50, startY)
+      .text("Qty", 230, startY)
+      .text("Price", 300, startY)
+      .text("Total", 400, startY);
+  
+    let y = startY + 15;
+    order.products.forEach((item) => {
+      const total = item.quantity * item.product.price;
+      doc
+        .fontSize(10)
+        .text(item.product.title, 50, y)
+        .text(item.quantity.toString(), 230, y)
+        .text(₹${item.product.price}, 300, y)
+        .text(₹${total}, 400, y);
+      y += 15;
+    });
+  
+    // Footer
+    doc
+      .moveTo(50, y + 10)
+      .lineTo(500, y + 10)
+      .stroke()
+      .fontSize(9)
+      .text("Thank you for shopping with Kashvi Sarees!", 50, y + 20)
+      .text("For queries, contact info@kashvisarees.com", 50, y + 35);
+  
+    // Finalize PDF
+    const pdfPath = invoices/invoice_${order._id}.pdf;
+    return { doc, pdfPath };
+  };
+   */
 
 router.post("/place-order", async (req, res) => {
   try {
@@ -31,10 +135,54 @@ router.post("/place-order", async (req, res) => {
       paymentMethod,
       address,
       paymentStatus,
-      orderStatus: "Pending", // Ensuring case matches schema enum
+      orderStatus: "Pending",
     });
 
     await newOrder.save();
+    //   const { doc, pdfPath } = generateInvoicePDF(newOrder);
+
+    //   const cloudinaryUploadStream = cloudinary.uploader.upload_stream(
+    //     { resource_type: "raw", folder: "invoices" },
+    //     async (error, result) => {
+    //       if (error) {
+    //         console.error("Cloudinary upload error:", error);
+    //         return res.status(500).json({ error: "Failed to upload invoice." });
+    //       }
+
+    //     }
+    //   );
+
+    //   // Pipe the PDF to Cloudinary
+    //   doc.pipe(cloudinaryUploadStream);
+
+    // Send email with the PDF attachment
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: "Kashvi Sarees <" + process.env.OWNER_EMAIL + ">",
+      to: "yashsabne39@gmail.com",
+      subject: "Your Order Invoice - Kashvi Sarees",
+      html: `
+              <h2>Thank you for your order!</h2>
+              <p>Your order has been placed successfully. Below are the details:</p>
+              <p><strong>Order ID:</strong> ${newOrder._id}</p>
+              <p><strong>Total Amount:</strong> ₹${newOrder.totalAmount}</p>
+              <p><strong>Payment Method:</strong> ${newOrder.paymentMethod}</p>
+              <p><strong>Payment Status:</strong> ${newOrder.paymentStatus}</p>
+              <p>Please find the attached invoice for your reference.</p>
+            `,
+    };
+
+    await transporter.sendMail(mailOptions);
+
     res.status(201).json({
       success: true,
       message: "Order placed successfully!",
@@ -48,9 +196,9 @@ router.post("/place-order", async (req, res) => {
 
 router.get("/user/:userId", async (req, res) => {
   try {
-    const orders = await Order.find({ user: req.params.userId }).populate(
-      "user"
-    );
+    const orders = await Order.find({ user: req.params.userId })
+      .populate("user")
+      .sort({ createdAt: -1 });
     res.json(orders);
   } catch (error) {
     console.error("Error fetching user orders:", error);
@@ -81,6 +229,36 @@ router.put("/admin/orders/:orderId", async (req, res) => {
     console.error("Error updating order status:", error);
     res.status(500).json({ error: "Failed to update order status" });
   }
+});
+
+router.get("/:orderId", async (req, res) => {
+  try {
+    const { orderId } = req.params;
+
+    // Validate MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(orderId)) {
+      return res.status(400).json({ message: "Invalid Order ID" });
+    }
+
+    const order = await Order.findById(orderId).populate("user");
+
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+    console.log(order);
+
+    res.status(200).json(order);
+  } catch (error) {
+    console.error("Error fetching order details:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+router.get("/admin/order-details/:id", async (req, res) => {
+  const orderId = req.params.id;
+  console.log(orderId);
+  const order = await Order.findById(orderId);
+  res.json(order);
 });
 
 module.exports = router;

@@ -76,7 +76,7 @@ const ProductCard = ({ product, userId }) => {
         {/* Product Details */}
         {/* Product Name & Price */}
 
-        <p className="wishlist-item-name text-start">{product.name}</p>
+        <p className="wishlist-item-name-card">{product.name}</p>
         <p
           className="wishlist-item-price text-start"
           style={{ marginTop: "0" }}

@@ -39,6 +39,45 @@ const CartPage = () => {
     }
   };
 
+  const handleRemoveFromCart = (productId) => {
+    console.log(productId);
+
+    setCart((prevCart) => {
+      if (!prevCart || !prevCart.items) {
+        console.warn("Cart state is undefined or empty:", prevCart);
+        return prevCart;
+      }
+
+      const precartItems = prevCart.items;
+
+      precartItems.map((items) => {
+        console.log(items.productId);
+        console.log(items.productId._id);
+      });
+
+      const updatedItems = prevCart.items.filter(
+        (item) => item.productId.toString() !== productId.toString()
+      );
+
+      return {
+        ...prevCart,
+        items: [...updatedItems],
+      };
+    });
+  };
+
+  const handleQuantityChange = (productId, newQuantity) => {
+    setCart((prevCart) => {
+      if (!prevCart || !prevCart.items) return prevCart;
+
+      const updatedItems = prevCart.items.map((item) =>
+        item.productId === productId ? { ...item, quantity: newQuantity } : item
+      );
+
+      return { ...prevCart, items: updatedItems };
+    });
+  };
+
   console.log(cart);
 
   const subtotal =
@@ -56,8 +95,13 @@ const CartPage = () => {
               cart.items.map((item, index) => (
                 <>
                   {" "}
-                  <CartProduct key={index} product={item} />
-                  <hr className="mt-1 mb-3" />
+                  <CartProduct
+                    key={index}
+                    product={item}
+                    onRemove={handleRemoveFromCart}
+                    onQuantityChange={handleQuantityChange}
+                    userId={userId}
+                  />
                 </>
               ))
             ) : (

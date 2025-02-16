@@ -43,3 +43,10 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+.print-invoice-btn-all {
+  border: none;
+  position: absolute;
+  bottom: 10px;
+  background-color: transparent;
+}

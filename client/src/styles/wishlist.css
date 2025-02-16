@@ -113,6 +113,7 @@
 
 /* Product Name */
 .wishlist-item-name {
+  text-align: start;
   font-size: 13px;
   color: #333;
   margin-top: 10px;

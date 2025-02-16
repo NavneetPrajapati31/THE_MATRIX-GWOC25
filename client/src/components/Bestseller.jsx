@@ -55,7 +55,7 @@ const Bestseller = () => {
                   className="new-product-img"
                 />
                 {/* Product Name & Price */}
-                <p className="wishlist-item-name ">{product.title}</p>
+                <p className="wishlist-item-name">{product.title}</p>
                 <p className="wishlist-item-price " style={{ marginTop: "0" }}>
                   MRP <span className="price">X,XXX</span>
                 </p>

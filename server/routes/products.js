@@ -6,13 +6,16 @@ const router = express.Router();
 // Route to fetch paginated products (with optional category filter)
 router.get("/getProducts", async (req, res) => {
   try {
-    let { page = 1, limit = 5, category } = req.query;
+    let { page = 1, limit = 5, category, occasion } = req.query;
     page = parseInt(page);
     limit = parseInt(limit);
 
     let filter = {};
     if (category) {
       filter.category = category;
+    }
+    if (occasion) {
+      filter.occasion = occasion;
     }
 
     const products = await Product.find(filter)

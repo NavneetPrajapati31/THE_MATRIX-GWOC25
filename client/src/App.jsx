@@ -22,6 +22,8 @@ import BlogPostDetail from "./components/BlogPostDetail";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import ForgotPassword from "./pages/ForgetPassword.jsx";
 import ResetPassword from "./pages/ResetPass.jsx";
+import OrderDetails from "./pages/OrderDetails.jsx";
+import OrderDetailsAdmin from "./pages/OrderDetailsAdmin.jsx";
 
 function App() {
   const URL = import.meta.env.VITE_BACKEND_URL;
@@ -68,6 +70,11 @@ function App() {
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/order/order-details/" element={<OrderDetails />} />
+          <Route
+            path="/order/order-details/admin/:id"
+            element={<OrderDetailsAdmin />}
+          />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactFormModal />} />
           <Route path="/blogs" element={<BlogPage />} />

@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema({
     },
   ],
   totalAmount: { type: Number, required: true },
-  paymentMethod: { type: String, enum: ["razorpay", "cod"], required: true },
+  paymentMethod: { type: String, enum: ["RAZORPAY", "COD"], required: true },
   address: {
     name: { type: String, required: false },
     street: { type: String, required: true },
