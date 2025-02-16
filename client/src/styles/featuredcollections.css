@@ -2,20 +2,19 @@
   text-align: center;
   margin: 0 auto;
   max-width: 100vw !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  padding: 25px !important;
 }
 
 .collection-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Default: 4 cards per row */
+  gap: 22px;
   justify-content: center;
-  gap: 20px;
   margin: 0 !important;
 }
 
 .collection-card {
-  width: 330px !important; /* Ensures each product is 250px wide */
+  width: 100% !important;
   text-align: center;
 }
 
@@ -32,7 +31,7 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 450px !important; /* Adjusted for better visibility */
+  height: 450px !important;
 }
 
 .collection-image-container::before {
@@ -41,18 +40,19 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 50%; /* Covers the lower half of the image */
+  height: 50%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
   pointer-events: none;
-  z-index: 2; /* Ensures the gradient overlay is above the image */
+  z-index: 2;
 }
 
+/* Responsive Title Styles */
 .collection-title {
   position: absolute;
   top: 76%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 20px;
+  font-size: 20px; /* Default */
   font-weight: 400;
   color: white;
   text-align: center;
@@ -60,6 +60,29 @@
   z-index: 2;
 }
 
+/* Adjust title for tablets */
+@media (max-width: 1024px) {
+  .collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .collection-title {
+    font-size: 18px; /* Slightly smaller for tablets */
+    top: 78%; /* Adjust position */
+  }
+}
+
+/* Adjust title for mobile */
+@media (max-width: 768px) {
+  .collection-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .collection-title {
+    font-size: 16px; /* Smaller for mobile */
+    top: 80%; /* Push title down a bit */
+  }
+}
+
+/* Shop Now Button */
 .shop-now-btn {
   position: absolute;
   left: 50%;
@@ -79,18 +102,4 @@
 .shop-now-btn:hover {
   color: white;
   background-color: black;
-}
-
-/* Responsive layout */
-@media (max-width: 1200px) {
-  .collection-grid {
-    justify-content: space-around;
-  }
-}
-
-@media (max-width: 768px) {
-  .collection-grid {
-    flex-direction: column;
-    align-items: center;
-  }
 }

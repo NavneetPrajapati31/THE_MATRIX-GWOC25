@@ -76,7 +76,7 @@ const CartPage = () => {
               </h5>
               <div className="d-flex justify-content-between">
                 <span>Subtotal</span>
-                <span>₹{subtotal.toLocaleString()}</span>
+                <span>₹ X,XXX</span>
               </div>
               <hr className="my-3" />
               <div className="d-flex justify-content-between my-2">
@@ -101,7 +101,7 @@ const CartPage = () => {
                     textDecoration: "none",
                   }}
                 >
-                  ₹{subtotal.toLocaleString()}
+                  ₹ X,XXX
                 </a>
               </div>
               <hr className="my-3" />

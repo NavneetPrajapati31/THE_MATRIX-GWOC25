@@ -43,7 +43,17 @@ const VideoCarousel = () => {
 
   return (
     <div className="mt-5">
-      <p className="josefin-sans-josefin ">Trending Looks To Watch</p>
+      <h2
+        className="text-center"
+        style={{
+          fontSize: "1.25rem",
+          fontWeight: "400",
+          marginTop: "4rem",
+          marginBottom: "4rem",
+        }}
+      >
+        Trending Looks To Watch
+      </h2>
       <div className="video-carousel mt-5 mb-5">
         {videos.map((video, index) => {
           const isActive = index === 2; // Center video

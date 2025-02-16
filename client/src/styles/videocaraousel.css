@@ -200,7 +200,7 @@
   /* Center the active video */
   .video-wrapper.active {
     width: 90vw; /* Takes up most of the screen width */
-    height: 80vh; /* Takes up a good portion of the screen height */
+    height: 77vh; /* Takes up a good portion of the screen height */
     max-width: 280px;
     max-height: 800px;
   }
@@ -245,9 +245,9 @@
   }
 
   .prev-btn {
-    left: 3%;
+    left: 1%;
   }
   .next-btn {
-    right: 3%;
+    right: 1%;
   }
 }

@@ -74,10 +74,9 @@ const CustomerStories = () => {
     <div className="customer-stories mb-5">
       <h2
         style={{
-          fontSize: "22px",
+          fontSize: "1.25rem",
           fontWeight: "400",
-          marginTop: "10px",
-          marginBottom: "20px",
+          marginTop: "0.2rem",
         }}
       >
         Customer Stories

@@ -70,6 +70,24 @@ const Filter = () => {
     { name: "Stone work", count: 193 },
   ];
 
+  const colors = [
+    "Red",
+    "Maroon",
+    "Pink",
+    "Yellow",
+    "Green",
+    "Blue",
+    "Royal Blue",
+    "Purple",
+    "Orange",
+    "Peach",
+    "Gold",
+    "Silver",
+    "Black",
+    "White",
+    "Beige",
+  ];
+
   const location = useLocation();
 
   const params = new URLSearchParams(location.search);
@@ -143,6 +161,11 @@ const Filter = () => {
   const handleType = (type) => {
     setSelectedType((prev) => (prev === type ? "" : type));
     console.log(type);
+  };
+
+  const handleColor = (color) => {
+    setSelectedColor((prev) => (prev === color ? "" : color));
+    console.log(color);
   };
 
   const filteredProducts = products
@@ -247,13 +270,23 @@ const Filter = () => {
                             onClick={() => handleSubcategory(item.name)}
                           >
                             {item.name}{" "}
-                            <span className="count">{item.count}</span>
                           </button>
                         ))}
                       </div>
                     ) : filter === "Color" ? (
-                      <div className="color-filter">
-                        <input
+                      <div className="subcategories-filter">
+                        {colors.map((color, index) => (
+                          <button
+                            key={index}
+                            className={`size-button ${
+                              selectedColor === color ? "selected" : ""
+                            }`}
+                            onClick={() => handleColor(color)}
+                          >
+                            {color}{" "}
+                          </button>
+                        ))}
+                        {/* <input
                           type="text"
                           placeholder="Enter color"
                           value={selectedColor || ""}
@@ -261,7 +294,7 @@ const Filter = () => {
                             setSelectedColor(e.target.value.toLowerCase())
                           }
                           className="color-input"
-                        />
+                        /> */}
                       </div>
                     ) : filter === "Fabric" ? (
                       <div className="subcategories-filter">
@@ -274,7 +307,6 @@ const Filter = () => {
                             onClick={() => handleFabricSelect(fabric.name)}
                           >
                             {fabric.name}{" "}
-                            <span className="count">{fabric.count}</span>
                           </button>
                         ))}
                       </div>
@@ -291,7 +323,6 @@ const Filter = () => {
                             onClick={() => handleOccasion(occasion.name)}
                           >
                             {occasion.name}{" "}
-                            <span className="count">{occasion.count}</span>
                           </button>
                         ))}
                       </div>
@@ -306,7 +337,6 @@ const Filter = () => {
                             onClick={() => handleType(type.name)}
                           >
                             {type.name}{" "}
-                            <span className="count">{type.count}</span>
                           </button>
                         ))}
                       </div>

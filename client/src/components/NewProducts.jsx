@@ -32,7 +32,7 @@ const NewProducts = ({ type, productId }) => {
       <h2
         className="text-center"
         style={{
-          fontSize: "22px",
+          fontSize: "1.25rem",
           fontWeight: "400",
           marginTop: "90px",
           marginBottom: "20px",
@@ -55,7 +55,7 @@ const NewProducts = ({ type, productId }) => {
                 />
                 <p className="wishlist-item-name ">{product.name}</p>
                 <p className="wishlist-item-price " style={{ marginTop: "0" }}>
-                  MRP <span className="price">₹{product.price}</span>
+                  MRP <span className="price">₹ X,XXX</span>
                 </p>
               </div>
             </Link>

@@ -427,7 +427,7 @@ const BuyNow = () => {
 
                     <div className="review-item-details">
                       <p className="fw-semibold">{item.name}</p>
-                      <p className="text-muted">₹{item.price}.00</p>
+                      <p className="text-muted">₹ X,XXX</p>
                       <p className="text-success">
                         {item.price >= 5000
                           ? "Eligible for free delivery"
@@ -451,7 +451,7 @@ const BuyNow = () => {
 
                   <div className="review-item-details">
                     <p className="fw-semibold">{product?.name}</p>
-                    <p className="text-muted">₹{product?.price}.00</p>
+                    <p className="text-muted">₹ X,XXX</p>
                     <p className="text-success">
                       {product?.price >= 5000
                         ? "Eligible for free delivery"
@@ -483,7 +483,7 @@ const BuyNow = () => {
                       <span>
                         {item.name} (x{item.quantity}):
                       </span>
-                      <span>₹{item.price * item.quantity}.00</span>
+                      <span>₹ X,XXX</span>
                     </div>
                   ))}
                   <div className="d-flex justify-content-between my-2">
@@ -502,7 +502,7 @@ const BuyNow = () => {
                         textDecoration: "none",
                       }}
                     >
-                      ₹{cartTotal + deliveryCharge}.00
+                      ₹ X,XXX
                     </a>
                   </div>
                   <hr className="my-3" />
@@ -551,7 +551,7 @@ const BuyNow = () => {
                   <div>
                     <div className="d-flex justify-content-between mb-2">
                       <span>Items:</span>
-                      <span>₹{product.price}.00</span>
+                      <span>₹ X,XXX</span>
                     </div>
                     <div className="d-flex justify-content-between my-2">
                       <span>Delivery:</span>
@@ -569,7 +569,7 @@ const BuyNow = () => {
                           textDecoration: "none",
                         }}
                       >
-                        ₹{product.price + deliveryCharge}.00
+                        ₹ X,XXX
                       </a>
                     </div>
                     <hr className="my-3" />

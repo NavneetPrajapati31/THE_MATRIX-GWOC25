@@ -381,9 +381,7 @@ const ProductDetails = () => {
                 <p style={{ fontSize: "13px", marginBottom: "5px" }}>
                   Style No {product.styleNo}
                 </p>
-                <p className="productdetails-price">
-                  ₹{product.price.toLocaleString()}
-                </p>
+                <p className="productdetails-price">₹ X,XXX</p>
                 <p style={{ fontSize: "12px", color: "grey" }}>
                   Inclusive of all taxes
                 </p>

@@ -21,9 +21,7 @@ const Wishlist = () => {
     const fetchWishlist = async () => {
       if (!userId) return;
       try {
-        const response = await fetch(
-          `${URL}/wishlist-related/get/${userId}`
-        );
+        const response = await fetch(`${URL}/wishlist-related/get/${userId}`);
         const data = await response.json();
 
         console.log(data);
@@ -47,14 +45,11 @@ const Wishlist = () => {
   const removeFromWishlist = async (productId) => {
     if (!userId) return;
     try {
-      const response = await fetch(
-        `${URL}/wishlist-related/${userId}`,
-        {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ productId }),
-        }
-      );
+      const response = await fetch(`${URL}/wishlist-related/${userId}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId }),
+      });
 
       const data = await response.json();
       if (data.success) {
@@ -117,10 +112,7 @@ const Wishlist = () => {
                 {/* Product Name & Price */}
                 <p className="wishlist-item-name text-start">{item.name}</p>
                 <p className="wishlist-item-price text-start">
-                  MRP{" "}
-                  <span className="price">
-                    &#8377; {item.price.toLocaleString()}
-                  </span>
+                  MRP <span className="price">₹ X,XXX</span>
                 </p>
 
                 {/* Ready to Ship */}

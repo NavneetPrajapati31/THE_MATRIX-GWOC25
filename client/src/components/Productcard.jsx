@@ -81,7 +81,7 @@ const ProductCard = ({ product, userId }) => {
           className="wishlist-item-price text-start"
           style={{ marginTop: "0" }}
         >
-          MRP <span className="price">₹{product.price.toLocaleString()}</span>
+          MRP <span className="price">₹ X,XXX</span>
         </p>
       </Link>
 

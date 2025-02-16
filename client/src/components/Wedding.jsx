@@ -7,7 +7,7 @@ const Wedding = () => {
       <h2
         className="text-center"
         style={{
-          fontSize: "22px",
+          fontSize: "1.25rem",
           fontWeight: "400",
           marginTop: "50px",
           marginBottom: "40px",

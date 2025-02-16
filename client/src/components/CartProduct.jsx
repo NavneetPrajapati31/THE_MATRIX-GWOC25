@@ -44,7 +44,6 @@ export default function CartProduct({ product, onRemove, onQuantityChange }) {
 
     calculateDeliveryDate();
   }, [product]);
-  
 
   return (
     <div className="cart-item d-flex mb-3">
@@ -92,10 +91,7 @@ export default function CartProduct({ product, onRemove, onQuantityChange }) {
         <p style={{ color: "grey", marginRight: "10px", marginTop: "1px" }}>
           MRP
         </p>
-        <p style={{ fontSize: "16px", fontWeight: "400" }}>
-          {" "}
-          ₹{product.price.toLocaleString()}
-        </p>
+        <p style={{ fontSize: "16px", fontWeight: "400" }}> ₹ X,XXX</p>
       </div>
     </div>
   );

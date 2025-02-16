@@ -75,7 +75,6 @@ export default function Carousel() {
                 height: imageStyles.height, // Responsive height
                 objectFit: "cover",
                 filter: "brightness(70%)",
-                marginLeft: imageStyles.marginLeft, // Shift left for mobile
               }}
               alt="..."
             />

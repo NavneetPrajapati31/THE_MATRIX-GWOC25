@@ -114,9 +114,9 @@ const OrdersPage = () => {
                             <tr>
                                 <td>${index + 1}</td>
                                 <td>${item.product.title}</td>
-                                <td>₹${item.product.price}</td>
+                                <td>₹ X,XXX</td>
                                 <td>${item.quantity}</td>
-                                <td>₹${item.product.price * item.quantity}</td>
+                                <td>₹ X,XXX</td>
                             </tr>
                         `
                           )
