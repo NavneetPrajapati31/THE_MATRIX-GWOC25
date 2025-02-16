@@ -127,7 +127,7 @@ export default function Signup() {
       if (response.ok) {
         dispatch(login({ token: data.token }));
         dispatch(setUser(data.user));
-        setMessage("Google login successful! Redirecting...");
+        setMessage("Login successful! Redirecting...");
         setTimeout(() => navigate("/"), 2000);
       } else {
         seterrorMsg(data.message);

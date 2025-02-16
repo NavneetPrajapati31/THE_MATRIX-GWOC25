@@ -12,7 +12,7 @@ import { Box } from "@mui/material";
 import NewProducts from "../components/NewProducts";
 
 const ProductDetails = () => {
-  const URL = import.meta.env.VITE_BACKEND_URL;
+  const temp = import.meta.env.VITE_BACKEND_URL;
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -73,7 +73,7 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `${URL}/product-related/get-details/${productId}`
+          `${temp}/product-related/get-details/${productId}`
         );
         const data = await response.json();
         if (response.ok) {
@@ -101,7 +101,7 @@ const ProductDetails = () => {
       return;
     }
     try {
-      const response = await fetch(`${URL}/cart-related/add`, {
+      const response = await fetch(`${temp}/cart-related/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -114,6 +114,7 @@ const ProductDetails = () => {
         }),
       });
       const data = await response.json();
+      console.log(data);
       if (response.ok) {
         showFlash(
           "Item successfully added to your cart.",
@@ -194,7 +195,7 @@ const ProductDetails = () => {
     });
     try {
       const response = await axios.post(
-        `${URL}/review-related/products/${productId}/reviews/${userId}`,
+        `${temp}/review-related/products/${productId}/reviews/${userId}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -214,10 +215,11 @@ const ProductDetails = () => {
     }
   };
 
+  // Fetch Reviews
   const fetchReviews = async (productId) => {
     try {
       const response = await fetch(
-        `${URL}/review-related/products/${productId}/reviews`
+        `http://localhost:3001/review-related/products/${productId}/reviews`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch reviews");
@@ -226,6 +228,65 @@ const ProductDetails = () => {
       setProductR(reviews);
     } catch (error) {
       console.error("Error fetching reviews:", error);
+    }
+  };
+
+  const handleDelete = async (index) => {
+    console.log(productR[index]._id);
+    try {
+      await fetch(
+        `http://localhost:3001/review-related/delete-review/${productId}/${productR[index]._id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const updatedReviews = productR.filter((_, i) => i !== index);
+      setProductR(updatedReviews);
+    } catch (error) {
+      console.error("Failed to delete review:", error);
+      console.log(error);
+    }
+  };
+
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editText, setEditText] = useState("");
+  const [editRating, setEditRating] = useState(0);
+
+  const handleEdit = (index, review) => {
+    setEditingIndex(index);
+    setEditText(review.text);
+    setEditRating(review.rating);
+  };
+
+  const handleSave = async (index) => {
+    try {
+      const reviewToUpdate = productR[index];
+      const updatedReview = {
+        text: editText,
+        rating: editRating,
+        images: reviewToUpdate.images || [],
+        videos: reviewToUpdate.videos || [],
+      };
+      const response = await fetch(
+        `http://localhost:3001/review-related/edit-review/${productId}/${reviewToUpdate._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedReview),
+        }
+      );
+
+      const data = await response.json();
+
+      const updatedReviews = productR.map((review, i) =>
+        i === index ? { ...review, ...data } : review
+      );
+
+      setProductR(updatedReviews);
+      setEditingIndex(null);
+      fetchReviews(productId);
+    } catch (error) {
+      console.error("Failed to update review:", error);
     }
   };
 
@@ -286,7 +347,6 @@ const ProductDetails = () => {
           </div>
         </div>
       )}
-
       {/* Lightbox Gallery */}
       {lightboxOpen && (
         <div
@@ -341,7 +401,6 @@ const ProductDetails = () => {
           </div>
         </div>
       )}
-
       <div className="product-container">
         <div className="upper-making-center">
           <div className="upper-container">
@@ -474,10 +533,8 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-
       <NewProducts type="similar" productId={product._id} />
-
-      {/* Product Reviews Section */}
+      Product Reviews Section
       <div className="product-reviews">
         <h3 className="title">Customer Reviews</h3>
         <div className="review-form">
@@ -534,32 +591,86 @@ const ProductDetails = () => {
           </button>
         </div>
         {/* Reviews List */}
-        <div className="reviews-list">
-          {productR.map((review, index) => (
-            <div key={index} className="review">
-              <p>
-                {review.userName} - {review.rating} Stars
-              </p>
-              <p>{review.text}</p>
-              <div className="review-media">
-                {review.images?.map((img, i) => (
-                  <img
-                    key={i}
-                    src={img}
-                    alt={`Review${i}`}
-                    className="review-image"
-                  />
-                ))}
-                {review.videos?.map((vid, i) => (
-                  <video key={i} controls className="review-video">
-                    <source src={vid} type="video/mp4" />
-                  </video>
-                ))}
-              </div>
+        <div className="yash-review-list">
+          {productR.map((review, index) => {
+            const reviewNumber = index + 1;
+            const stars =
+              reviewNumber <= 5
+                ? "⭐".repeat(reviewNumber)
+                : `Review ${reviewNumber}`;
 
-              <button>Delete</button>
-            </div>
-          ))}
+            return (
+              <div key={index} className="yash-review">
+                {/* Left Side: User Name & Review Number / Stars */}
+                <div className="yash-review-left">
+                  <p>{review.text}</p>
+                  <p>
+                    <strong>{review.userName}</strong> - {stars}
+                  </p>
+                  <div className="yash-review-media">
+                    {review.images?.map((img, i) => (
+                      <img
+                        key={i}
+                        src={img}
+                        alt={`Review ${i}`}
+                        className="yash-review-image"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Side: Edit & Delete Buttons */}
+                <div className="yash-review-right">
+                  {editingIndex === index ? (
+                    <div className="yash-review-edit-form">
+                      <textarea
+                        value={editText}
+                        onChange={(e) => setEditText(e.target.value)}
+                        className="yash-review-textarea"
+                      />
+                      <input
+                        type="number"
+                        value={editRating}
+                        onChange={(e) => setEditRating(e.target.value)}
+                        min="1"
+                        max="5"
+                        className="yash-review-rating-input"
+                      />
+                      <div className="yash-review-button-group">
+                        <button
+                          onClick={() => handleSave(index)}
+                          className="yash-review-button"
+                        >
+                          Save
+                        </button>
+                        <button
+                          onClick={() => setEditingIndex(null)}
+                          className="yash-review-button yash-review-cancel-button"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="yash-review-button-group">
+                      <button
+                        onClick={() => handleEdit(index, review)}
+                        className="yash-review-button"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(index)}
+                        className="yash-review-button yash-review-delete-button"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
       <Footer />

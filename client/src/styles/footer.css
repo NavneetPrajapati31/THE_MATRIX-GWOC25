@@ -47,7 +47,7 @@
 .footer-column a {
   text-decoration: none !important;
   color: #444;
-  margin-bottom: 12px !important;
+  margin-bottom: 10px !important;
 }
 
 .footer-column a:hover {
@@ -104,6 +104,7 @@
 .contact-section p {
   color: #444 !important;
   cursor: pointer;
+  margin-bottom: 5px;
 }
 
 .email-section {
@@ -120,6 +121,22 @@
 
 .email-section p:hover {
   color: black !important;
+}
+
+.payment-icons,
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.payment-icons img {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.social-icons img {
+  width: 15px !important;
+  height: 15px !important;
 }
 
 /* 📌 Responsive: Stack Contact & Email Sections on Small Screens */

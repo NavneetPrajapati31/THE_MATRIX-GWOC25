@@ -1,8 +1,7 @@
 import "../styles/InstagramBanner.css";
 
 const InstagramBanner = () => {
-  const instagramURL =
-    "https://www.instagram.com/_kashvicreation?igsh=cDFmdGVkY2Vtejhi"; // Replace with your actual Instagram link
+  const instagramURL = "https://www.instagram.com/kashvi_saree_/"; // Replace with your actual Instagram link
 
   return (
     <div
