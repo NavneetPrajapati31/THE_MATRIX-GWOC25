@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Footer from "../includes/Footer";
 import Navbar from "../includes/Navbar";
+import Spinner from "./Spinner";
 const temp = import.meta.env.VITE_BACKEND_URL;
 
 const OrdersPage = () => {
@@ -87,7 +88,7 @@ const OrdersPage = () => {
   }, [userId]);
 
   if (loading) {
-    return <div className="text-center my-5">Loading orders...</div>;
+    return <Spinner />;
   }
 
   return (

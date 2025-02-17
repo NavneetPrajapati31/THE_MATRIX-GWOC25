@@ -10,6 +10,7 @@ import {
   Col,
 } from "react-bootstrap";
 import "../styles/contactmodal.css"; // Custom CSS for responsiveness
+import { Link } from "react-router-dom";
 const temp = import.meta.env.VITE_BACKEND_URL;
 
 function ContactModal({ show, onHide }) {
@@ -79,16 +80,19 @@ function ContactModal({ show, onHide }) {
                   icon: "bi-telephone-fill",
                   title: "CALL US",
                   details: ["+91 93764 21333", "+91 72909 09696"],
+                  link: "tel:9376421333",
                 },
                 {
                   icon: "bi-envelope-fill",
                   title: "MAIL US",
-                  details: ["info@kalkifashion.com"],
+                  details: ["kashvicreation10@gmail.com"],
+                  link: "mailto:kashvicreation10@gmail.com",
                 },
                 {
                   icon: "bi-whatsapp",
                   title: "WHATSAPP",
                   details: ["+91 9920012474"],
+                  link: "https://api.whatsapp.com/send?phone=+919376421333&text=Hello%20to%20Kashvi%20Sarees",
                 },
               ].map((item, index) => (
                 <Card key={index} className="border-0 shadow-sm mb-2 p-2">
@@ -98,7 +102,7 @@ function ContactModal({ show, onHide }) {
                       <h3 className="fw-light fs-6 mb-1">{item.title}</h3>
                       {item.details.map((detail, i) => (
                         <p key={i} className="small text-muted mb-0">
-                          {detail}
+                          <Link to={item.link}>{detail}</Link>
                         </p>
                       ))}
                     </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
 import { IoIosAddCircleOutline } from "react-icons/io";
@@ -8,6 +8,7 @@ import { setUser } from "../redux/state";
 import OrderSuccess from "./OrderSuccess";
 import Navbar from "../includes/Navbar";
 import Footer from "../includes/Footer";
+import Spinner from "../components/Spinner";
 
 const BuyNow = () => {
   const temp = import.meta.env.VITE_BACKEND_URL;
@@ -27,6 +28,14 @@ const BuyNow = () => {
 
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [showAddressModal, setShowAddressModal] = useState(false);
+
+  const [flash, setFlash] = useState("");
+  const [flashImage, setFlashImage] = useState(null);
+  const [flashVisible, setFlashVisible] = useState(false);
+
+  useEffect(() => {
+    console.log("Loading state changed:", loading);
+  }, [loading]); // This will log every time `loading` changes
 
   const [newAddress, setNewAddress] = useState({
     name: "",
@@ -207,7 +216,6 @@ const BuyNow = () => {
       }
     } else if (selectedPayment === "COD") {
       setLoading(true);
-      console.log(loading);
 
       try {
         const orderResponse = await fetch(
@@ -252,9 +260,14 @@ const BuyNow = () => {
         const orderResult = await orderResponse.json();
 
         if (orderResponse.ok) {
-          alert("Order placed successfully!");
           setLoading(false);
+          alert("Order placed successfully!");
 
+          if (isCartCheckout) {
+            await fetch(`${temp}/cart-related/clear-cart/${user._id}`, {
+              method: "DELETE",
+            });
+          }
           navigate("/");
         } else {
           alert("Failed to place order: " + orderResult.error);
@@ -293,6 +306,7 @@ const BuyNow = () => {
   return (
     <>
       <Navbar />
+      {loading ? <Spinner /> : ""}
       <div className="container my-4">
         <div className="row g-5">
           <div className="col-md-8 px-0 ps-5">
@@ -614,9 +628,7 @@ const BuyNow = () => {
                         style={{ height: "50px", fontSize: "12px" }}
                         onClick={handleConfirmPayment}
                       >
-                        {loading
-                          ? "PLACING YOUR ORDER"
-                          : "PLACE YOUR ORDER AND PAY"}
+                        PLACE YOUR ORDER AND PAY
                       </button>
 
                       <div

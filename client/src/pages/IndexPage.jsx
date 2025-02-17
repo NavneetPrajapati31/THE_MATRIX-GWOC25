@@ -11,10 +11,12 @@ import Wedding from "../components/Wedding";
 import InstagramBanner from "../components/InstagramBanner";
 import BridalWorld from "../components/BridalWorld";
 import CustomerStories from "../components/CustomerStories";
+import Spinner from "../components/Spinner";
 
 const IndexPage = () => {
   return (
     <>
+      {/* <Spinner /> */}
       <Navbar />
       <Carousel />
       <VideoCarousel />

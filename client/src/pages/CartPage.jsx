@@ -56,7 +56,7 @@ const CartPage = () => {
       });
 
       const updatedItems = prevCart.items.filter(
-        (item) => item.productId.toString() !== productId.toString()
+        (item) => item.productId._id.toString() !== productId.toString()
       );
 
       return {

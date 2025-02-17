@@ -92,7 +92,7 @@ export default function CartProduct({
       const data = await response.json();
       console.log(product.productId);
       if (response.ok) {
-        onRemove(product._id);
+        onRemove(product.productId._id);
       } else {
         console.error("Error:", data.error);
       }
