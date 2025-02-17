@@ -5,7 +5,7 @@ import InventoryProducts from "../components/InventoryProducts";
 import NewProductAdd from "../components/NewProductAdd";
 import { logout } from "../redux/state";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -25,55 +25,63 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="admin-container-yash">
-      <aside className="sidebar-admin-yash">
-        <h2 style={{ marginRight: "20px" }}>Kashvi</h2>
-        <ul>
-          <li
-            className={activeTab === "add-product-yash" ? "active-yash" : ""}
-            onClick={() => setActiveTab("add-product-yash")}
-          >
-            + Add Product
-          </li>
-          <li
-            className={activeTab === "list-products-yash" ? "active-yash" : ""}
-            onClick={() => setActiveTab("list-products-yash")}
-          >
-            ✔ Listed Products
-          </li>
-          <li
-            className={activeTab === "orders-yash" ? "active-yash" : ""}
-            onClick={() => setActiveTab("orders-yash")}
-          >
-            ✔ Orders
-          </li>
-        </ul>
-      </aside>
+    <>
+      <div className="admin-container-yash">
+        <aside className="sidebar-admin-yash">
+          <Link to="/">
+            <h5 style={{ marginRight: "20px" }}>KASHVI</h5>
+          </Link>
 
-      <div className="admin-content">
-        <div className="admin-header">
-          <h2>
-            {activeTab === "add-product-yash"
-              ? "Add New Product"
-              : activeTab === "list-products-yash"
-              ? "All Products List"
-              : "Order Management"}
-          </h2>
+          <ul>
+            <li
+              className={activeTab === "add-product-yash" ? "active-yash" : ""}
+              onClick={() => setActiveTab("add-product-yash")}
+            >
+              + Add Product
+            </li>
+            <li
+              className={
+                activeTab === "list-products-yash" ? "active-yash" : ""
+              }
+              onClick={() => setActiveTab("list-products-yash")}
+            >
+              ✔ Listed Products
+            </li>
+            <li
+              className={activeTab === "orders-yash" ? "active-yash" : ""}
+              onClick={() => setActiveTab("orders-yash")}
+            >
+              ✔ Orders
+            </li>
+          </ul>
+        </aside>
 
-          <a
-            role="button"
-            className="account-dropdown-item btn btn-dark"
-            onClick={handleLogout}
-          >
-            Logout
-          </a>
+        <div className="admin-content">
+          <div className="admin-header">
+            <h4>
+              {activeTab === "add-product-yash"
+                ? "Add New Product"
+                : activeTab === "list-products-yash"
+                ? "All Products List"
+                : "Order Management"}
+            </h4>
+
+            <a
+              role="button"
+              className="account-dropdown-item btn btn-dark"
+              onClick={handleLogout}
+              style={{ fontSize: "14px", padding: "5px 20px" }}
+            >
+              Logout
+            </a>
+          </div>
+
+          {activeTab === "add-product-yash" && <NewProductAdd />}
+          {activeTab === "list-products-yash" && <InventoryProducts />}
+          {activeTab === "orders-yash" && <OrderContainer />}
         </div>
-
-        {activeTab === "add-product-yash" && <NewProductAdd />}
-        {activeTab === "list-products-yash" && <InventoryProducts />}
-        {activeTab === "orders-yash" && <OrderContainer />}
       </div>
-    </div>
+    </>
   );
 };
 

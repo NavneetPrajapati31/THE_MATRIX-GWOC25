@@ -14,6 +14,7 @@ const paymentRoutes = require("./routes/payments.js");
 const reviewSection = require("./routes/reviewSection.js");
 const addingWishList = require("./routes/addingWishList.js");
 const orders = require("./routes/orders.js");
+const searchRoutes = require("./routes/search.js");
 //defining the cors
 
 app.use(
@@ -49,6 +50,7 @@ app.use("/payment-related", paymentRoutes);
 app.use("/review-related", reviewSection);
 app.use("/wishlist-related", addingWishList);
 app.use("/orders-related", orders);
+app.use("/search-related", searchRoutes);
 
 //statring the server
 const server = http.createServer(app);

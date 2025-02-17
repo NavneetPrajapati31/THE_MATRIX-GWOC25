@@ -63,7 +63,7 @@ router.post("/add-saree", upload.array("images", 4), async (req, res) => {
     await newSaree.save();
     res
       .status(201)
-      .json({ message: "✅ Saree added successfully!", success: true });
+      .json({ message: "Saree added successfully!", success: true });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error", success: false });

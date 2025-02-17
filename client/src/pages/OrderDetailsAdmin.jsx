@@ -7,12 +7,13 @@ const OrderDetailsAdmin = () => {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState("");
+  const temp = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const fetchOrder = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/orders-related/admin/order-details/${id}`
+          `${temp}/orders-related/admin/order-details/${id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch order");

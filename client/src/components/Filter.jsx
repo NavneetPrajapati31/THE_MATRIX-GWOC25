@@ -11,7 +11,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Filter = () => {
-  const temp = "http://localhost:3001";
+  const temp = import.meta.env.VITE_BACKEND_URL;
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
@@ -93,12 +93,13 @@ const Filter = () => {
   const location = useLocation();
 
   const params = new URLSearchParams(location.search);
+  const searchParams = new URLSearchParams(location.search);
 
-  const searchQuery = new URLSearchParams(location.search).get("search");
+  const searchQuery = searchParams.get("search");
 
   useEffect(() => {
     if (searchQuery) {
-      fetch(`http://localhost:3001/saree-related/search?search=${searchQuery}`)
+      fetch(`${temp}/search-related/search?search=${searchQuery}`)
         .then((response) => response.json())
         .then((data) => setProducts(data))
         .catch((error) => console.error("Error fetching data:", error));
@@ -111,11 +112,11 @@ const Filter = () => {
   const fetchProducts = async (pageNumber) => {
     let fetchProductsUrl;
     if (category) {
-      fetchProductsUrl = `http://localhost:3001/product-related/getProducts?category=${category}&page=${pageNumber}&limit=12`;
+      fetchProductsUrl = `${temp}/product-related/getProducts?category=${category}&page=${pageNumber}&limit=12`;
     } else if (occasion) {
-      fetchProductsUrl = `http://localhost:3001/product-related/getProducts?occasion=${occasion}&page=${pageNumber}&limit=12`;
+      fetchProductsUrl = `${temp}/product-related/getProducts?occasion=${occasion}&page=${pageNumber}&limit=12`;
     } else {
-      fetchProductsUrl = `http://localhost:3001/product-related/getProducts?page=${pageNumber}&limit=12`;
+      fetchProductsUrl = `${temp}/product-related/getProducts?page=${pageNumber}&limit=12`;
     }
 
     try {

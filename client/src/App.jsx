@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import IndexPage from "./pages/IndexPage";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ProductListing from "./pages/ProductListing";
-
+import ContactModal from "./components/ContactModal.jsx";
 import "./App.css";
 import ProductDetails from "./pages/ProductDetails";
 import Dashboard from "./pages/Dashboard";
@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { logout, setUser } from "./redux/state";
 import AboutUs from "./pages/AboutUs";
-import ContactFormModal from "./components/contactForm";
+// import ContactFormModal from "./components/contactForm";
 import Wishlist from "./pages/Wishlist";
 import BuyNow from "./pages/BuyNow";
 import OrdersPage from "./components/OrdersPage";
@@ -76,7 +76,7 @@ function App() {
             element={<OrderDetailsAdmin />}
           />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/contact-us" element={<ContactFormModal />} />
+          <Route path="/contact-us" element={<ContactModal />} />
           <Route path="/blogs" element={<BlogPage />} />
           <Route path="/blogdetails" element={<BlogPostDetail />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />

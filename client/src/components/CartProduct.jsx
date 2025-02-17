@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/cartpage.css";
 import { Link } from "react-router-dom";
+const temp = import.meta.env.VITE_BACKEND_URL;
 
 export default function CartProduct({
   product,
@@ -15,9 +16,7 @@ export default function CartProduct({
   useEffect(() => {
     const fetchWishlist = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:3001/wishlist-related/get/${userId}`
-        );
+        const response = await fetch(`${temp}/wishlist-related/get/${userId}`);
         const data = await response.json();
         console.log(data);
         setIsWishlisted(
@@ -41,7 +40,7 @@ export default function CartProduct({
     console.log();
 
     try {
-      await fetch("http://localhost:3001/cart-related/update-quantity", {
+      await fetch(`${temp}/cart-related/update-quantity`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +63,7 @@ export default function CartProduct({
       onQuantityChange(product.productId, newQuantity);
 
       try {
-        await fetch("http://localhost:3001/cart-related/update-quantity", {
+        await fetch(`${temp}/cart-related/update-quantity`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -83,16 +82,13 @@ export default function CartProduct({
 
   const handleRemove = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:3001/cart-related/remove",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userId, productId: product._id }),
-        }
-      );
+      const response = await fetch(`${temp}/cart-related/remove`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, productId: product._id }),
+      });
       const data = await response.json();
       console.log(product.productId);
       if (response.ok) {
@@ -109,16 +105,13 @@ export default function CartProduct({
 
   const handleWishlistToggle = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3001/wishlist-related/${userId}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ productId: product.productId._id }),
-        }
-      );
+      const response = await fetch(`${temp}/wishlist-related/${userId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId: product.productId._id }),
+      });
 
       const data = await response.json();
 

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../redux/state";
 import OrderSuccess from "./OrderSuccess";
 import Navbar from "../includes/Navbar";
+import Footer from "../includes/Footer";
 
 const BuyNow = () => {
   const temp = import.meta.env.VITE_BACKEND_URL;
@@ -719,6 +720,7 @@ const BuyNow = () => {
           </Modal.Footer>
         </Modal>
       </div>
+      <Footer />
     </>
   );
 };

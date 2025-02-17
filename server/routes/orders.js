@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const Order = require("../models/OrdersAdmin");
 const nodemailer = require("nodemailer");
@@ -208,8 +209,18 @@ router.get("/user/:userId", async (req, res) => {
 
 router.get("/admin/orders", async (req, res) => {
   try {
-    const orders = await Order.find().populate("user").sort({ createdAt: -1 });
-    res.json(orders);
+    const { limit = 15, page = 1 } = req.query; // Default: 15 per page, page 1
+    const skip = (page - 1) * limit;
+
+    const orders = await Order.find()
+      .populate("user")
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(parseInt(limit)); // Convert limit to a number
+
+    const totalOrders = await Order.countDocuments(); // Get total orders count
+
+    res.json({ orders, totalOrders });
   } catch (error) {
     console.error("Error fetching all orders:", error);
     res.status(500).json({ error: "Failed to fetch orders" });
@@ -259,6 +270,55 @@ router.get("/admin/order-details/:id", async (req, res) => {
   console.log(orderId);
   const order = await Order.findById(orderId);
   res.json(order);
+});
+
+router.post("/contact", async (req, res) => {
+  const { fullName, email, telephone, review } = req.body;
+
+  if (!fullName || !email || !telephone) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: `"Kashvi Contacts" <${process.env.OWNER_EMAIL}>`,
+    to: "yashsabne39@gmail.com",
+    replyTo: email,
+    subject: "📩 New Contact Form Submission",
+    text: `New Contact Inquiry\n\nName: ${fullName}\nEmail: ${email}\nPhone: ${telephone}\nMessage: ${review}`,
+    html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+            <h2 style="color: #333;">📬 New Contact Inquiry</h2>
+            <p><strong>Name:</strong> ${fullName}</p>
+            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p><strong>Phone:</strong> <a href="tel:${telephone}">${telephone}</a></p>
+            <p><strong>Message:</strong></p>
+            <blockquote style="border-left: 4px solid #007bff; padding-left: 10px; color: #555;">
+                ${review}
+            </blockquote>
+            <hr />
+            <p style="font-size: 0.9rem; color: #777;">This message was sent from your website's contact form.</p>
+        </div>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("success");
+    res.status(200).json({ success: "Email sent successfully" });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).json({ error: "Failed to send email" });
+  }
 });
 
 module.exports = router;

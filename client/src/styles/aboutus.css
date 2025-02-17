@@ -22,7 +22,9 @@
   height: 0;
   overflow: hidden;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  border-radius: 8px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .video-container iframe {
@@ -40,8 +42,9 @@
   background-color: #fff;
   padding: 2rem;
   margin-bottom: 2rem;
+
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .company-name {
@@ -55,7 +58,7 @@
 .company-description {
   font-size: 1rem;
   line-height: 1.6;
-  color: #555;
+  color: #000000;
 }
 
 .features {
@@ -70,8 +73,9 @@
   flex-basis: calc(33.333% - 2rem);
   background-color: #fff;
   padding: 1.5rem;
-  border-radius: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  border-radius: 8px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   text-align: center;
   transition: transform 0.3s ease;
 }
@@ -97,7 +101,7 @@
 
 .feature-item p {
   font-size: 0.9rem;
-  color: #555;
+  color: #000000;
 }
 
 @media (max-width: 768px) {

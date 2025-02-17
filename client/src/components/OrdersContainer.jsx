@@ -5,26 +5,37 @@ import { useNavigate } from "react-router-dom";
 const OrderContainer = () => {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
+  const [page, setPage] = useState(1);
+  const [totalOrders, setTotalOrders] = useState(0);
+  const limit = 15;
+  const temp = import.meta.env.VITE_BACKEND_URL;
+
+  const fetchOrders = async () => {
+    try {
+      const response = await fetch(
+        `${temp}/orders-related/admin/orders?limit=${limit}&page=${page}`
+      );
+      const data = await response.json();
+
+      if (page === 1) {
+        setOrders(data.orders);
+      } else {
+        setOrders((prevOrders) => [...prevOrders, ...data.orders]);
+      }
+      setTotalOrders(data.totalOrders);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:3001/orders-related/admin/orders"
-        );
-        const data = await response.json();
-        setOrders(data);
-      } catch (error) {
-        console.error("Error fetching orders:", error);
-      }
-    };
     fetchOrders();
-  }, []);
+  }, [page]);
 
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/orders-related/admin/orders/${orderId}`,
+        `${temp}/orders-related/admin/orders/${orderId}`,
         {
           method: "PUT",
           headers: {
@@ -298,6 +309,10 @@ const OrderContainer = () => {
           </div>
         </div>
       ))}
+      {orders.length < totalOrders && (
+        <button onClick={() => setPage(page + 1)}>Show More</button>
+      )}
+      {orders.length === totalOrders && <a href="#"> get on top</a>}
     </div>
   );
 };

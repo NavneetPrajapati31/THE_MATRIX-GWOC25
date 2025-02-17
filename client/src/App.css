@@ -50,3 +50,10 @@ html {
   bottom: 10px;
   background-color: transparent;
 }
+
+/* Ensure this is in your App.css or a CSS file that's imported globally */
+.modal-backdrop.show {
+  -webkit-backdrop-filter: blur(16px) !important;
+  backdrop-filter: blur(16px) !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}

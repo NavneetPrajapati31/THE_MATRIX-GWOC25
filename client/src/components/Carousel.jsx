@@ -82,7 +82,7 @@ export default function Carousel() {
               <h6 style={{ textShadow: "2px 2px 10px rgba(0, 0, 0, 0.7)" }}>
                 <i>{slide.caption1}</i>
               </h6>
-              <h3>{slide.caption2}</h3>
+              <h3 style={{ color: "white" }}>{slide.caption2}</h3>
             </div>
           </div>
         ))}

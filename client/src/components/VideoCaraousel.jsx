@@ -12,7 +12,6 @@ const initialVideos = [
   { id: 4, src: "/Videos/VID-20250204-WA0003(1).mp4" },
   { id: 5, src: "/Videos/VID-20250204-WA0022.mp4" },
 ];
-
 const VideoCarousel = () => {
   const [videos, setVideos] = useState(initialVideos);
   const [muted, setMuted] = useState(true);

@@ -2,9 +2,13 @@ import { useDispatch } from "react-redux";
 import { logout } from "../redux/state";
 import "../styles/footer.css";
 import { Link } from "react-router-dom";
+import ContactModal from "../components/ContactModal";
+import { useState } from "react";
 
 const Footer = () => {
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <footer className="footer-container">
       {/* Left Section - Categories & Information */}
@@ -22,7 +26,12 @@ const Footer = () => {
           <h3>ABOUT US</h3>
           <ul>
             <Link to="/about-us">About Us</Link>
-            <Link to="product-listing">Contact Us</Link>
+
+            <Link onClick={() => setIsOpen(true)}>Contact Us</Link>
+
+            {/* <Button onClick={() => setIsOpen(true)}>Contact Us</Button> */}
+            <ContactModal show={isOpen} onHide={() => setIsOpen(false)} />
+
             <Link to="/blogs">Blog</Link>
           </ul>
         </div>

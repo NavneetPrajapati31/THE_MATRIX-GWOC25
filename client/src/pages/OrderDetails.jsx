@@ -4,6 +4,8 @@ import "../styles/OrderDetails.css";
 import { FaFileDownload } from "react-icons/fa";
 import Navbar from "../includes/Navbar";
 import OrderTracking from "../components/OrderTracking";
+import Footer from "../includes/Footer";
+const temp = import.meta.env.VITE_BACKEND_URL;
 
 const OrderDetails = () => {
   const location = useLocation();
@@ -20,9 +22,7 @@ const OrderDetails = () => {
       if (!orderId) return;
 
       try {
-        const response = await fetch(
-          `http://localhost:3001/orders-related/${orderId}`
-        );
+        const response = await fetch(`${temp}/orders-related/${orderId}`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -216,6 +216,7 @@ const OrderDetails = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

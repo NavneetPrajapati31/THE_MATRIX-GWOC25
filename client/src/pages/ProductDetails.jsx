@@ -10,6 +10,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box } from "@mui/material";
 import NewProducts from "../components/NewProducts";
+const temp = import.meta.env.VITE_BACKEND_URL;
 
 const ProductDetails = () => {
   const temp = import.meta.env.VITE_BACKEND_URL;
@@ -219,7 +220,7 @@ const ProductDetails = () => {
   const fetchReviews = async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/review-related/products/${productId}/reviews`
+        `${temp}/review-related/products/${productId}/reviews`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch reviews");
@@ -235,7 +236,7 @@ const ProductDetails = () => {
     console.log(productR[index]._id);
     try {
       await fetch(
-        `http://localhost:3001/review-related/delete-review/${productId}/${productR[index]._id}`,
+        `${temp}/review-related/delete-review/${productId}/${productR[index]._id}`,
         {
           method: "DELETE",
         }
@@ -268,7 +269,7 @@ const ProductDetails = () => {
         videos: reviewToUpdate.videos || [],
       };
       const response = await fetch(
-        `http://localhost:3001/review-related/edit-review/${productId}/${reviewToUpdate._id}`,
+        `${temp}/review-related/edit-review/${productId}/${reviewToUpdate._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

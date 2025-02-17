@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/state";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const searchInputRef = useRef(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -41,6 +42,96 @@ const Navbar = () => {
 
     return () => typed.destroy();
   }, []);
+
+  const sareeSuggestions = [
+    "Banarasi",
+    "Kanjeevaram",
+    "Chanderi",
+    "Tussar",
+    "Georgette",
+    "Cotton",
+    "Silk",
+    "Organza",
+    "Patola",
+    "Paithani",
+    "Linen",
+    "Net",
+    "Crepe",
+    "Pure Silk",
+    "Cotton Silk",
+    "Khadi",
+    "Chiffon",
+    "Velvet",
+    "Satin",
+    "Muslin",
+    "Art Silk",
+    "Handloom",
+    "Synthetic",
+    "Zari Work",
+    "Embroidered",
+    "Printed",
+    "Hand-painted",
+    "Thread Work",
+    "Mirror Work",
+    "Block Print",
+    "Tie & Dye",
+    "Bandhani",
+    "Katha Stitch",
+    "Wedding",
+    "Party Wear",
+    "Office Wear",
+    "Casual",
+    "Festival",
+    "Traditional",
+    "Red",
+    "Blue",
+    "Green",
+    "Yellow",
+    "Pink",
+    "Black",
+    "White",
+    "Purple",
+    "Gold",
+    "Silver",
+  ];
+
+  const [suggestions, setSuggestions] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+
+    if (value.trim() === "") {
+      setSuggestions([]);
+      return;
+    }
+
+    const filteredSuggestions = sareeSuggestions.filter((item) =>
+      item.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setSuggestions(filteredSuggestions.slice(0, 6));
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (!searchValue.trim()) return;
+
+    navigateToSearch(searchValue);
+    setSuggestions([]);
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchValue(suggestion);
+    setSuggestions([]);
+    navigateToSearch(suggestion);
+  };
+
+  const navigateToSearch = (query) => {
+    const encodedSearch = query.trim().replace(/\s+/g, "+");
+    navigate(`/product-listing?search=${encodedSearch}`);
+  };
 
   return (
     <>
@@ -96,6 +187,11 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item ms-4">
+                <a className="nav-link active" href="/blogs">
+                  Blogs
+                </a>
+              </li>
+              <li className="nav-item ms-4">
                 <a className="nav-link active" href="/about-us">
                   About us
                 </a>
@@ -104,30 +200,51 @@ const Navbar = () => {
           </div>
 
           {/* Search Bar */}
-          <form className="d-flex px-4 mx-auto" role="search">
-            <input
-              ref={searchInputRef}
-              className="form-control form-control-sm rounded-start"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              style={{
-                backgroundColor: "rgb(243, 243, 243)",
-                fontSize: "0.775rem",
-                height: "35px",
-                width: "200px",
-                borderTopRightRadius: "0",
-                borderBottomRightRadius: "0",
-                textAlign: "center",
-              }}
-            />
-            <button
-              className="btn btn-sm btn-dark rounded-end rounded-0"
-              type="submit"
+          <div className="suggestion-form-list">
+            <form
+              className="d-flex px-4 mx-auto"
+              role="search"
+              onSubmit={handleSearchSubmit}
             >
-              <SearchIcon fontSize="small" />
-            </button>
-          </form>
+              <input
+                ref={searchInputRef}
+                className="form-control form-control-sm input-custom rounded-start"
+                type="search"
+                name="search"
+                placeholder="Search"
+                aria-label="Search"
+                value={searchValue}
+                onChange={handleSearchChange}
+                style={{
+                  backgroundColor: "rgb(243, 243, 243)",
+                  fontSize: "0.775rem",
+                  height: "35px",
+                  width: "200px",
+                  borderTopRightRadius: "0",
+                  borderBottomRightRadius: "0",
+                  textAlign: "center",
+                }}
+              />
+              <button
+                className="btn btn-sm btn-dark rounded-end rounded-0"
+                type="submit"
+              >
+                <SearchIcon fontSize="small" />
+              </button>
+            </form>
+            {suggestions.length > 0 && (
+              <ul className="suggestions-list">
+                {suggestions.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
           {/* Icons Section (Right-Aligned) */}
           <div className="d-flex align-items-center ms-auto">
@@ -180,7 +297,7 @@ const Navbar = () => {
                         Admin
                       </Link>
                       <Link to="/orders" className="account-dropdown-item">
-                        Order History
+                        My Orders
                       </Link>
                       <a
                         role="button"

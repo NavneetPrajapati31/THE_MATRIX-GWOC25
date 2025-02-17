@@ -330,3 +330,35 @@ ul li a:hover::after {
   cursor: pointer;
   margin-right: 10px;
 }
+
+.suggestion-form-list {
+  position: relative;
+}
+
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: 23px;
+  width: 250px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-height: 150px;
+
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.suggestions-list li {
+  padding: 8px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.suggestions-list li:hover {
+  background-color: #f3f3f3;
+}
