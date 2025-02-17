@@ -100,10 +100,8 @@
   color: #333;
 }
 
-.print-invoice-btn-all-mohit {
+.print-invoice-btn-all {
   position: relative;
   bottom: 0;
   left: 0;
-  border: none;
-  background-color: transparent;
 }
