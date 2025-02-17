@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"; // Get productId from URL
 import "../styles/productDetails.css";
+import "../styles/flash.css";
 import Navbar from "../includes/Navbar";
 import Footer from "../includes/Footer";
 import { useSelector } from "react-redux";
@@ -10,7 +11,6 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box } from "@mui/material";
 import NewProducts from "../components/NewProducts";
-const temp = import.meta.env.VITE_BACKEND_URL;
 
 const ProductDetails = () => {
   const temp = import.meta.env.VITE_BACKEND_URL;
@@ -119,7 +119,7 @@ const ProductDetails = () => {
       if (response.ok) {
         showFlash(
           "Item successfully added to your cart.",
-          "/images/undraw_shopping-app_b80f.svg"
+          "/images/woman-shopping-chart-dark.png"
         );
       } else {
         showFlash(
@@ -208,7 +208,7 @@ const ProductDetails = () => {
       setSelectedImages([]);
       showFlash(
         "Review submitted successfully!",
-        "/images/undraw_done_i0ak.svg"
+        "/images/man-review-stars-dark.png"
       );
     } catch (error) {
       console.error("Error submitting review:", error);

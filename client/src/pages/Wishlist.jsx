@@ -122,7 +122,17 @@ const Wishlist = () => {
               </div>
             ))
           ) : (
-            <p className="empty-wishlist">Your wishlist is empty.</p>
+            <div
+              className="mt-5"
+              style={{ width: "100vw", marginBottom: "150px" }}
+            >
+              <img
+                src="/images/man-question-marks-dark.png"
+                alt=""
+                style={{ width: "170px", height: "230px" }}
+              />
+              <p className="empty-wishlist">Your wishlist is empty.</p>
+            </div>
           )}
         </div>
       </div>

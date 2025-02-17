@@ -135,6 +135,7 @@
 .status-btn.confirm {
   background-color: #007bff;
   color: white;
+  margin-bottom: 25px;
 }
 
 .status-btn.confirm:hover {
@@ -184,6 +185,16 @@
 }
 
 /* Responsive Design */
+@media ((min-width: 898px) and (max-width: 1108px)) {
+  .print-invoice-btn-all {
+    right: 10%;
+    bottom: 10%;
+  }
+  .status-btn.confirm {
+    margin-bottom: 0px;
+  }
+}
+
 @media (max-width: 768px) {
   .order-card-yash {
     flex-direction: column;

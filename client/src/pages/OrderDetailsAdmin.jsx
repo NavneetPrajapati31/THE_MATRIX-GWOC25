@@ -195,7 +195,7 @@ const OrderDetailsAdmin = () => {
 
       <button
         onClick={() => handlePrintInvoice(order)}
-        className="print-invoice-btn-all"
+        className="print-invoice-btn-all-mohit"
       >
         Print Invoice
       </button>

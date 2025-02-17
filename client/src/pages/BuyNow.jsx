@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import "../styles/buyNow.css";
+import "../styles/flash.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../redux/state";
 import OrderSuccess from "./OrderSuccess";
@@ -687,14 +688,22 @@ const BuyNow = () => {
           onHide={() => setShowAddressModal(false)}
           centered
           backdrop="static"
+          size="lg"
         >
-          <Modal.Header closeButton className="border-bottom-0">
-            <Modal.Title className="">Add New Address</Modal.Title>
+          <Modal.Header closeButton className="border-b-0 p-3 bg-white">
+            <Modal.Title
+              className="text-lg font-light text-gray-800"
+              style={{ fontSize: "18px" }}
+            >
+              Add New Address
+            </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <Form>
+          <Modal.Body className="p-4 bg-gray-50 max-h-[350px] overflow-y-auto">
+            <Form className="space-y-4">
               <Form.Group className="mb-3">
-                <Form.Label>Full Name</Form.Label>
+                <Form.Label className="text-sm font-medium text-gray-600">
+                  Full Name
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter your full name"
@@ -703,10 +712,13 @@ const BuyNow = () => {
                     setNewAddress({ ...newAddress, name: e.target.value })
                   }
                   required
+                  className="mt-2 p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Street Address</Form.Label>
+                <Form.Label className="text-sm font-medium text-gray-600">
+                  Street Address
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter street address"
@@ -715,10 +727,13 @@ const BuyNow = () => {
                     setNewAddress({ ...newAddress, street: e.target.value })
                   }
                   required
+                  className="mt-2 p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>City</Form.Label>
+                <Form.Label className="text-sm font-medium text-gray-600">
+                  City
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter city"
@@ -727,10 +742,13 @@ const BuyNow = () => {
                     setNewAddress({ ...newAddress, city: e.target.value })
                   }
                   required
+                  className="mt-2 p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>State</Form.Label>
+                <Form.Label className="text-sm font-medium text-gray-600">
+                  State
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter state"
@@ -739,10 +757,13 @@ const BuyNow = () => {
                     setNewAddress({ ...newAddress, state: e.target.value })
                   }
                   required
+                  className="mt-2 p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>Pincode</Form.Label>
+                <Form.Label className="text-sm font-medium text-gray-600">
+                  Pincode
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter 6-digit pincode"
@@ -755,12 +776,17 @@ const BuyNow = () => {
                   }
                   maxLength="6"
                   required
+                  className="mt-2 p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </Form.Group>
             </Form>
           </Modal.Body>
-          <Modal.Footer className="border-top-0">
-            <Button variant="light" onClick={() => setShowAddressModal(false)}>
+          <Modal.Footer className="border-t-0 p-3 bg-white">
+            <Button
+              variant="light"
+              onClick={() => setShowAddressModal(false)}
+              className="text-sm font-medium text-gray-600 hover:bg-gray-200"
+            >
               Cancel
             </Button>
             <Button
@@ -773,6 +799,7 @@ const BuyNow = () => {
                 !newAddress.state ||
                 !newAddress.pincode
               }
+              className="text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400"
             >
               Save Address
             </Button>

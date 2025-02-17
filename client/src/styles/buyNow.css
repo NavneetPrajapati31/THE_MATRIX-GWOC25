@@ -1,3 +1,4 @@
+/* Base styles */
 .yash-buy-now {
   margin-top: 30px;
   font-family: "Arial", sans-serif;
@@ -14,6 +15,7 @@
   background: #ffffff;
   padding: 20px;
   border-radius: 10px;
+  margin-top: 20px; /* Add some space from other elements */
 }
 
 .summary-box p {
@@ -101,7 +103,6 @@
   display: flex;
   align-items: flex-start;
   padding: 10px;
-  /* border: 1px solid black !important; */
   border-radius: 4px;
   background-color: white;
   cursor: pointer;
@@ -207,10 +208,10 @@
 }
 
 .payment-method-item {
-  border: none; /* Default transparent border */
-  border-radius: 8px; /* Rounded corners */
-  padding: 10px; /* Add some padding */
-  transition: all 0.3s ease-in-out; /* Smooth transition */
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
 .payment-method-item.selected-payment {
@@ -218,12 +219,12 @@
 }
 
 .disabled-payment {
-  pointer-events: none; /* Disable pointer events */
-  opacity: 0.6; /* Reduce opacity to indicate it's disabled */
+  pointer-events: none;
+  opacity: 0.6;
 }
 
 .disabled-payment .form-check-input {
-  cursor: not-allowed; /* Show not-allowed cursor on the radio button */
+  cursor: not-allowed;
 }
 
 .checkout-card {
@@ -265,12 +266,12 @@
 }
 
 .radio-btn .form-check-input:checked {
-  background-color: black; /* Bootstrap Primary Blue */
+  background-color: black;
   border-color: black;
 }
 
 .radio-btn .form-check-input:not(:checked) {
-  background-color: transparent; /* Bootstrap Primary Blue */
+  background-color: transparent;
   border-color: transparent;
 }
 
@@ -287,8 +288,8 @@
 }
 
 .checkout-card {
-  background: #fff; /* White card background */
-  border-radius: 12px; /* Rounded edges */
+  background: #fff;
+  border-radius: 12px;
   padding: 20px;
   margin-bottom: 20px;
 }
@@ -301,13 +302,14 @@
   border-bottom: 2px solid #ddd;
   padding-bottom: 10px;
 }
+
 .review-item {
   display: flex;
-  align-items: flex-start; /* Align items to the top */
-  justify-content: flex-start; /* Align items to the left */
+  align-items: flex-start;
+  justify-content: flex-start;
   border-bottom: 1px solid #eaeaea;
   padding: 0;
-  gap: 15px; /* Adds spacing between image & details */
+  gap: 15px;
 }
 
 .review-item:last-child {
@@ -322,8 +324,8 @@
 
 .review-item-details {
   flex: 1;
-  margin-left: 0px; /* Removes unnecessary left margin */
-  text-align: left; /* Ensures all text is left-aligned */
+  margin-left: 0px;
+  text-align: left;
 }
 
 .review-item-details p {
@@ -347,69 +349,113 @@
   font-weight: 400;
 }
 
-/* Flash Modal Container with Blurred Overlay */
-/* FLASH CONTAINER (Full-Screen Overlay) */
-.flash-container {
-  position: fixed;
-  /* inset: 0 is shorthand for top:0; right:0; bottom:0; left:0; */
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* Slightly dark overlay + blur */
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-
-  /* Layer on top of everything */
-  z-index: 9998;
-
-  /* Start hidden */
-  opacity: 0;
-  pointer-events: none;
-
-  /* Fade transition for container visibility */
-  transition: opacity 0.4s ease;
+/* General Styles */
+.payment-page-yash {
+  font-family: Arial, sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 8px;
 }
 
-/* When visible, the container becomes interactive and fades in */
-.flash-container.visible {
-  opacity: 1;
-  pointer-events: auto;
+/* Responsive Design */
+@media (max-width: 1024px) {
+  /* Ensure review item is displayed in column for smaller screens */
+  .review-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  /* Ensure padding for the checkout summary */
+  .checkout-summary {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  /* Order summary should appear below the review section */
+  .order-summary {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  /* Make sure the checkout card is responsive */
+  .checkout-card {
+    width: 100%;
+    padding: 15px;
+  }
+
+  /* Update padding to be consistent across all columns */
+  .payment-method-container,
+  .payment-method-item {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* Align the review image properly */
+  .review-item .review-img-thumbnail {
+    width: 100%;
+    margin-bottom: 10px; /* Space between the image and text */
+  }
+
+  /* Adjust payment method icons and text */
+  .payment-method-item .payment-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* Order summary adjustments */
+  .order-summary .summary-box {
+    padding: 15px;
+  }
+
+  /* Adjustments for the form input sections */
+  .payment-method-item input,
+  .payment-method-item label {
+    width: 100%;
+  }
+
+  .payment-method-item {
+    padding: 10px 20px;
+    width: 100%;
+  }
+
+  /* Modify the checkout summary button */
+  .selected-btn {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Adjust layout to ensure consistent padding on both columns */
+  .checkout-summary,
+  .review-item {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .balance-section,
+  .code-section {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
-/* FLASH MODAL (The Card) */
-.flash-modal {
-  /* Card-like styling */
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 30px 40px;
-  width: 450px;
-  max-width: 450px !important;
-  text-align: center;
-
-  /* Scale in slightly */
-  transform: scale(0.95);
-  transition: transform 0.4s ease;
-}
-
-/* When the container is visible, the modal scales to normal size */
-.flash-container.visible .flash-modal {
-  transform: scale(1);
-}
-
-/* FLASH ICON (Your Large SVG) */
-.flash-icon {
-  width: 150px; /* Adjust as desired */
-  height: auto;
-  margin-bottom: 20px;
-}
-
-/* FLASH TEXT (Message) */
-.flash-text {
-  margin-top: 0;
-  font-size: 15px;
-  font-weight: 400;
-  color: #333;
+/* Ensure Order Summary is positioned correctly on smaller devices */
+@media (max-width: 768px) {
+  .order-summary {
+    margin-top: 20px; /* Ensure the summary section appears below the review items */
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 100%;
+  }
 }

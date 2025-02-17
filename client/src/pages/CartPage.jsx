@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/cartpage.css";
 import Navbar from "../includes/Navbar";
 import Footer from "../includes/Footer";
+
 import CartProduct from "../components/CartProduct";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -34,8 +35,6 @@ const CartPage = () => {
   const handleCheckout = () => {
     if (cart?.items.length > 0) {
       navigate("/buy-now", { state: { cartItems: cart.items } });
-    } else {
-      alert("Your cart is empty!");
     }
   };
 
@@ -105,7 +104,15 @@ const CartPage = () => {
                 </>
               ))
             ) : (
-              <p>Your cart is empty.</p>
+              <div className="mt-5">
+                <img
+                  className="mb-5"
+                  src="/images/undraw_empty-cart_574u.svg"
+                  alt="Cart Illustration"
+                  style={{ width: "230px", height: "230px" }}
+                />
+                <p>Your cart is empty! Start shopping now.</p>
+              </div>
             )}
           </div>
 
