@@ -42,10 +42,7 @@ const OrderDetails = () => {
   }, [orderId]);
 
   const handlePrintInvoice = (order) => {
-    const subtotal = order.products.reduce(
-      (acc, item) => acc + item.product.price * item.quantity,
-      0
-    );
+    const subtotal = "X,XXX";
 
     const invoiceContent = `
       <html>
@@ -119,10 +116,10 @@ const OrderDetails = () => {
                           <tr>
                               <td>${index + 1}</td>
                               <td>${item.product.title}</td>
-                               <td>₹${item.product.SareeId}</td>
-                              <td>₹${item.product.price}</td>
+                               <td>${item.product.sareeId}</td>
+                              <td>₹X,XXX</td>
                               <td>${item.quantity}</td>
-                              <td>₹${item.product.price * item.quantity}</td>
+                              <td>₹X,XXX</td>
                           </tr>
                       `
                         )
@@ -131,8 +128,8 @@ const OrderDetails = () => {
               </div>
 
               <div class="total-container">
-                  <p>Subtotal: ₹${subtotal.toFixed(2)}</p> 
-                  <p><strong>Grand Total: ₹${subtotal.toFixed(2)}</strong></p>
+                  <p>Subtotal: ₹${subtotal}</p> 
+                  <p><strong>Grand Total: ₹${subtotal}</strong></p>
               </div>
 
               <div class="footer">
@@ -175,9 +172,7 @@ const OrderDetails = () => {
                 />
                 <div className="product-info-details">
                   <span>{item.product.title}</span>
-                  <p className="price-details">
-                    ₹{item.product.price} x {item.quantity}
-                  </p>
+                  <p className="price-details">₹X,XXX x {item.quantity}</p>
                 </div>
               </div>
             ))}

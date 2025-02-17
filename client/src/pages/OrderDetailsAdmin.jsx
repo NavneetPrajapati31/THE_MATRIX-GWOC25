@@ -34,10 +34,7 @@ const OrderDetailsAdmin = () => {
   console.log(order);
 
   const handlePrintInvoice = (order) => {
-    const subtotal = order.products.reduce(
-      (acc, item) => acc + item.product.price * item.quantity,
-      0
-    );
+    const subtotal = "X,XXX";
 
     const invoiceContent = `
             <html>
@@ -112,11 +109,9 @@ const OrderDetailsAdmin = () => {
                                         <td>${item.product.title} (Design ID: ${
                                   item.product.sareeId
                                 })</td>
-                                        <td>₹${item.product.price}</td>
+                                        <td>₹X,XXX</td>
                                         <td>${item.quantity}</td>
-                                        <td>₹${
-                                          item.product.price * item.quantity
-                                        }</td>
+                                        <td>₹X,XXX</td>
                                     </tr>
                                 `
                               )
@@ -125,9 +120,8 @@ const OrderDetailsAdmin = () => {
                     </div>
     
                     <div class="total-container">
-                        <p>Subtotal: ₹${subtotal.toFixed(2)}</p>
-                        <p><strong>Grand Total: ₹${subtotal.toFixed(
-                          2
+                        <p>Subtotal: ₹${subtotal}</p>
+                        <p><strong>Grand Total: ₹${subtotal}
                         )}</strong></p>
                     </div>
     
@@ -170,7 +164,7 @@ const OrderDetailsAdmin = () => {
                 {item.product.title} x {item.quantity}
               </p>
               <p>
-                <strong>Price:</strong> ₹{item.product.price}
+                <strong>Price:</strong> ₹X,XXX
               </p>
               <p>
                 <strong>Design-Id:</strong> {item.product.sareeId}{" "}

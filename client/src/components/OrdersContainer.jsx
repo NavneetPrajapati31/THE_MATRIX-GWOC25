@@ -62,10 +62,7 @@ const OrderContainer = () => {
   };
 
   const handlePrintInvoice = (order) => {
-    const subtotal = order.products.reduce(
-      (acc, item) => acc + item.product.price * item.quantity,
-      0
-    );
+    const subtotal = "X,XXX";
 
     const invoiceContent = `
             <html>
@@ -140,11 +137,9 @@ const OrderContainer = () => {
                                         <td>${item.product.title} (Design ID: ${
                                   item.product.sareeId
                                 })</td>
-                                        <td>₹${item.product.price}</td>
+                                        <td>₹X,XXX</td>
                                         <td>${item.quantity}</td>
-                                        <td>₹${
-                                          item.product.price * item.quantity
-                                        }</td>
+                                        <td>₹X,XXX</td>
                                     </tr>
                                 `
                               )
