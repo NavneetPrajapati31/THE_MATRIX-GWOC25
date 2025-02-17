@@ -327,6 +327,7 @@ const BuyNow = () => {
             navigate("/orders");
           }, 2000);
         } else {
+          setLoading(false);
           showFlash(
             `Failed to place order: ${orderResult.error}`,
             "/images/laptop-server-error-dark.png"
