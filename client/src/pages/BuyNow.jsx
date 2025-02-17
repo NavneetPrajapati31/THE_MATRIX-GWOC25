@@ -15,6 +15,7 @@ const BuyNow = () => {
   const user = useSelector((state) => state.user?.user);
   const userId = user?._id;
 
+  const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const location = useLocation();
@@ -205,50 +206,61 @@ const BuyNow = () => {
         alert("Payment failed: " + error.message);
       }
     } else if (selectedPayment === "COD") {
-      const orderResponse = await fetch(`${temp}/orders-related/place-order`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: user._id,
-          products:
-            cartItems && cartItems.length > 0
-              ? cartItems.map((item) => ({
-                  product: {
-                    _id: item._id,
-                    sareeId: item.sareeId,
-                    title: item.name,
-                    price: item.price,
-                    image: item.image,
-                  },
-                  quantity: item.quantity,
-                }))
-              : [
-                  {
-                    product: {
-                      _id: product._id,
-                      sareeId: product.sareeId,
-                      title: product.name,
-                      price: product.price,
-                      image: product.images[0],
-                    },
-                    quantity: 1,
-                  },
-                ],
-          totalAmount,
-          paymentMethod: "COD",
-          address: selectedAddress,
-          paymentStatus: "Pending",
-        }),
-      });
+      setLoading(true);
+      console.log(loading);
 
-      const orderResult = await orderResponse.json();
+      try {
+        const orderResponse = await fetch(
+          `${temp}/orders-related/place-order`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              userId: user._id,
+              products:
+                cartItems && cartItems.length > 0
+                  ? cartItems.map((item) => ({
+                      product: {
+                        _id: item._id,
+                        sareeId: item.sareeId,
+                        title: item.name,
+                        price: item.price,
+                        image: item.image,
+                      },
+                      quantity: item.quantity,
+                    }))
+                  : [
+                      {
+                        product: {
+                          _id: product._id,
+                          sareeId: product.sareeId,
+                          title: product.name,
+                          price: product.price,
+                          image: product.images[0],
+                        },
+                        quantity: 1,
+                      },
+                    ],
+              totalAmount,
+              paymentMethod: "COD",
+              address: selectedAddress,
+              paymentStatus: "Pending",
+            }),
+          }
+        );
 
-      if (orderResponse.ok) {
-        alert("Order placed successfully!");
+        const orderResult = await orderResponse.json();
 
-        navigate("/");
-      } else {
-        alert("Failed to place order: " + orderResult.error);
+        if (orderResponse.ok) {
+          alert("Order placed successfully!");
+          setLoading(false);
+
+          navigate("/");
+        } else {
+          alert("Failed to place order: " + orderResult.error);
+        }
+      } catch (err) {
+        console.log(err);
       }
     }
   };
@@ -602,7 +614,9 @@ const BuyNow = () => {
                         style={{ height: "50px", fontSize: "12px" }}
                         onClick={handleConfirmPayment}
                       >
-                        PLACE YOUR ORDER AND PAY
+                        {loading
+                          ? "PLACING YOUR ORDER"
+                          : "PLACE YOUR ORDER AND PAY"}
                       </button>
 
                       <div

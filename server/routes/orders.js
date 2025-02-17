@@ -175,7 +175,7 @@ router.post("/place-order", async (req, res) => {
               <h2>Thank you for your order!</h2>
               <p>Your order has been placed successfully. Below are the details:</p>
               <p><strong>Order ID:</strong> ${newOrder._id}</p>
-              <p><strong>Total Amount:</strong> ₹${newOrder.totalAmount}</p>
+              <p><strong>Total Amount:</strong> ₹X,XXX</p>
               <p><strong>Payment Method:</strong> ${newOrder.paymentMethod}</p>
               <p><strong>Payment Status:</strong> ${newOrder.paymentStatus}</p>
               <p>Please find the attached invoice for your reference.</p>
