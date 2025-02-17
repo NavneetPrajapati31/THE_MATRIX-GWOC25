@@ -13,7 +13,7 @@
   backdrop-filter: blur(10px);
 
   /* Layer on top of everything */
-  z-index: 9998;
+  z-index: 9999;
 
   /* Start hidden */
   opacity: 0;

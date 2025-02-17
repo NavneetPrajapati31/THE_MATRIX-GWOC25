@@ -179,7 +179,7 @@ const OrderDetailsAdmin = () => {
           <strong>Items:</strong> {order.products.length}
         </p>
         <p>
-          <strong>Total:</strong> ₹{order.totalAmount}
+          <strong>Total:</strong> ₹X,XXX
         </p>
         <p>
           <strong>Method:</strong> {order.paymentMethod.toUpperCase()}

@@ -210,6 +210,25 @@
   font-weight: 600;
 }
 
+.all-products-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 8px 50px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 400;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.all-products-btn:hover {
+  background-color: black;
+  color: white;
+}
+
 .product-grid-container {
   width: 100%;
   padding: 0;
@@ -272,11 +291,10 @@
 
 .filter-yash {
   position: relative;
-  top: 30px;
   height: 100vh;
   background-color: white;
   z-index: 1000;
-  padding: 10px;
+  padding: 0 10px;
 }
 
 @media (max-width: 750px) {

@@ -85,17 +85,26 @@ const BuyNow = () => {
         if (response.ok) {
           setNewAddress({ name: "", street: "", city: "", pincode: "" });
           setShowAddressModal(false);
-          alert("Address updated successfully!");
+          showFlash(
+            "Address updated successfully!",
+            "/images/man-pointing-smartphone-dark.png"
+          );
           fetchUserData(); // Refresh user data after update
         } else {
           alert(data.error);
         }
       } catch (error) {
         console.error("Error updating address:", error);
-        alert("Failed to update address.");
+        showFlash(
+          "Failed to update address.",
+          "/images/laptop-server-error-dark.png"
+        );
       }
     } else {
-      alert("Please fill all the fields."); // Prevents missing `name`
+      showFlash(
+        "Please fill all the fields.",
+        "/images/undraw_add-files_d04y.svg"
+      );
     }
   };
 
@@ -103,11 +112,30 @@ const BuyNow = () => {
     if (selectedPayment) {
       console.log("Proceeding with:", selectedPayment);
     }
+
+    if (!selectedPayment) {
+      showFlash(
+        "Please select a payment method.",
+        "/images/undraw_add-files_d04y.svg"
+      );
+      return;
+    }
   };
 
   const handleConfirmPayment = async () => {
     if (!selectedAddress) {
-      alert("Please select an address.");
+      showFlash(
+        "Please select an address.",
+        "/images/undraw_add-files_d04y.svg"
+      );
+      return;
+    }
+
+    if (!selectedPayment) {
+      showFlash(
+        "Please select a payment method.",
+        "/images/undraw_add-files_d04y.svg"
+      );
       return;
     }
 
@@ -208,10 +236,18 @@ const BuyNow = () => {
                 alert("Payment Successful! Order placed.");
                 setShowSuccess(true);
               } else {
-                alert("Failed to save order: " + orderResult.error);
+                showFlash(
+                  `Failed to save order: ${orderResult.error}`,
+                  "/images/laptop-server-error-dark.png"
+                );
+                // alert("Failed to save order: " + orderResult.error);
               }
             } else {
-              alert("Payment verification failed: " + verificationResult.error);
+              showFlash(
+                `Payment verification failed:  + ${verificationResult.error}`,
+                "/images/laptop-server-error-dark.png"
+              );
+              // alert("Payment verification failed: " + verificationResult.error);
             }
           },
           prefill: {
@@ -228,6 +264,7 @@ const BuyNow = () => {
         rzp.open();
       } catch (error) {
         console.error("Payment error:", error);
+
         alert("Payment failed: " + error.message);
       }
     } else if (selectedPayment === "COD") {
@@ -276,7 +313,6 @@ const BuyNow = () => {
         const orderResult = await orderResponse.json();
 
         if (orderResponse.ok) {
-          setLoading(false);
           showFlash(
             "Order placed successfully!",
             "/images/undraw_order-confirmed_m9e9.svg"
@@ -288,10 +324,15 @@ const BuyNow = () => {
             });
           }
           setTimeout(() => {
-            navigate("/");
+            navigate("/orders");
           }, 2000);
         } else {
-          alert("Failed to place order: " + orderResult.error);
+          showFlash(
+            `Failed to place order: ${orderResult.error}`,
+            "/images/laptop-server-error-dark.png"
+          );
+
+          // alert("Failed to place order: " + orderResult.error);
         }
       } catch (err) {
         console.log(err);
@@ -343,7 +384,7 @@ const BuyNow = () => {
       )}
       <div className="container my-4">
         <div className="row g-5">
-          <div className="col-md-8 px-0 ps-5">
+          <div className="col-md-8 px-0 ">
             <div className="checkout-card p-3">
               <h5 className="mb-3 main-text-options">
                 Delivery Address{" "}
@@ -370,7 +411,7 @@ const BuyNow = () => {
                         padding: "10px",
                       }}
                     >
-                      <div className="flex-grow-1 address-name">
+                      <div className="flex-grow-1 address-name text-start">
                         <p className="mb-1 fw-semibold text-dark">
                           {user?.name}
                         </p>
@@ -486,15 +527,15 @@ const BuyNow = () => {
                       />
                     </Link>
 
-                    <div className="review-item-details">
-                      <p className="fw-semibold">{item.name}</p>
+                    <div className="review-item-details text-start ms-3">
+                      <p style={{ fontSize: "14px" }}>{item.name}</p>
                       <p className="text-muted">₹ X,XXX</p>
-                      <p className="text-success">
+                      <p className="text-success" style={{ fontSize: "14px" }}>
                         {item.price >= 5000
                           ? "Eligible for free delivery"
                           : "Standard Delivery: ₹89.00"}
                       </p>
-                      <p className="text-muted">
+                      <p className="text-muted" style={{ fontSize: "14px" }}>
                         Expected Delivery: Sunday 16 February
                       </p>
                     </div>
@@ -510,15 +551,15 @@ const BuyNow = () => {
                     />
                   </Link>
 
-                  <div className="review-item-details">
-                    <p className="fw-semibold">{product?.name}</p>
+                  <div className="review-item-details text-start ms-3">
+                    <p style={{ fontSize: "14px" }}>{product?.name}</p>
                     <p className="text-muted">₹ X,XXX</p>
-                    <p className="text-success">
+                    <p className="text-success" style={{ fontSize: "14px" }}>
                       {product?.price >= 5000
                         ? "Eligible for free delivery"
                         : "Standard Delivery: ₹89.00"}
                     </p>
-                    <p className="text-muted">
+                    <p className="text-muted" style={{ fontSize: "14px" }}>
                       Expected Delivery: Sunday 16 February
                     </p>
                   </div>
@@ -526,7 +567,7 @@ const BuyNow = () => {
               )}
             </div>
           </div>
-          <div className="col-md-4" style={{ paddingTop: "20px" }}>
+          <div className="col-md-4" style={{}}>
             <div className="checkout-summary shadow-sm  shadow-sm ">
               <h5
                 className="text-start mb-4"
@@ -602,8 +643,8 @@ const BuyNow = () => {
                       className="text-center mt-2 mb-5"
                       style={{ fontWeight: "500", fontSize: "12px" }}
                     >
-                      By clicking on place order you are agreeing to{" "}
-                      <a href="">Return Policy.</a>
+                      By clicking on place order you are agreeing to Return
+                      Policy.
                     </div>
                   </div>
                 </>

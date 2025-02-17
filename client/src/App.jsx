@@ -24,6 +24,8 @@ import ForgotPassword from "./pages/ForgetPassword.jsx";
 import ResetPassword from "./pages/ResetPass.jsx";
 import OrderDetails from "./pages/OrderDetails.jsx";
 import OrderDetailsAdmin from "./pages/OrderDetailsAdmin.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 
 function App() {
   const URL = import.meta.env.VITE_BACKEND_URL;
@@ -81,6 +83,9 @@ function App() {
           <Route path="/blogdetails" element={<BlogPostDetail />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
+
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
         </Routes>
       </BrowserRouter>
     </>

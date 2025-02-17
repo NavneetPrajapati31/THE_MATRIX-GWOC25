@@ -198,7 +198,7 @@ const OrderDetails = () => {
               <div className="price-details-details">
                 <span className="recipient-name">Price Details</span>
                 <p>
-                  <span>Selling price</span> <span>₹{order.totalAmount}</span>
+                  <span>Selling price</span> <span>₹X,XXX</span>
                 </p>
               </div>
               <p className="invoice">

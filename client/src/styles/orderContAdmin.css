@@ -100,8 +100,14 @@
   color: #333;
 }
 
-.print-invoice-btn-all {
+.print-invoice-btn-all-mohit {
   position: relative;
   bottom: 0;
   left: 0;
+  border: 0;
+  margin-top: 15px;
+  padding: 5px 20px;
+  font-size: 14px;
+  background-color: black;
+  color: white;
 }

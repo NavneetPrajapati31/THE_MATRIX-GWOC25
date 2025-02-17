@@ -5,7 +5,7 @@ import ProductCard from "./Productcard";
 import Pagination from "./Pagination";
 import ExploreMore from "./ExploreMore";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -371,6 +371,9 @@ const Filter = () => {
                 </div>
               </div>
             ))}
+            <a href="/product-listing">
+              <button className="all-products-btn">Show all products</button>
+            </a>
           </div>
         </div>
 
@@ -395,7 +398,7 @@ const Filter = () => {
           style={{ fontSize: "15px" }}
         >
           <h2 className="text-start mb-4 josefin-sans-josefin">
-            Discover the Latest Saree (साड़ी) Collection for Women
+            Discover the Latest Saree Collection for Women
           </h2>
           <p className="text-start mb-1">
             Young or aged, preferring classic or contemporary, sarees are a

@@ -39,10 +39,10 @@ const Footer = () => {
         <div className="footer-column">
           <h3>POLICIES</h3>
           <ul>
-            <Link to="/">Terms & Conditions</Link>
+            <Link to="/terms">Terms & Conditions</Link>
             <Link to="/">Shipping</Link>
             <Link to="/">Returns</Link>
-            <Link to="/">Privacy Policy</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
             <Link to="/">Payment Policy</Link>
           </ul>
         </div>

@@ -1,248 +1,76 @@
-/* Base styles */
-.yash-buy-now {
-  margin-top: 30px;
-  font-family: "Arial", sans-serif;
-}
-
-.section-title {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.order-summary {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px; /* Add some space from other elements */
-}
-
-.summary-box p {
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-.saved-address {
-  font-size: 12px;
-  font-weight: bold;
-  color: #007bff;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.yash-input {
-  margin-top: 10px;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.yash-confirm-btn {
-  width: 100%;
-  margin-top: 15px;
-  padding: 12px;
-  font-size: 18px;
-  background: #ff5722;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-.yash-confirm-btn:hover {
-  background: #e44d26;
-}
-
-.payment-page-yash {
-  font-family: Arial, sans-serif;
-  max-width: 400px;
+.container {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
-  border: 1px solid black;
-  border-radius: 8px;
+  padding: 0 15px;
 }
 
-.balance-section {
+.checkout-card {
+  background: #fff;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 12px;
+  padding: 20px;
   margin-bottom: 20px;
 }
 
-.balance-text {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.code-section {
-  display: flex;
-  gap: 10px;
-}
-
-.code-input {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.apply-button {
-  padding: 8px 16px;
-  background-color: #000000;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.payment-method-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.payment-method-item {
-  display: flex;
-  align-items: flex-start;
-  padding: 10px;
-  border-radius: 4px;
-  background-color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.payment-method-item:hover {
-  background-color: #ffffff;
-}
-
-.payment-method-item.disabled {
-  background-color: #f9f9f9;
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-
-.bank-details,
-.choose-option,
-.unavailable-text {
-  font-size: 12px;
-  color: #666;
-  margin-top: 4px;
-}
-
-.card-icons {
-  display: flex;
-  gap: 8px;
-  margin-top: 4px;
-}
-
-.card-icon {
-  font-size: 12px;
-  color: #666;
-}
-
-.payment-card {
-  background: #fff;
-  border-radius: 10px;
-  max-width: 500px;
-  margin: auto;
-}
-
-.payment-method-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.payment-method-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
+.checkout-summary {
+  background-color: #fff;
+  border: 1px solid rgb(219, 219, 219);
   border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.payment-method-item:hover {
-  background: #e5e5e5;
-}
-
-.payment-method-item input {
-  display: none;
-}
-
-.payment-method-item label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.payment-logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+  padding: 20px;
+  height: auto;
+  font-size: 13px;
 }
 
 .main-text-options {
-  font-size: 14px !important;
+  font-size: 14px;
   font-weight: 500;
   text-align: left;
-  border-bottom: none !important;
+  border-bottom: none;
 }
 
 .new-address-add {
   font-size: larger;
   cursor: pointer;
+  margin-left: 10px;
 }
 
-.address-name {
+.review-item {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #eaeaea;
+  padding: 15px 0;
 }
 
-.form-check-label {
-  color: #222;
+.review-img-thumbnail {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+
+.review-item-details {
+  flex: 1;
 }
 
 .payment-method-item {
-  border: none;
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
   padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
   transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+/* Remove radio buttons but keep functionality */
+.payment-method-item input[type="radio"] {
+  display: none;
 }
 
 .payment-method-item.selected-payment {
-  border: 1px solid black !important;
-}
-
-.disabled-payment {
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.disabled-payment .form-check-input {
-  cursor: not-allowed;
-}
-
-.checkout-card {
-  padding: 20px !important;
-  border: none;
-}
-
-.checkout-summary {
-  margin-left: 35px;
-  align-items: start !important;
-  background-color: #fff;
-  border: 1px solid rgb(219, 219, 219);
-  border-radius: 8px;
-  box-shadow: 10px 2px 10px rgba(0, 0, 0, 1);
-  padding: 20px;
-  width: 380px;
-  height: auto;
-  font-size: 13px;
+  border-color: #000;
+  background-color: #f8f8f8;
 }
 
 .selected-btn {
@@ -260,202 +88,101 @@
   color: white;
 }
 
-.radio-btn .form-check-input {
-  background-color: #333;
-  border: 2px solid #555;
-}
-
-.radio-btn .form-check-input:checked {
-  background-color: black;
-  border-color: black;
-}
-
-.radio-btn .form-check-input:not(:checked) {
-  background-color: transparent;
-  border-color: transparent;
-}
-
-.radio-btn .form-check-input:focus {
-  box-shadow: 0 0 5px rgba(70, 70, 70, 0.5);
-}
-
-.address-box {
-  transition: all 0.3s ease-in-out;
-}
-
-.address-box:hover {
-  background: #e5e5e5 !important;
-}
-
-.checkout-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.checkout-card h5 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 10px;
-}
-
-.review-item {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  border-bottom: 1px solid #eaeaea;
-  padding: 0;
-  gap: 15px;
-}
-
-.review-item:last-child {
-  border-bottom: none;
-}
-
-.review-img-thumbnail {
-  width: 150px;
-  height: auto;
-  object-fit: contain;
-}
-
-.review-item-details {
-  flex: 1;
-  margin-left: 0px;
-  text-align: left;
-}
-
-.review-item-details p {
-  margin: 3px 0;
-}
-
-.review-item-details .fw-semibold {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.text-success {
-  font-size: 12px;
-  font-weight: 400;
-  color: #0a8800;
-}
-
-.text-muted {
-  font-size: 12px;
-  color: #777;
-  font-weight: 400;
-}
-
-/* General Styles */
-.payment-page-yash {
-  font-family: Arial, sans-serif;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid black;
-  border-radius: 8px;
-}
-
-/* Responsive Design */
+/* Responsive styles */
 @media (max-width: 1024px) {
-  /* Ensure review item is displayed in column for smaller screens */
-  .review-item {
+  .row {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
   }
 
-  /* Ensure padding for the checkout summary */
-  .checkout-summary {
+  .col-lg-8,
+  .col-lg-4 {
     width: 100%;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .checkout-summary {
     margin-left: 0;
     margin-top: 20px;
-    padding: 20px;
-    box-shadow: none;
-    border: 1px solid #ddd;
-  }
-
-  /* Order summary should appear below the review section */
-  .order-summary {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #fff;
-  }
-
-  /* Make sure the checkout card is responsive */
-  .checkout-card {
     width: 100%;
-    padding: 15px;
-  }
-
-  /* Update padding to be consistent across all columns */
-  .payment-method-container,
-  .payment-method-item {
-    width: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  /* Align the review image properly */
-  .review-item .review-img-thumbnail {
-    width: 100%;
-    margin-bottom: 10px; /* Space between the image and text */
-  }
-
-  /* Adjust payment method icons and text */
-  .payment-method-item .payment-logo {
-    width: 30px;
-    height: 30px;
-  }
-
-  /* Order summary adjustments */
-  .order-summary .summary-box {
-    padding: 15px;
-  }
-
-  /* Adjustments for the form input sections */
-  .payment-method-item input,
-  .payment-method-item label {
-    width: 100%;
-  }
-
-  .payment-method-item {
-    padding: 10px 20px;
-    width: 100%;
-  }
-
-  /* Modify the checkout summary button */
-  .selected-btn {
-    width: 100%;
-    padding: 10px;
-  }
-
-  /* Adjust layout to ensure consistent padding on both columns */
-  .checkout-summary,
-  .review-item {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .balance-section,
-  .code-section {
-    width: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
   }
 }
 
-/* Ensure Order Summary is positioned correctly on smaller devices */
 @media (max-width: 768px) {
-  .order-summary {
-    margin-top: 20px; /* Ensure the summary section appears below the review items */
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #fff;
-    width: 100%;
+  .review-item {
+    flex-direction: column;
   }
+
+  .review-img-thumbnail {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .checkout-card,
+  .checkout-summary {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100vw !important;
+  }
+  .main-text-options {
+    font-size: 16px;
+  }
+
+  .payment-method-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Remove default styles */
+input[type="radio"] {
+  appearance: none; /* Removes default styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid black; /* Black border */
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+}
+
+/* When checked, make the inner circle black */
+input[type="radio"]:checked {
+  background-color: black; /* Completely black when selected */
+  border: 1px solid black;
+}
+
+/* Remove focus effect */
+input[type="radio"]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Make the entire div clickable */
+.payment-method-item,
+.address-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+/* Highlight the selected option */
+.payment-method-item.selected-payment,
+.address-item.selected-address {
+  border-color: black;
+  background-color: #f8f8f8;
 }
