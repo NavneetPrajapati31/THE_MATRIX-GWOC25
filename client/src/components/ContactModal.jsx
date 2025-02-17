@@ -10,7 +10,6 @@ import {
   Col,
 } from "react-bootstrap";
 import "../styles/contactmodal.css"; // Custom CSS for responsiveness
-import { Link } from "react-router-dom";
 const temp = import.meta.env.VITE_BACKEND_URL;
 
 function ContactModal({ show, onHide }) {
@@ -68,7 +67,7 @@ function ContactModal({ show, onHide }) {
       centered
       className="contact-modal"
     >
-      <Modal.Body className="p-4 rounded">
+      <Modal.Body className="p-4 rounded ">
         <Container fluid>
           <Row className="contact-row">
             {/* Left Section */}
@@ -102,7 +101,7 @@ function ContactModal({ show, onHide }) {
                       <h3 className="fw-light fs-6 mb-1">{item.title}</h3>
                       {item.details.map((detail, i) => (
                         <p key={i} className="small text-muted mb-0">
-                          <Link to={item.link}>{detail}</Link>
+                          {detail}
                         </p>
                       ))}
                     </div>

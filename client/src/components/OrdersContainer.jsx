@@ -148,9 +148,8 @@ const OrderContainer = () => {
                     </div>
     
                     <div class="total-container">
-                        <p>Subtotal: ₹${subtotal.toFixed(2)}</p>
-                        <p><strong>Grand Total: ₹${subtotal.toFixed(
-                          2
+                        <p>Subtotal: ₹${subtotal}</p>
+                        <p><strong>Grand Total: ₹${subtotal}
                         )}</strong></p>
                     </div>
     

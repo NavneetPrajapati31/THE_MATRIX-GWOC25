@@ -33,6 +33,21 @@ const BuyNow = () => {
   const [flashImage, setFlashImage] = useState(null);
   const [flashVisible, setFlashVisible] = useState(false);
 
+  // Helper function to show flash messages with fade in/out transition.
+  const showFlash = (message, imageUrl, duration = 1000) => {
+    setFlash(message);
+    setFlashImage(imageUrl);
+    setTimeout(() => {
+      setFlashVisible(true);
+    }, 10);
+    setTimeout(() => {
+      setFlashVisible(false);
+      setTimeout(() => {
+        setFlash("");
+      }, 500);
+    }, duration);
+  };
+
   useEffect(() => {
     console.log("Loading state changed:", loading);
   }, [loading]); // This will log every time `loading` changes
@@ -261,14 +276,19 @@ const BuyNow = () => {
 
         if (orderResponse.ok) {
           setLoading(false);
-          alert("Order placed successfully!");
+          showFlash(
+            "Order placed successfully!",
+            "/images/undraw_order-confirmed_m9e9.svg"
+          );
 
           if (isCartCheckout) {
             await fetch(`${temp}/cart-related/clear-cart/${user._id}`, {
               method: "DELETE",
             });
           }
-          navigate("/");
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
         } else {
           alert("Failed to place order: " + orderResult.error);
         }
@@ -307,6 +327,19 @@ const BuyNow = () => {
     <>
       <Navbar />
       {loading ? <Spinner /> : ""}
+      {/* Flash Modal */}
+      {flash && (
+        <div className={`flash-container ${flashVisible ? "visible" : ""}`}>
+          <div className="flash-modal">
+            <img
+              className="flash-icon"
+              src={flashImage}
+              alt="Cart Illustration"
+            />
+            <h2 className="flash-text">{flash}</h2>
+          </div>
+        </div>
+      )}
       <div className="container my-4">
         <div className="row g-5">
           <div className="col-md-8 px-0 ps-5">

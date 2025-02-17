@@ -278,3 +278,12 @@
     opacity: 0.5;
   }
 }
+
+@media (max-width: 425px) {
+  .upload-section-yash {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+  }
+}
