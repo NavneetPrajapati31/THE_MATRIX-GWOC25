@@ -40,9 +40,9 @@ const Footer = () => {
           <h3>POLICIES</h3>
           <ul>
             <Link to="/terms">Terms & Conditions</Link>
-            <Link to="/">Returns</Link>
+            <Link to="/return-policy">Returns</Link>
             <Link to="/privacy-policy">Privacy Policy</Link>
-            <Link to="/">Payment Policy</Link>
+            <Link to="/payment-policy">Payment Policy</Link>
             <Link to="/#faq">FAQs</Link>
           </ul>
         </div>

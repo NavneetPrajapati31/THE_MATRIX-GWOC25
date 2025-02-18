@@ -1,0 +1,49 @@
+/* Payment Policy Page Styles */
+policy-container{
+    text-align: left;
+}
+
+.payment-policy-container {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding: 20px;
+}
+
+.payment-policy-container h1 {
+    text-align: center;
+    color: #444;
+}
+
+.payment-policy-container h2 {
+    margin-top: 20px;
+    color: #555;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.payment-policy-container p {
+    margin: 10px 0;
+}
+
+.payment-policy-container ul {
+    list-style-type: disc;
+    margin: 10px 20px;
+}
+
+.payment-policy-container li {
+    margin-bottom: 5px;
+}
+
+.contact-info {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .payment-policy-container {
+        padding: 10px;
+    }
+}

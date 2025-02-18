@@ -25,6 +25,8 @@ import ResetPassword from "./pages/ResetPass.jsx";
 import OrderDetails from "./pages/OrderDetails.jsx";
 import OrderDetailsAdmin from "./pages/OrderDetailsAdmin.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+import ReturnPolicy from "./pages/ReturnPolicy.jsx";
+import PaymentPolicy from "./pages/PaymentPolicy.jsx";
 import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 
 function App() {
@@ -85,6 +87,8 @@ function App() {
           <Route path="/reset-password/:token" element={<ResetPassword />} />
 
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/return-policy" element={<ReturnPolicy />} />
+          <Route path="/payment-policy" element={<PaymentPolicy />} />
           <Route path="/terms" element={<TermsAndConditions />} />
         </Routes>
       </BrowserRouter>
