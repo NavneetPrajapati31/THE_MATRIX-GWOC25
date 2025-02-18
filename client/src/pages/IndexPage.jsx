@@ -38,7 +38,7 @@ const IndexPage = () => {
       <FeaturedCollections />
       <Wedding />
       <Bestseller />
-      <BridalWorld />
+      {/* <BridalWorld /> */}
       <InstagramBanner />
       <CustomerStories />
       <FAQ />

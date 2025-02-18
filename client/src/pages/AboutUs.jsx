@@ -125,8 +125,8 @@ const AboutUs = () => {
             </p>
           </div>
         </div>
-        <StoreLocation />
       </div>
+      <StoreLocation />
 
       <Footer />
     </>

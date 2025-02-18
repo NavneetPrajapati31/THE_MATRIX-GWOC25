@@ -155,7 +155,7 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Menu */}
-          <div className="collapse navbar-collapse d-none d-lg-flex">
+          <div className="collapse navbar-collapse  d-lg-flex">
             <ul className="navbar-nav me-auto px-3">
               <li className="nav-item">
                 <a
@@ -349,8 +349,11 @@ const Navbar = () => {
         onClick={() => setSidebarOpen(false)}
       ></div>
       <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
-        <button className="close-btn" onClick={() => setSidebarOpen(false)}>
-          <CloseIcon fontSize="medium" />
+        <button
+          className="sidebar-close-btn"
+          onClick={() => setSidebarOpen(false)}
+        >
+          <CloseIcon fontSize="small" />
         </button>
         <ul className="sidebar-menu">
           <li>
@@ -367,6 +370,9 @@ const Navbar = () => {
           </li>
           <li>
             <a href="/product-listing?category=Banarasi">Banarasi</a>
+          </li>
+          <li>
+            <a href="/blogs">Blogs</a>
           </li>
           <li>
             <a href="/about-us">About us</a>
