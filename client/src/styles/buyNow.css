@@ -13,10 +13,14 @@
 }
 
 .checkout-summary {
+  margin-left: 50px;
+  align-items: start !important;
   background-color: #fff;
   border: 1px solid rgb(219, 219, 219);
   border-radius: 8px;
+  box-shadow: 10px 2px 10px rgba(0, 0, 0, 1);
   padding: 20px;
+  width: 380px;
   height: auto;
   font-size: 13px;
 }
@@ -185,4 +189,11 @@ input[type="radio"]:focus {
 .address-item.selected-address {
   border-color: black;
   background-color: #f8f8f8;
+}
+
+@media (max-width: 768px) {
+  .buynow-code-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
 }

@@ -624,7 +624,7 @@ const BuyNow = () => {
                         style={{ fontSize: "13px" }}
                       />
                       <button
-                        className="btn btn-dark code-btn"
+                        className="btn btn-dark buynow-code-btn "
                         style={{ fontSize: "12px" }}
                       >
                         Add Code
@@ -691,7 +691,7 @@ const BuyNow = () => {
                           style={{ fontSize: "13px" }}
                         />
                         <button
-                          className="btn btn-dark code-btn"
+                          className="btn btn-dark buynow-code-btn"
                           style={{ fontSize: "12px" }}
                         >
                           Add Code
