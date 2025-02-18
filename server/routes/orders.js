@@ -169,7 +169,7 @@ router.post("/place-order", async (req, res) => {
 
     const mailOptions = {
       from: "Kashvi Sarees <" + process.env.OWNER_EMAIL + ">",
-      to: "yashsabne39@gmail.com",
+      to: "navneetprajapati46@gmail.com",
       subject: "Your Order Invoice - Kashvi Sarees",
       html: `
               <h2>Thank you for your order!</h2>
@@ -291,7 +291,7 @@ router.post("/contact", async (req, res) => {
 
   const mailOptions = {
     from: `"Kashvi Contacts" <${process.env.OWNER_EMAIL}>`,
-    to: "yashsabne39@gmail.com",
+    to: "navneetprajapati46@gmail.com",
     replyTo: email,
     subject: "📩 New Contact Form Submission",
     text: `New Contact Inquiry\n\nName: ${fullName}\nEmail: ${email}\nPhone: ${telephone}\nMessage: ${review}`,
