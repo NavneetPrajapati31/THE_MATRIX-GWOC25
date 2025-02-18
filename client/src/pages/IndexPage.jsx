@@ -12,6 +12,7 @@ import InstagramBanner from "../components/InstagramBanner";
 import BridalWorld from "../components/BridalWorld";
 import CustomerStories from "../components/CustomerStories";
 import Spinner from "../components/Spinner";
+import FAQ from "../components/FAQ";
 
 const IndexPage = () => {
   return (
@@ -27,6 +28,7 @@ const IndexPage = () => {
       <BridalWorld />
       <InstagramBanner />
       <CustomerStories />
+      <FAQ />
       <Footer />
     </>
   );
