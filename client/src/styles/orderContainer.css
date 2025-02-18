@@ -138,6 +138,7 @@
   margin-bottom: 25px;
 }
 
+
 .status-btn.confirm:hover {
   background-color: #0056b3;
   transform: scale(1.05);
@@ -184,9 +185,11 @@
   text-align: center;
 }
 
+
 /* Responsive Design */
-@media ((min-width: 898px) and (max-width: 1108px)) {
-  .print-invoice-btn-all {
+@media ((min-width:898px) and (max-width: 1108px))
+{
+  .print-invoice-btn-all{
     right: 10%;
     bottom: 10%;
   }
@@ -245,4 +248,9 @@
     padding: 6px 12px;
     font-size: 12px;
   }
+}
+
+.print-invoice-btn-all{
+  position: relative;
+  bottom: 0;
 }
