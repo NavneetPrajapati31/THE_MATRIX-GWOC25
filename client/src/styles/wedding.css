@@ -104,6 +104,7 @@
   }
 
   .wedding-title {
+    top: 73%;
     font-size: 18px; /* Slightly smaller title for mobile */
   }
 
@@ -130,6 +131,7 @@
   }
 
   .wedding-title {
+    top: 70%;
     font-size: 16px;
   }
 
