@@ -1,40 +1,56 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import "../styles/videocaraousel.css";
 import VolumeUpOutlinedIcon from "@mui/icons-material/VolumeUpOutlined";
 import VolumeOffOutlinedIcon from "@mui/icons-material/VolumeOffOutlined";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
+// const initialVideos = [
+//   { id: 1, src: "/Videos/VID-20250204-WA0022.mp4" },
+//   { id: 2, src: "/Videos/VID-20250204-WA0003(1).mp4" },
+//   { id: 3, src: "/Videos/VID-20250204-WA0022.mp4" },
+//   { id: 4, src: "/Videos/VID-20250204-WA0003(1).mp4" },
+//   { id: 5, src: "/Videos/VID-20250204-WA0022.mp4" },
+// ];
+
 const initialVideos = [
-  { id: 1, src: "/Videos/VID-20250204-WA0022.mp4" },
-  { id: 2, src: "/Videos/VID-20250204-WA0003(1).mp4" },
-  { id: 3, src: "/Videos/VID-20250204-WA0022.mp4" },
-  { id: 4, src: "/Videos/VID-20250204-WA0003(1).mp4" },
-  { id: 5, src: "/Videos/VID-20250204-WA0022.mp4" },
+  { id: 1, src: "/Videos/04.mp4" },
+  { id: 2, src: "/Videos/05.mp4" },
+  { id: 3, src: "/Videos/01.mp4" },
+  { id: 4, src: "/Videos/02.mp4" },
+  { id: 5, src: "/Videos/06.mp4" },
 ];
+
 const VideoCarousel = () => {
   const [videos, setVideos] = useState(initialVideos);
   const [muted, setMuted] = useState(true);
   const videoRefs = useRef([]);
 
+  // Update video playback whenever the videos or muted state changes
   useEffect(() => {
     videos.forEach((video) => {
       const vidElement = videoRefs.current[video.id];
       if (vidElement) {
-        vidElement.muted = video.id === videos[2].id ? muted : true;
-        vidElement.currentTime = 0;
-        vidElement.play().catch((err) => console.error("Playback error:", err));
+        if (video.id === videos[2].id) {
+          vidElement.muted = muted;
+          vidElement
+            .play()
+            .catch((err) => console.error("Playback error:", err));
+        } else {
+          vidElement.pause();
+        }
       }
     });
   }, [videos, muted]);
 
-  const handleNext = () => {
+  // Use useCallback to memoize navigation handlers to avoid re-rendering unnecessarily
+  const handleNext = useCallback(() => {
     setVideos((prev) => [...prev.slice(1), prev[0]]);
-  };
+  }, []);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setVideos((prev) => [prev[prev.length - 1], ...prev.slice(0, -1)]);
-  };
+  }, []);
 
   const toggleMute = () => {
     setMuted((prevMuted) => !prevMuted);
@@ -74,7 +90,9 @@ const VideoCarousel = () => {
                 loop
                 playsInline
                 muted={index !== 2 || muted}
-                className={`carousel-video ${isActive ? "playing" : "hidden"}`}
+                className={`carousel-video ${isActive ? "playing" : "hidden"} ${
+                  !isActive ? "blurred" : ""
+                }`}
               />
               {isActive && (
                 <button className="mute-btn" onClick={toggleMute}>

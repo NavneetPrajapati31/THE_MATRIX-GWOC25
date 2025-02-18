@@ -47,7 +47,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Adjust opacity for exact darkness */
+  background: rgba(0, 0, 0, 0.2); /* Adjust opacity for exact darkness */
   z-index: 4; /* Ensures overlay is above the video */
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
@@ -160,6 +160,12 @@
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+/* Blur Effect for Non-Active Videos */
+.video-wrapper:not(.active) video {
+  filter: blur(3px);
+  transition: filter 0.3s ease-in-out;
 }
 
 /* Default styles (already in your code) */
@@ -369,70 +375,5 @@
     font-size: 14px;
     width: 25px;
     height: 25px;
-  }
-}
-
-/* Default styles (already in your code) */
-
-/* Media Queries for Responsiveness */
-
-/* Large screens (Laptops & Desktops) */
-@media (max-width: 1200px) {
-  .prev-btn {
-    left: 10%;
-  }
-  .next-btn {
-    right: 10%;
-  }
-}
-
-/* Medium screens (Tablets & Small Laptops) */
-@media (max-width: 992px) {
-  .prev-btn {
-    left: 8%;
-  }
-  .next-btn {
-    right: 8%;
-  }
-}
-
-/* Small screens (Mobile Phones) */
-@media (max-width: 768px) {
-  .prev-btn,
-  .next-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-    padding: 6px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .prev-btn {
-    left: 5%;
-  }
-  .next-btn {
-    right: 5%;
-  }
-}
-
-/* Extra Small screens (Very small phones) */
-@media (max-width: 480px) {
-  .prev-btn,
-  .next-btn {
-    width: 35px;
-    height: 35px;
-    font-size: 12px;
-    padding: 4px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-  }
-
-  .prev-btn {
-    left: 3%;
-  }
-  .next-btn {
-    right: 3%;
   }
 }
