@@ -24,13 +24,9 @@ nav {
 .navbar-brand h2 {
   margin-top: 5px;
   font-family: "Bodoni Moda", serif;
-  font-size: 22px;
+  font-size: 26px;
 }
-@media (max-width<500px) {
-  .navbar-brand h2 {
-    font-size: 15px;
-  }
-}
+
 .btn {
   width: fit-content;
 }
@@ -213,7 +209,7 @@ ul li a:hover::after {
 
   /* You can adjust the logo font size on smaller screens if needed */
   .navbar-brand h2 {
-    font-size: 20px;
+    font-size: 22px;
   }
   .categories {
     display: none;
@@ -259,7 +255,7 @@ ul li a:hover::after {
   }
 
   .navbar-brand h2 {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .nav-icons {

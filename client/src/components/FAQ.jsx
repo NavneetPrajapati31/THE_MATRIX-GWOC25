@@ -1,8 +1,11 @@
-import { useState } from "react";
+"use client";
+
+import { useState, useRef, useEffect } from "react";
 import "../styles/FAQ.css";
 
 const FaqPage = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const answerRefs = useRef([]);
 
   const faqs = [
     {
@@ -11,14 +14,14 @@ const FaqPage = () => {
         "You can reschedule the delivery or contact customer support for assistance.",
     },
     {
-      question: "Does Kalkifashion.Com Offer Cash On Delivery (COD)?",
+      question: "Does KASHVI Creation Offer Cash On Delivery (COD)?",
       answer:
         "COD is available for selected locations/Pin codes in India only. COD limit is up to 18000 INR. Customisation is not available for COD orders.",
     },
     {
-      question: "Will I Receive A Quality Product By KALKI Fashion?",
+      question: "Will I Receive A Quality Product By KASHVI Fashion?",
       answer:
-        "As an international brand, we adhere to strict quality and design benchmarks. Every KALKI product goes through a 5-step Quality Control process to ensure that you receive the best.",
+        "We adhere to strict quality and design benchmarks. Every KASHVI product goes through a 5-step Quality Control process to ensure that you receive the best.",
     },
     {
       question:
@@ -33,31 +36,46 @@ const FaqPage = () => {
     },
   ];
 
+  useEffect(() => {
+    answerRefs.current = answerRefs.current.slice(0, faqs.length);
+  }, []); // Removed unnecessary dependency 'faqs'
+
   const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
+    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   return (
-    <div className="faq-container" style={{ marginBlock: "80px" }}>
-      <h1
-        style={{
-          fontSize: "1.25rem",
-          fontWeight: "400",
-        }}
-      >
-        FAQs
-      </h1>
+    <div id="faq" className="faq-container">
+      <h1 className="faq-title">Frequently Asked Questions</h1>
 
       <div className="faq-list">
         {faqs.map((faq, index) => (
-          <div key={index} className="faq-item">
-            <div className="faq-question" onClick={() => toggleFAQ(index)}>
-              {faq.question}
-              <span>{openIndex === index ? "-" : "+"}</span>
+          <div
+            key={index}
+            className={`faq-item ${openIndex === index ? "open" : ""}`}
+          >
+            <div
+              className={`faq-question ${openIndex === index ? "open" : ""}`}
+              onClick={() => toggleFAQ(index)}
+              aria-expanded={openIndex === index}
+            >
+              <h3>{faq.question}</h3>
+              <span className="faq-icon">
+                {openIndex === index ? "−" : "+"}
+              </span>
             </div>
-            {openIndex === index && (
-              <div className="faq-answer">{faq.answer}</div>
-            )}
+            <div
+              className={`faq-answer ${openIndex === index ? "open" : ""}`}
+              ref={(el) => (answerRefs.current[index] = el)}
+              style={{
+                maxHeight:
+                  openIndex === index
+                    ? `${answerRefs.current[index]?.scrollHeight}px`
+                    : "0px",
+              }}
+            >
+              <p>{faq.answer}</p>
+            </div>
           </div>
         ))}
       </div>

@@ -139,7 +139,18 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg border-bottom bg-white sticky-top mt-2 px-3">
         <div className="container-fluid px-0 custom-navbar-width">
           {/* Logo */}
-          <a className="navbar-brand" href="/">
+
+          <a className="navbar-brand d-flex" href="/">
+            {/* <img
+              src="/images/rangoli_5515924.png"
+              alt=""
+              style={{
+                width: "2rem",
+                height: "2rem",
+                marginBottom: "5px",
+                marginRight: "5px",
+              }}
+            /> */}
             <h2 style={{ marginTop: "5px" }}>KASHVI</h2>
           </a>
 

@@ -13,8 +13,21 @@ import BridalWorld from "../components/BridalWorld";
 import CustomerStories from "../components/CustomerStories";
 import Spinner from "../components/Spinner";
 import FAQ from "../components/FAQ";
+import { useEffect } from "react";
 
 const IndexPage = () => {
+  useEffect(() => {
+    // Check for hash in the URL
+    const sectionId = window.location.hash;
+
+    if (sectionId) {
+      // If there's a hash, scroll to the corresponding section
+      const section = document.querySelector(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, []);
   return (
     <>
       {/* <Spinner /> */}

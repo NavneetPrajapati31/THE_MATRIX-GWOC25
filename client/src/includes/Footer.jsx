@@ -44,6 +44,7 @@ const Footer = () => {
             <Link to="/">Returns</Link>
             <Link to="/privacy-policy">Privacy Policy</Link>
             <Link to="/">Payment Policy</Link>
+            <Link to="/#faq">FAQs</Link>
           </ul>
         </div>
 
