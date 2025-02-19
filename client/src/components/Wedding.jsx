@@ -10,8 +10,8 @@ const Wedding = () => {
         style={{
           fontSize: "1.25rem",
           fontWeight: "400",
-          marginTop: "50px",
-          marginBottom: "40px",
+          marginTop: "25px",
+          marginBottom: "50px",
         }}
       >
         Wedding Specials

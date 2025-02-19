@@ -36,7 +36,7 @@ const Bestseller = ({ bestSelling }) => {
         style={{
           fontSize: "1.25rem",
           fontWeight: "400",
-          marginTop: "50px",
+          marginTop: "0",
           marginBottom: "30px",
         }}
       >
@@ -54,7 +54,12 @@ const Bestseller = ({ bestSelling }) => {
                   className="new-product-img"
                 />
                 {/* Product Name & Price */}
-                <p className="wishlist-item-name">{product.name}</p>
+                <p
+                  className="wishlist-item-name"
+                  style={{ fontSize: "16px", fontWeight: "500" }}
+                >
+                  {product.name}
+                </p>
                 <p className="wishlist-item-price " style={{ marginTop: "0" }}>
                   {/* MRP <span className="price">X,XXX</span> */}
                 </p>

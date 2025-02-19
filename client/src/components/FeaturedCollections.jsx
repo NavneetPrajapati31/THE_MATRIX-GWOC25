@@ -28,14 +28,14 @@ const collections = [
 
 const FeaturedCollections = () => {
   return (
-    <div className="collection-container mb-5">
+    <div className="collection-container mb-4">
       <h2
         className="text-center"
         style={{
           fontSize: "1.25rem",
           fontWeight: "400",
-          marginTop: "50px",
-          marginBottom: "40px",
+          marginTop: "30px",
+          marginBottom: "50px",
         }}
       >
         Featured Collections
