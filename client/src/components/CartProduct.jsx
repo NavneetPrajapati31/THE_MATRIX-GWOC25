@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/cartpage.css";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 const temp = import.meta.env.VITE_BACKEND_URL;
 
 export default function CartProduct({
@@ -12,6 +13,7 @@ export default function CartProduct({
 }) {
   const [quantity, setQuantity] = useState(product.quantity);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchWishlist = async () => {
@@ -31,6 +33,30 @@ export default function CartProduct({
       fetchWishlist();
     }
   }, [userId, product._id]);
+
+  // const fetchCartLength = async (userId) => {
+  //   try {
+  //     const response = await fetch(`${temp}/auth/cart/${userId}`);
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       dispatch(setCartLength(data.cartLength));
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching cart length:", error);
+  //   }
+  // };
+
+  // const fetchWishListLength = async (userId) => {
+  //   try {
+  //     const response = await fetch(`${temp}/auth/wishList/${userId}`);
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       dispatch(updateWishlistCount(data));
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching cart length:", error);
+  //   }
+  // };
 
   const handleIncrease = async () => {
     const newQuantity = quantity + 1;
@@ -80,6 +106,8 @@ export default function CartProduct({
     }
   };
 
+  const [deliveryDate, setDeliveryDate] = useState("");
+
   const handleRemove = async () => {
     try {
       const response = await fetch(`${temp}/cart-related/remove`, {
@@ -93,6 +121,7 @@ export default function CartProduct({
       console.log(product.productId);
       if (response.ok) {
         onRemove(product.productId._id);
+        fetchCartLength(userId);
       } else {
         console.error("Error:", data.error);
       }
@@ -100,8 +129,6 @@ export default function CartProduct({
       console.error("Error removing product:", error);
     }
   };
-
-  const [deliveryDate, setDeliveryDate] = useState("");
 
   const handleWishlistToggle = async () => {
     try {
@@ -115,10 +142,9 @@ export default function CartProduct({
 
       const data = await response.json();
 
-      console.log(data);
-
       if (data.success) {
         setIsWishlisted((prev) => !prev);
+        fetchWishListLength(userId);
       }
     } catch (error) {
       console.error("Error updating wishlist:", error);

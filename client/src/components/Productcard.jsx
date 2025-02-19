@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/productcard.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { updateWishlistCount } from "../redux/state";
 
 const ProductCard = ({ product, userId }) => {
   const URL = import.meta.env.VITE_BACKEND_URL;
@@ -47,12 +48,19 @@ const ProductCard = ({ product, userId }) => {
     }
   }, [userId, product._id]);
 
-  const handleWishlistToggle = async () => {
-    if (!userId) {
-      showFlash("You are not logged in!", "/images/undraw_login_wqkt.svg");
-      return;
+  const fetchWishListLength = async (userId) => {
+    try {
+      const response = await fetch(`${URL}/auth/wishList/${userId}`);
+      const data = await response.json();
+      if (response.ok) {
+        dispatch(updateWishlistCount(data));
+      }
+    } catch (error) {
+      console.error("Error fetching cart length:", error);
     }
+  };
 
+  const handleWishlistToggle = async () => {
     try {
       const response = await fetch(`${URL}/wishlist-related/${userId}`, {
         method: "POST",
@@ -68,6 +76,7 @@ const ProductCard = ({ product, userId }) => {
 
       if (data.success) {
         setIsWishlisted((prev) => !prev);
+        fetchWishListLength(userId);
       }
     } catch (error) {
       console.error("Error updating wishlist:", error);

@@ -475,7 +475,7 @@ const Filter = () => {
             </div>
           </div>
           <Pagination totalPages={totalPages} page={page} setPage={setPage} />
-          <ExploreMore />
+          {/* <ExploreMore /> */}
 
           {window.innerWidth < 750 && (
             <button
