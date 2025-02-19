@@ -365,4 +365,29 @@ router.post("/subscribe", async (req, res) => {
   }
 });
 
+router.get("/cart/:userId", async (req, res) => {
+  try {
+    const cart = await Cart.findOne({ userId: req.params.userId });
+    const cartLength = cart ? cart.items.length : 0;
+
+    res.status(200).json({ cartLength });
+  } catch (error) {
+    console.error("Error fetching cart length:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get("/wishlist/:userId", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+
+    const wishList = user.wishlist;
+    const wishListLength = wishList.length;
+    res.status(200).json(wishListLength);
+  } catch (error) {
+    console.error("Error fetching wishlist length:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 module.exports = router;
