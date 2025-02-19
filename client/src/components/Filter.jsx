@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../styles/filter.css";
 import FilterDropdowns from "./FilterDropdowns";
-import ProductCardFilter from "./ProductcardFilter";
+import ProductCardFilter from "./ProductCardFilter";
 import Pagination from "./Pagination";
 import ExploreMore from "./ExploreMore";
 import { useSelector } from "react-redux";
