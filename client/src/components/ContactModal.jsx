@@ -137,7 +137,7 @@ function ContactModal({ show, onHide }) {
                         <h3 className="fw-light fs-6 mb-1">{item.title}</h3>
                         {item.details.map((detail, i) => (
                           <p key={i} className="small text-muted mb-0">
-                            {detail}
+                            <a href={item.link}>{detail}</a>
                           </p>
                         ))}
                       </div>
