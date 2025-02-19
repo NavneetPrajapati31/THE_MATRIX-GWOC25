@@ -15,7 +15,8 @@ const blogPost = {
       "https://th.bing.com/th/id/OIP.O0XyzlsgjaxzQmSZj7II2gHaFj?rs=1&pid=ImgDetMain",
     bio: "Fashion enthusiast and sustainability advocate",
   },
-  heroImage: "https://wallpaperaccess.com/full/318854.jpg",
+  heroImage:
+    "https://assets.vogue.in/photos/5ce41bf11dc2676095c774db/16:9/w_1280,c_limit/Anita-Dongres-Pichhwai-Collection.jpg",
   content: `
     <p>As we approach the summer of 2025, the fashion world is buzzing with excitement over the latest trends that not only look fabulous but also champion sustainability. This season, we're seeing a beautiful fusion of eco-conscious materials, innovative designs, and a return to timeless styles that promote longevity in our wardrobes.</p>
 
@@ -45,19 +46,19 @@ const blogPost = {
       id: 2,
       title: "10 Must-Have Eco-Friendly Accessories for Summer",
       image:
-        "https://c4.wallpaperflare.com/wallpaper/699/664/33/model-fashion-women-wallpaper-preview.jpg",
+        "https://th.bing.com/th/id/R.c19d879cd1482e7efd496a14cc3273a2?rik=DHmYFMrkXq7qvQ&riu=http%3a%2f%2fwww.koskii.com%2fcdn%2fshop%2fproducts%2fkoskii-sea-green-stonework-satin-designer-saree-saus0022632_sea_green__1.jpg%3fv%3d1670485220&ehk=Hkig7iWqkVfwtyPWVdW3RB%2fuaQ1Vkp6%2f4ibOu5XI4ig%3d&risl=&pid=ImgRaw&r=0",
     },
     {
       id: 3,
       title: "How to Build a Sustainable Capsule Wardrobe",
       image:
-        "https://c4.wallpaperflare.com/wallpaper/699/664/33/model-fashion-women-wallpaper-preview.jpg",
+        "https://th.bing.com/th/id/R.c19d879cd1482e7efd496a14cc3273a2?rik=DHmYFMrkXq7qvQ&riu=http%3a%2f%2fwww.koskii.com%2fcdn%2fshop%2fproducts%2fkoskii-sea-green-stonework-satin-designer-saree-saus0022632_sea_green__1.jpg%3fv%3d1670485220&ehk=Hkig7iWqkVfwtyPWVdW3RB%2fuaQ1Vkp6%2f4ibOu5XI4ig%3d&risl=&pid=ImgRaw&r=0",
     },
     {
       id: 4,
       title: "The Rise of Rental Fashion: Is It Really Sustainable?",
       image:
-        "https://c4.wallpaperflare.com/wallpaper/699/664/33/model-fashion-women-wallpaper-preview.jpg",
+        "https://th.bing.com/th/id/R.c19d879cd1482e7efd496a14cc3273a2?rik=DHmYFMrkXq7qvQ&riu=http%3a%2f%2fwww.koskii.com%2fcdn%2fshop%2fproducts%2fkoskii-sea-green-stonework-satin-designer-saree-saus0022632_sea_green__1.jpg%3fv%3d1670485220&ehk=Hkig7iWqkVfwtyPWVdW3RB%2fuaQ1Vkp6%2f4ibOu5XI4ig%3d&risl=&pid=ImgRaw&r=0",
     },
   ],
 };
@@ -114,7 +115,11 @@ const BlogPostDetail = () => {
           <div className="related-posts-mohit">
             {blogPost.relatedPosts.map((post) => (
               <div key={post.id} className="related-post-mohit">
-                <img src={post.image || "/placeholder.svg"} alt={post.title} />
+                <img
+                  src={post.image || "/placeholder.svg"}
+                  alt={post.title}
+                  style={{ objectPosition: "top" }}
+                />
                 <h3>{post.title}</h3>
               </div>
             ))}
