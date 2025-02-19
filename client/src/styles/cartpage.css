@@ -26,6 +26,11 @@
   object-position: top; /* Aligns the image to the top, cropping the bottom if needed */
 }
 
+.empty-cart-div {
+  align-items: center;
+  width: 100vw !important;
+}
+
 .cart-summary {
   margin-left: 50px;
   align-items: start !important;

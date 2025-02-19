@@ -6,9 +6,9 @@ import VolumeOffOutlinedIcon from "@mui/icons-material/VolumeOffOutlined";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 const Videos = [
-  { id: 1, src: "/Videos/04.mp4" },
+  { id: 1, src: "/Videos/01.mp4" },
   { id: 2, src: "/Videos/05.mp4" },
-  { id: 3, src: "/Videos/01.mp4" },
+  { id: 3, src: "/Videos/04.mp4" },
   { id: 4, src: "/Videos/02.mp4" },
   { id: 5, src: "/Videos/06.mp4" },
   // { id: 6, src: "/Videos/03.mp4" },

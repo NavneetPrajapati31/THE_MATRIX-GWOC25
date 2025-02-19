@@ -36,7 +36,8 @@ const InventoryProducts = () => {
     .filter(
       (product) =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchTerm.toLowerCase())
+        product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.sareeId.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .filter(
       (product) =>
@@ -74,11 +75,11 @@ const InventoryProducts = () => {
         <input
           type="text"
           className="search-bar"
-          placeholder="Search by name or category..."
+          placeholder="Search by name or category or Id ..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <div className="price-filter-yash">
+        {/* <div className="price-filter-yash">
           <input
             type="number"
             className="price-input-y"
@@ -96,7 +97,7 @@ const InventoryProducts = () => {
         </div>
         <button className="sort-btn" onClick={toggleSort}>
           {sortOrder === "low" ? "Sort: Low to High" : "Sort: High to Low"}
-        </button>
+        </button> */}
       </div>
 
       {loading ? (
@@ -108,7 +109,7 @@ const InventoryProducts = () => {
               <th>Image</th>
               <th>Name</th>
               <th>Category</th>
-              <th>Price</th>
+              <th>Id</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -137,7 +138,7 @@ const InventoryProducts = () => {
                   </td>
                   <td>{product.name}</td>
                   <td>{product.category}</td>
-                  <td>Rs. {product.price}</td>
+                  <td>{product.sareeId}</td>
                   <td className="action-buttons">
                     <button
                       className="edit-btn"

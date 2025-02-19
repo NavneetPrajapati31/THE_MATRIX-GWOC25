@@ -128,6 +128,6 @@
 @media (max-width: 768px) {
   .trending-carousel-item {
     width: 100% !important; /* Adjust for extra-small screens */
-    max-width: 280px;
+    max-width: 190px;
   }
 }

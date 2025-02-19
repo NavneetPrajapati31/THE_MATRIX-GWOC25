@@ -60,7 +60,7 @@ const BuyNow = () => {
     pincode: "",
   });
 
-  const [selectedPayment, setSelectedPayment] = useState(null);
+  const [selectedPayment, setSelectedPayment] = useState("COD");
 
   const handleAddAddress = async () => {
     if (
@@ -435,23 +435,22 @@ const BuyNow = () => {
             </div>
 
             {/* Payment Method */}
-            <div className="checkout-card  p-4">
+            {/* <div className="checkout-card  p-4">
               <h5 className=" mb-3 main-text-options">
                 Select a Payment Method
               </h5>
 
               <div className="payment-method-container">
                 {[
-                  {
-                    id: "razorpay",
-                    label: "Razorpay",
-                    // img: "/images/razorpayImg.png",
-                  },
-                  {
-                    id: "COD",
-                    label: "Cash on Delivery",
-                    // img: "/images/codImg.png",
-                  },
+                  // {
+                  //   id: "razorpay",
+                  //   label: "Razorpay",
+                  // },
+                  // {
+                  //   id: "COD",
+                  //   label: "Cash on Delivery",
+                  //   // img: "/images/codImg.png",
+                  // },
                 ].map((method) => (
                   <label
                     // className="form-check-label"
@@ -477,7 +476,7 @@ const BuyNow = () => {
                         src={method.img}
                         alt={method.label}
                         className="payment-logo"
-                      />{" "} */}
+                      />{" "} }
                     {method.label}
                     {method.disabled && (
                       <span className="ms-2 text-muted">
@@ -497,7 +496,7 @@ const BuyNow = () => {
                   ? `PROCEEDING WITH ${selectedPayment} `
                   : "SELECT PAYMENT METHOD"}
               </button>
-            </div>
+            </div> */}
 
             {/* Review Items & Delivery */}
             <div className="checkout-card">

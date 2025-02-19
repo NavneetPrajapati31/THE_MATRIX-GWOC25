@@ -14,7 +14,7 @@ const SareeSchema = new mongoose.Schema({
   name: { type: String, required: true },
   sareeId: { type: String, required: true },
   description: { type: String },
-  price: { type: Number, required: true },
+  price: { type: Number },
   fabric: { type: String, required: true },
   category: { type: String, required: true },
   workType: { type: String, required: true },

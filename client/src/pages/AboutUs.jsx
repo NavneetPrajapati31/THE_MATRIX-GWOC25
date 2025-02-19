@@ -24,19 +24,12 @@ const AboutUs = () => {
         <div className="company-info">
           <h2 className="company-name">KASHVI</h2>
           <p className="company-description text-start">
-            Born in Surat, Gujarat, the heart of India’s textile industry,
-            KASHVI is a premium saree brand that celebrates the timeless
-            elegance of Indian heritage. Rooted in tradition yet inspired by
-            modern aesthetics, we bring you an exquisite collection of sarees
-            that blend craftsmanship, quality, and contemporary style. At
-            KASHVI, every saree is a masterpiece, woven with passion and
-            precision. From luxurious silk and intricate handloom weaves to
-            lightweight daily wear and designer festive drapes, our collection
-            is curated to suit every occasion. Whether you seek timeless
-            classics or trendsetting designs, KASHVI ensures that each piece
-            reflects grace, sophistication, and the rich cultural essence of
-            India. Embrace tradition with a touch of modernity—experience the
-            beauty of KASHVI sarees.
+            KASHVI, born in Surat, Gujarat, is a premium saree brand celebrating
+            India's rich textile heritage. Blending tradition with modern
+            aesthetics, we offer exquisite sarees—from luxurious silks to
+            lightweight daily wear and festive drapes. Each piece embodies
+            craftsmanship, elegance, and cultural essence, ensuring grace and
+            sophistication for every occasion.
           </p>
         </div>
 
@@ -44,45 +37,32 @@ const AboutUs = () => {
         <div className="vision">
           <h2 className="company-name">Vision</h2>
           <p className="company-description text-start">
-            At KASHVI, we envision becoming a globally recognized name in ethnic
-            fashion, redefining the saree experience for women across
-            generations. Rooted in the rich textile legacy of Surat, Gujarat, we
-            strive to blend tradition with innovation, making sarees not just an
-            attire but an expression of culture, confidence, and individuality.
-            Our goal is to create a brand that resonates with every woman,
-            offering her a seamless blend of heritage craftsmanship and
-            contemporary aesthetics. We aim to preserve the timeless art of
-            saree weaving while embracing modern design sensibilities, ensuring
-            that every KASHVI saree tells a story of elegance, authenticity, and
-            impeccable craftsmanship. Through ethical sourcing, sustainable
-            practices, and customer-centric designs, we aspire to set new
+            KASHVI envisions becoming a globally recognized name in ethnic
+            fashion, redefining sarees as a blend of tradition, confidence, and
+            individuality. Rooted in Surat’s rich textile legacy, we strive to
+            preserve heritage craftsmanship while embracing modern aesthetics.
+            With ethical sourcing and sustainable practices, we aim to set new
             benchmarks in the saree industry, making Indian ethnic fashion a
-            global statement of style.
+            global style statement.
           </p>
         </div>
 
         <div className="mission">
           <h2 className="company-name">Mission</h2>
           <p className="company-description text-start">
-            At KASHVI, our mission is to uphold the legacy of Indian textile
-            artistry by offering exquisitely crafted sarees that blend tradition
-            with contemporary elegance. We strive to innovate while preserving
-            cultural heritage, ensuring that every saree reflects timeless
-            beauty and impeccable craftsmanship. Our customer-centric approach
-            focuses on delivering a seamless shopping experience, helping every
-            woman find a saree that complements her style and occasion.
-            Committed to empowering artisans, we support traditional weavers
-            with fair wages and sustainable practices, preserving India’s rich
-            weaving heritage. With a strong emphasis on ethical sourcing and
-            eco-friendly production, we aim to create fashion that is
-            responsible, elegant, and enduring. As we expand our reach globally,
-            our vision is to make KASHVI synonymous with grace, confidence, and
-            the timeless charm of Indian ethnic wear.
+            KASHVI's mission is to uphold India's textile legacy by offering
+            exquisitely crafted sarees that blend tradition with contemporary
+            elegance. We innovate while preserving cultural heritage, ensuring
+            each saree reflects timeless beauty and craftsmanship. Committed to
+            ethical sourcing and sustainability, we empower artisans with fair
+            wages and eco-friendly practices. With a customer-centric approach,
+            we strive to make KASHVI a global symbol of grace, confidence, and
+            enduring ethnic fashion.
           </p>
         </div>
 
         {/* Features Section */}
-        <h2 className="company-name">Features</h2>
+        <h2 className="company-name mt-5">Features</h2>
         <div className="features">
           <div className="feature-item">
             <img
