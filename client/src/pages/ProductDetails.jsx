@@ -4,19 +4,21 @@ import "../styles/productDetails.css";
 import "../styles/flash.css";
 import Navbar from "../includes/Navbar";
 import Footer from "../includes/Footer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box } from "@mui/material";
 import NewProducts from "../components/NewProducts";
+import { setCartLength } from "../redux/state";
 
 const ProductDetails = () => {
   const temp = import.meta.env.VITE_BACKEND_URL;
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
   // Flash message states
   const [flash, setFlash] = useState("");
@@ -113,6 +115,18 @@ const ProductDetails = () => {
     calculateDeliveryDate();
   }, [product]);
 
+  const fetchCartLength = async (userId) => {
+    try {
+      const response = await fetch(`${temp}/auth/cart/${userId}`);
+      const data = await response.json();
+      if (response.ok) {
+        dispatch(setCartLength(data.cartLength));
+      }
+    } catch (error) {
+      console.error("Error fetching cart length:", error);
+    }
+  };
+
   const handleAddToCart = async () => {
     if (!user?._id) {
       showFlash(
@@ -141,6 +155,7 @@ const ProductDetails = () => {
           "Item successfully added to your cart.",
           "/images/woman-shopping-chart-dark.png"
         );
+        fetchCartLength(user._id);
       } else {
         showFlash(
           "Error adding product to cart.",

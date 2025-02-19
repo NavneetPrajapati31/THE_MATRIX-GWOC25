@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 const User = require("../models/Users");
 const Subscriber = require("../models/SubscriberSchema");
+const Cart = require("../models/Cart");
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -362,6 +363,31 @@ router.post("/subscribe", async (req, res) => {
     res.json({ message: "Subscribed successfully!" });
   } catch (error) {
     res.status(500).json({ message: "Server error, please try again." });
+  }
+});
+
+router.get("/cart/:userId", async (req, res) => {
+  try {
+    const cart = await Cart.findOne({ userId: req.params.userId });
+    const cartLength = cart ? cart.items.length : 0;
+
+    res.status(200).json({ cartLength });
+  } catch (error) {
+    console.error("Error fetching cart length:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get("/wishlist/:userId", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+
+    const wishList = user.wishlist;
+    const wishListLength = wishList.length;
+    res.status(200).json(wishListLength);
+  } catch (error) {
+    console.error("Error fetching wishlist length:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

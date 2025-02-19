@@ -5,7 +5,8 @@ import Footer from "../includes/Footer";
 import BoltSharpIcon from "@mui/icons-material/BoltSharp";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateWishlistCount } from "../redux/state";
 
 const Wishlist = () => {
   const URL = import.meta.env.VITE_BACKEND_URL;
@@ -16,6 +17,7 @@ const Wishlist = () => {
   const user = useSelector((state) => state.user?.user);
 
   const userId = user?._id;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchWishlist = async () => {
@@ -37,6 +39,18 @@ const Wishlist = () => {
     fetchWishlist();
   }, [userId]);
 
+  const fetchWishListLength = async (userId) => {
+    try {
+      const response = await fetch(`${URL}/auth/wishList/${userId}`);
+      const data = await response.json();
+      if (response.ok) {
+        dispatch(updateWishlistCount(data));
+      }
+    } catch (error) {
+      console.error("Error fetching cart length:", error);
+    }
+  };
+
   const handleBuyNow = (product) => {
     navigate("/buy-now", { state: { product } });
   };
@@ -54,6 +68,7 @@ const Wishlist = () => {
       const data = await response.json();
       if (data.success) {
         setWishlistItems(data.wishlist);
+        fetchWishListLength(userId);
       }
     } catch (error) {
       console.error("Error removing from wishlist:", error);
