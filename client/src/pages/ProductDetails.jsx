@@ -463,9 +463,9 @@ const ProductDetails = () => {
                   Style No {product.sareeId}
                 </p>
                 {/* <p className="productdetails-price">₹ X,XXX</p> */}
-                <p style={{ fontSize: "12px", color: "grey" }}>
+                {/* <p style={{ fontSize: "12px", color: "grey" }}>
                   Inclusive of all taxes
-                </p>
+                </p> */}
                 <p className="delivery-date">
                   Est Delivery by : {deliveryDate}
                 </p>

@@ -169,7 +169,7 @@ const CartPage = () => {
                 <div className="d-flex flex-column flex-md-row">
                   <input
                     type="text"
-                    className="form-control me-2"
+                    className="form-control code-form-control me-2"
                     placeholder="Enter your Code"
                     style={{ fontSize: "13px" }}
                   />

@@ -31,7 +31,7 @@ const Filter = () => {
   const userId = user?._id;
 
   const filters = [
-    "Price",
+    // "Price",
     "Categories",
     "Color",
     "Fabric",
