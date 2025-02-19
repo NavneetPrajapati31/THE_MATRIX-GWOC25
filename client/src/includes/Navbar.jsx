@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, setCartLength, updateWishlistCount } from "../redux/state";
 
 const Navbar = () => {
+  const temp = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const searchInputRef = useRef(null);
@@ -137,7 +138,7 @@ const Navbar = () => {
 
   const fetchCartLength = async (dispatch, userId) => {
     try {
-      const response = await fetch(`${URL}/auth/cart/${userId}`);
+      const response = await fetch(`${temp}/auth/cart/${userId}`);
       const data = await response.json();
       if (response.ok) {
         dispatch(setCartLength(data.cartLength));
@@ -149,7 +150,7 @@ const Navbar = () => {
 
   const fetchWishListLength = async (dispatch, userId) => {
     try {
-      const response = await fetch(`${URL}/auth/wishlist/${userId}`);
+      const response = await fetch(`${temp}/auth/wishlist/${userId}`);
       const data = await response.json();
       if (response.ok) {
         dispatch(updateWishlistCount(data));
