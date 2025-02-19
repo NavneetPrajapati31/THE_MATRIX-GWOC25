@@ -517,7 +517,7 @@ const BuyNow = () => {
 
                     <div className="review-item-details text-start ms-3">
                       <p style={{ fontSize: "14px" }}>{item.name}</p>
-                      <p className="text-muted">₹ X,XXX</p>
+                      {/* <p className="text-muted">₹ X,XXX</p> */}
                       <p className="text-success" style={{ fontSize: "14px" }}>
                         {item.price >= 5000
                           ? "Eligible for free delivery"
@@ -541,7 +541,7 @@ const BuyNow = () => {
 
                   <div className="review-item-details text-start ms-3">
                     <p style={{ fontSize: "14px" }}>{product?.name}</p>
-                    <p className="text-muted">₹ X,XXX</p>
+                    {/* <p className="text-muted">₹ X,XXX</p> */}
                     <p className="text-success" style={{ fontSize: "14px" }}>
                       {product?.price >= 5000
                         ? "Eligible for free delivery"
@@ -573,7 +573,7 @@ const BuyNow = () => {
                       <span>
                         {item.name} (x{item.quantity}):
                       </span>
-                      <span>₹ X,XXX</span>
+                      {/* <span>₹ X,XXX</span> */}
                     </div>
                   ))}
                   <div className="d-flex justify-content-between my-2">
@@ -583,7 +583,7 @@ const BuyNow = () => {
                   <hr className="my-3" />
                   <div className="d-flex justify-content-between my-2">
                     <span>Order Total</span>
-                    <a
+                    {/* <a
                       href="#"
                       className="text-dark"
                       style={{
@@ -593,7 +593,7 @@ const BuyNow = () => {
                       }}
                     >
                       ₹ X,XXX
-                    </a>
+                    </a> */}
                   </div>
                   <hr className="my-3" />
                   <div className="text-start">
@@ -641,7 +641,7 @@ const BuyNow = () => {
                   <div>
                     <div className="d-flex justify-content-between mb-2">
                       <span>Items:</span>
-                      <span>₹ X,XXX</span>
+                      {/* <span>₹ X,XXX</span> */}
                     </div>
                     <div className="d-flex justify-content-between my-2">
                       <span>Delivery:</span>
@@ -650,7 +650,7 @@ const BuyNow = () => {
                     <hr className="my-3" />
                     <div className="d-flex justify-content-between my-2">
                       <span>Order Total</span>
-                      <a
+                      {/* <a
                         href="#"
                         className="text-dark"
                         style={{
@@ -660,7 +660,7 @@ const BuyNow = () => {
                         }}
                       >
                         ₹ X,XXX
-                      </a>
+                      </a> */}
                     </div>
                     <hr className="my-3" />
                     <div className="text-start">

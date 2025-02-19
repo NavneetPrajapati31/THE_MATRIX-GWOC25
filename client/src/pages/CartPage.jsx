@@ -130,7 +130,7 @@ const CartPage = () => {
               </h5>
               <div className="d-flex justify-content-between">
                 <span>Subtotal</span>
-                <span>₹ X,XXX</span>
+                {/* <span>₹ X,XXX</span> */}
               </div>
               <hr className="my-3" />
               <div className="d-flex justify-content-between my-2">
@@ -146,7 +146,7 @@ const CartPage = () => {
               <hr className="my-3" />
               <div className="d-flex justify-content-between my-2">
                 <span>Total Price</span>
-                <a
+                {/* <a
                   href="#"
                   className="text-dark"
                   style={{
@@ -156,7 +156,7 @@ const CartPage = () => {
                   }}
                 >
                   ₹ X,XXX
-                </a>
+                </a> */}
               </div>
               <hr className="my-3" />
               <div className="text-start">

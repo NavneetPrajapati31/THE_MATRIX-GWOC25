@@ -201,7 +201,7 @@ export default function CartProduct({
         <p style={{ color: "grey", marginRight: "10px", marginTop: "1px" }}>
           MRP
         </p>
-        <p style={{ fontSize: "16px", fontWeight: "400" }}> ₹ X,XXX</p>
+        {/* <p style={{ fontSize: "16px", fontWeight: "400" }}> ₹ X,XXX</p> */}
       </div>
     </div>
   );

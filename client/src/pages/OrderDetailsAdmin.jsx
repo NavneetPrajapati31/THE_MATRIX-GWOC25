@@ -109,9 +109,9 @@ const OrderDetailsAdmin = () => {
                                         <td>${item.product.title} (Design ID: ${
                                   item.product.sareeId
                                 })</td>
-                                        <td>₹X,XXX</td>
+                                       
                                         <td>${item.quantity}</td>
-                                        <td>₹X,XXX</td>
+                                       
                                     </tr>
                                 `
                               )

@@ -117,9 +117,9 @@ const OrderDetails = () => {
                               <td>${index + 1}</td>
                               <td>${item.product.title}</td>
                                <td>${item.product.sareeId}</td>
-                              <td>₹X,XXX</td>
+                           
                               <td>${item.quantity}</td>
-                              <td>₹X,XXX</td>
+                           
                           </tr>
                       `
                         )
@@ -175,7 +175,7 @@ const OrderDetails = () => {
 
                 <div className="product-info-details">
                   <span>{item.product.title}</span>
-                  <p className="price-details">₹X,XXX x {item.quantity}</p>
+                  <p className="price-details">Quantity: {item.quantity}</p>
                 </div>
               </div>
             ))}
@@ -200,9 +200,7 @@ const OrderDetails = () => {
 
               <div className="price-details-details">
                 <span className="recipient-name">Price Details</span>
-                <p>
-                  <span>Selling price</span> <span>₹X,XXX</span>
-                </p>
+                <p>{/* <span>Selling price</span> <span>₹X,XXX</span> */}</p>
               </div>
               <p className="invoice">
                 <span onClick={() => handlePrintInvoice(order)}>

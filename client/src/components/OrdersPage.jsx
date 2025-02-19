@@ -185,8 +185,7 @@ const OrdersPage = () => {
                               {order.products[0].product.title}
                             </h5>
                             <p className="text-muted mb-1 yash-order-details">
-                              ₹X,XXX &nbsp; | &nbsp; Quantity:{" "}
-                              {order.products[0].quantity}
+                              Quantity: {order.products[0].quantity}
                             </p>
                           </div>
                         </div>

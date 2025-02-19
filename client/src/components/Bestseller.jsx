@@ -56,7 +56,7 @@ const Bestseller = ({ bestSelling }) => {
                 {/* Product Name & Price */}
                 <p className="wishlist-item-name">{product.name}</p>
                 <p className="wishlist-item-price " style={{ marginTop: "0" }}>
-                  MRP <span className="price">X,XXX</span>
+                  {/* MRP <span className="price">X,XXX</span> */}
                 </p>
               </div>
             </Link>

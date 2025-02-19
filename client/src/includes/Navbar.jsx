@@ -286,6 +286,7 @@ const Navbar = () => {
             {/* Account Icon or First Letter */}
             <div
               className="account-menu-container"
+              // onMouseEnter={() => setAccountMenuOpen((prev) => !prev)}
               onClick={() => setAccountMenuOpen((prev) => !prev)}
               style={{ position: "relative", cursor: "pointer" }}
             >

@@ -137,9 +137,9 @@ const OrderContainer = () => {
                                         <td>${item.product.title} (Design ID: ${
                                   item.product.sareeId
                                 })</td>
-                                        <td>₹X,XXX</td>
+                                       
                                         <td>${item.quantity}</td>
-                                        <td>₹X,XXX</td>
+                                     
                                     </tr>
                                 `
                               )
@@ -147,11 +147,7 @@ const OrderContainer = () => {
                         </table>
                     </div>
     
-                    <div class="total-container">
-                        <p>Subtotal: ₹${subtotal}</p>
-                        <p><strong>Grand Total: ₹${subtotal}
-                        )}</strong></p>
-                    </div>
+                    
     
                     <div class="footer">
                         <p>Thank you for shopping with Kashvi Sarees!</p>

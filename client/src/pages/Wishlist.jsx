@@ -112,7 +112,7 @@ const Wishlist = () => {
                 {/* Product Name & Price */}
                 <p className="wishlist-item-name text-start">{item.name}</p>
                 <p className="wishlist-item-price text-start">
-                  MRP <span className="price">₹ X,XXX</span>
+                  {/* MRP <span className="price">₹ X,XXX</span> */}
                 </p>
 
                 {/* Ready to Ship */}
