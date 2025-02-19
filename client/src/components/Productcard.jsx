@@ -7,6 +7,7 @@ import "../styles/productcard.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { updateWishlistCount } from "../redux/state";
+import { useDispatch } from "react-redux";
 
 const ProductCard = ({ product, userId }) => {
   const URL = import.meta.env.VITE_BACKEND_URL;
@@ -14,6 +15,7 @@ const ProductCard = ({ product, userId }) => {
   const [flash, setFlash] = useState("");
   const [flashImage, setFlashImage] = useState(null);
   const [flashVisible, setFlashVisible] = useState(false);
+  const dispatch = useDispatch();
 
   const showFlash = (message, imageUrl, duration = 1000) => {
     setFlash(message);
@@ -48,18 +50,6 @@ const ProductCard = ({ product, userId }) => {
     }
   }, [userId, product._id]);
 
-  const fetchWishListLength = async (userId) => {
-    try {
-      const response = await fetch(`${URL}/auth/wishList/${userId}`);
-      const data = await response.json();
-      if (response.ok) {
-        dispatch(updateWishlistCount(data));
-      }
-    } catch (error) {
-      console.error("Error fetching cart length:", error);
-    }
-  };
-
   const handleWishlistToggle = async () => {
     try {
       const response = await fetch(`${URL}/wishlist-related/${userId}`, {
@@ -69,17 +59,27 @@ const ProductCard = ({ product, userId }) => {
         },
         body: JSON.stringify({ productId: product._id }),
       });
-
       const data = await response.json();
-
       console.log(data);
-
       if (data.success) {
         setIsWishlisted((prev) => !prev);
         fetchWishListLength(userId);
       }
     } catch (error) {
       console.error("Error updating wishlist:", error);
+    }
+  };
+
+  const fetchWishListLength = async (userId) => {
+    try {
+      const response = await fetch(`${URL}/auth/wishList/${userId}`);
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        dispatch(updateWishlistCount(data));
+      }
+    } catch (error) {
+      console.error("Error fetching cart length:", error);
     }
   };
 

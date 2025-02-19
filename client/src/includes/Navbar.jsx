@@ -10,19 +10,21 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../redux/state";
+import { logout, setCartLength, updateWishlistCount } from "../redux/state";
 
 const Navbar = () => {
+  const URL = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const searchInputRef = useRef(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
-
-  const { user } = useSelector((state) => state.user);
+  const { user, cartLength, wishListLength } = useSelector(
+    (state) => state.user
+  );
 
   const getFirstName = (fullName) => {
-    if (!fullName) return ""; // Handle empty input
+    if (!fullName) return "";
     return fullName.trim().split(" ")[0]; // Split by space and return first word
   };
 
@@ -132,6 +134,40 @@ const Navbar = () => {
     const encodedSearch = query.trim().replace(/\s+/g, "+");
     navigate(`/product-listing?search=${encodedSearch}`);
   };
+
+  const fetchCartLength = async (dispatch, userId) => {
+    try {
+      const response = await fetch(`${URL}/auth/cart/${userId}`);
+      const data = await response.json();
+
+      console.log(data);
+      if (response.ok) {
+        dispatch(setCartLength(data.cartLength));
+      }
+    } catch (error) {
+      console.error("Error fetching cart length:", error);
+    }
+  };
+
+  const fetchWishListLength = async (dispatch, userId) => {
+    try {
+      const response = await fetch(`${URL}/auth/wishlist/${userId}`);
+      const data = await response.json();
+      if (response.ok) {
+        dispatch(updateWishlistCount(data));
+        console.log(data);
+      }
+    } catch (error) {
+      console.error("Error fetching cart length:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (user && user._id) {
+      fetchCartLength(dispatch, user._id);
+      fetchWishListLength(dispatch, user._id);
+    }
+  }, [user, dispatch]);
 
   return (
     <>
@@ -267,21 +303,31 @@ const Navbar = () => {
               />
             </Link>
 
-            <Link to={user && user._id ? "/wishlist" : "/login"}>
-              <FavoriteBorderOutlinedIcon
-                className="me-3 nav-icons"
-                fontSize="medium"
-                style={{ color: "#000" }}
-              />
-            </Link>
+            <div className="cart-item-badge-navbar">
+              <Link to={user && user._id ? "/wishlist" : "/login"}>
+                <FavoriteBorderOutlinedIcon
+                  className="me-3 nav-icons"
+                  fontSize="medium"
+                  style={{ color: "#222222" }}
+                />
+              </Link>
+              {wishListLength >= 0 && (
+                <span className="cart-badge-navbar-cart">{wishListLength}</span>
+              )}
+            </div>
 
-            <Link to={user && user._id ? "/cart" : "/login"}>
-              <ShoppingBagOutlinedIcon
-                className="me-3 nav-icons"
-                fontSize="medium"
-                style={{ color: "#000" }}
-              />
-            </Link>
+            <div className="cart-item-badge-navbar">
+              <Link to={user && user._id ? "/cart" : "/login"}>
+                <ShoppingBagOutlinedIcon
+                  className="me-3 nav-icons"
+                  fontSize="medium"
+                  style={{ color: "#222222" }}
+                />
+                {cartLength >= 0 && (
+                  <span className="cart-badge-navbar-cart">{cartLength}</span>
+                )}
+              </Link>
+            </div>
 
             {/* Account Icon or First Letter */}
             <div
