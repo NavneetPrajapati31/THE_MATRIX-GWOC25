@@ -61,7 +61,15 @@ const Dashboard = () => {
       <div className="admin-container-yash">
         <aside className="sidebar-admin-yash">
           <Link to="/">
-            <h5 style={{ marginRight: "20px" }}>KASHVI</h5>
+            <h5
+              style={{
+                marginRight: "20px",
+                fontFamily: "Bodoni Moda, serif",
+                fontSize: "26px",
+              }}
+            >
+              KASHVI
+            </h5>
           </Link>
 
           <ul>
@@ -69,7 +77,7 @@ const Dashboard = () => {
               className={activeTab === "add-product-yash" ? "active-yash" : ""}
               onClick={() => setActiveTab("add-product-yash")}
             >
-              + Add Product
+              Add Product
             </li>
             <li
               className={
@@ -77,23 +85,13 @@ const Dashboard = () => {
               }
               onClick={() => setActiveTab("list-products-yash")}
             >
-              ✔ Listed Products
+              Listed Products
             </li>
             <li
               className={activeTab === "orders-yash" ? "active-yash" : ""}
               onClick={() => setActiveTab("orders-yash")}
             >
-              ✔ Orders
-            </li>
-            <li className="dash-logout-btn">
-              <a
-                role="button"
-                className="account-dropdown-item btn btn-dark"
-                onClick={handleLogout}
-                style={{ fontSize: "14px", padding: "5px 20px" }}
-              >
-                Logout
-              </a>
+              Orders
             </li>
           </ul>
         </aside>

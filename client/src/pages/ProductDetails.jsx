@@ -58,6 +58,8 @@ const ProductDetails = () => {
   });
   const [selectedImage, setSelectedImage] = useState([]);
 
+  const [deliveryDate, setDeliveryDate] = useState("");
+
   const user = useSelector((state) => state.user?.user);
   const userId = user?._id;
   const navigate = useNavigate();
@@ -92,6 +94,24 @@ const ProductDetails = () => {
     fetchProduct();
     fetchReviews(productId);
   }, [productId]);
+
+  useEffect(() => {
+    const calculateDeliveryDate = () => {
+      let today = new Date();
+      let deliveryDays = 5;
+
+      let count = 0;
+      while (count < deliveryDays) {
+        today.setDate(today.getDate() + 1);
+        if (today.getDay() !== 0 && today.getDay() !== 6) {
+          count++;
+        }
+      }
+      setDeliveryDate(today.toDateString());
+    };
+
+    calculateDeliveryDate();
+  }, [product]);
 
   const handleAddToCart = async () => {
     if (!user?._id) {
@@ -447,7 +467,7 @@ const ProductDetails = () => {
                   Inclusive of all taxes
                 </p>
                 <p className="delivery-date">
-                  Est Delivery by : {product.estimatedDelivery}
+                  Est Delivery by : {deliveryDate}
                 </p>
                 <hr />
                 <button className="add-to-cart" onClick={handleAddToCart}>
@@ -523,6 +543,7 @@ const ProductDetails = () => {
                       sx={{
                         fontSize: "12px",
                         fontWeight: 500,
+                        margin: "10px",
                       }}
                     >
                       {item}

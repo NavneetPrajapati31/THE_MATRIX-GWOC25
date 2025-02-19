@@ -2,19 +2,19 @@ import { useState, useEffect } from "react";
 
 export default function Carousel() {
   const [imageStyles, setImageStyles] = useState({
-    height: "660px",
+    height: "100vh",
   });
 
   useEffect(() => {
     const updateStyles = () => {
       if (window.innerWidth < 480) {
-        setImageStyles({ height: "350px" });
+        setImageStyles({ height: "85vh" });
       } else if (window.innerWidth < 768) {
-        setImageStyles({ height: "300px" });
+        setImageStyles({ height: "100vh" });
       } else if (window.innerWidth < 1024) {
-        setImageStyles({ height: "480px" });
+        setImageStyles({ height: "100vh" });
       } else if (window.innerWidth <= 1440) {
-        setImageStyles({ height: "660px" });
+        setImageStyles({ height: "100vh" });
       }
     };
 
@@ -29,7 +29,7 @@ export default function Carousel() {
       className="carousel slide carousel-fade"
       data-bs-ride="carousel"
     >
-      <div className="carousel-indicators mb-5">
+      <div className="carousel-indicators" style={{ marginBottom: "120px" }}>
         {[0, 1, 2].map((index) => (
           <button
             key={index}
@@ -78,7 +78,7 @@ export default function Carousel() {
               }}
               alt="..."
             />
-            <div className="carousel-caption mb-5">
+            <div className="carousel-caption" style={{ marginBottom: "130px" }}>
               <h6 style={{ textShadow: "2px 2px 10px rgba(0, 0, 0, 0.7)" }}>
                 <i>{slide.caption1}</i>
               </h6>

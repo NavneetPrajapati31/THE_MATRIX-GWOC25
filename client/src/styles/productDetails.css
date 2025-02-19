@@ -232,6 +232,12 @@
   .tags {
     flex-direction: column;
   }
+
+  .thumbnail {
+    width: 150px;
+    height: 190px;
+    object-position: top;
+  }
 }
 
 @media (max-width: 768px) {
@@ -243,6 +249,17 @@
   .buy-now {
     padding: 10px;
     font-size: 14px;
+  }
+
+  .main-image-container {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .thumbnail {
+    width: 130px;
+    height: 140px;
+    object-position: top;
   }
 }
 
@@ -267,7 +284,20 @@
 
   .thumbnail {
     width: 50px;
-    height: 65px;
+    height: 60px;
+    object-position: top;
+  }
+
+  .images-products {
+    /* margin-right: 0 !important; */
+  }
+
+  .main-image-container {
+    width: 350px !important;
+  }
+
+  .zoom-image {
+    width: 100%;
   }
 }
 

@@ -24,9 +24,9 @@
 /* Individual Video Item */
 .trending-carousel-item {
   flex: 0 0 auto;
-  min-width: 200px;
+  min-width: 180px;
   width: 20% !important;
-  max-height: 380px;
+  max-height: 400px;
   position: relative;
   text-align: left;
   border-radius: 0;

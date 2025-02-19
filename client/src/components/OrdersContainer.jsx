@@ -308,7 +308,12 @@ const OrderContainer = () => {
       {orders.length < totalOrders && (
         <button onClick={() => setPage(page + 1)}>Show More</button>
       )}
-      {orders.length === totalOrders && <a href="#"> get on top</a>}
+      {orders.length === totalOrders && (
+        <a href="#" style={{ fontSize: "14px" }}>
+          {" "}
+          GET TO TOP
+        </a>
+      )}
     </div>
   );
 };
