@@ -1,7 +1,7 @@
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 20px 15px !important;
 }
 
 .checkout-card {

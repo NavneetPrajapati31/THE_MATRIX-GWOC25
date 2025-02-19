@@ -81,13 +81,8 @@
   margin-bottom: 20px;
 }
 
-.logout-btn-yash {
-  background-color: #343a40;
-  color: #fff;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.dash-logout-btn:hover {
+  background: transparent !important;
 }
 
 /* Sidebar Responsive */

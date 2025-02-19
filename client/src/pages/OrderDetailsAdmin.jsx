@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../styles/orderContAdmin.css";
 
 const OrderDetailsAdmin = () => {
@@ -159,7 +159,9 @@ const OrderDetailsAdmin = () => {
         <div className="product-grid-admin">
           {order.products.map((item, index) => (
             <div key={index} className="product-card-admin">
-              <img src={item.product.image} alt={item.product.title} />
+              <Link to={`/product-details/${item.product._id}`}>
+                <img src={item.product.image} alt={item.product.title} />
+              </Link>
               <p>
                 {item.product.title} x {item.quantity}
               </p>

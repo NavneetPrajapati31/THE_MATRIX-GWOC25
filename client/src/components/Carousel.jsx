@@ -46,11 +46,6 @@ export default function Carousel() {
       <div className="carousel-inner">
         {[
           {
-            src: "https://i.pinimg.com/originals/67/0e/49/670e49f72ecd161dc2e8972b5b9ba54d.jpg",
-            caption1: "Making Every Bride's",
-            caption2: "Dream Come True",
-          },
-          {
             src: "https://i.pinimg.com/originals/4e/99/1e/4e991e5927f98f74ca05b507811ba539.jpg",
             caption1: "Curating Every",
             caption2: "Wedding Emotion",
@@ -59,6 +54,11 @@ export default function Carousel() {
             src: "https://assets.vogue.in/photos/5ce41bf11dc2676095c774db/16:9/w_1280,c_limit/Anita-Dongres-Pichhwai-Collection.jpg",
             caption1: "Simple celebrations,",
             caption2: "Timeless memories!",
+          },
+          {
+            src: "https://i.pinimg.com/originals/67/0e/49/670e49f72ecd161dc2e8972b5b9ba54d.jpg",
+            caption1: "Making Every Bride's",
+            caption2: "Dream Come True",
           },
         ].map((slide, index) => (
           <div

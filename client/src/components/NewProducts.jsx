@@ -34,7 +34,7 @@ const NewProducts = ({ type, productId }) => {
         style={{
           fontSize: "1.25rem",
           fontWeight: "400",
-          marginTop: "90px",
+          marginTop: "20px",
           marginBottom: "20px",
         }}
       >
@@ -51,8 +51,11 @@ const NewProducts = ({ type, productId }) => {
                   alt={product.name}
                   className="new-product-img"
                 />
-                <p className="wishlist-item-name ">{product.name}</p>
-                <p className="wishlist-item-price " style={{ marginTop: "0" }}>
+                <p className="wishlist-item-name text-start">{product.name}</p>
+                <p
+                  className="wishlist-item-price text-start"
+                  style={{ marginTop: "0" }}
+                >
                   MRP <span className="price">₹ X,XXX</span>
                 </p>
               </div>

@@ -82,4 +82,122 @@ router.get("/similar/:productId", async (req, res) => {
   }
 });
 
+router.get("/products/best-seller", async (req, res) => {
+  try {
+    const bestSelling = await Product.find({ isBestSelled: true })
+      .sort({ createdAt: -1 })
+      .limit(5);
+    console.log(bestSelling);
+    res.json(bestSelling);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+const dayWeddingColors = [
+  "yellow",
+  "orange",
+  "pink",
+  "red",
+  "peach",
+  "light green",
+  "cream",
+  "light blue",
+  "baby pink",
+  "sky blue",
+  "beige",
+  "gold",
+  "light purple",
+  "rose gold",
+  "turquoise",
+  "lemon yellow",
+  "mint green",
+];
+
+const nightWeddingColors = [
+  "blue",
+  "navy",
+  "purple",
+  "maroon",
+  "black",
+  "dark green",
+  "bronze",
+  "silver",
+  "wine",
+  "deep red",
+  "royal blue",
+  "charcoal grey",
+  "midnight blue",
+  "burgundy",
+  "violet",
+  "deep plum",
+];
+
+const dayWeddingFabrics = [
+  "cotton",
+  "chiffon",
+  "georgette",
+  "silk blend",
+  "organza",
+  "linen",
+  "net",
+  "soft silk",
+  "mul cotton",
+  "handloom",
+  "cotton silk",
+  "tissue",
+  "rayon",
+];
+
+const nightWeddingFabrics = [
+  "velvet",
+  "pure silk",
+  "brocade",
+  "satin",
+  "heavy silk",
+  "jacquard",
+  "raw silk",
+  "banarasi silk",
+  "crepe",
+  "tussar silk",
+  "heavy organza",
+  "kanjeevaram silk",
+];
+
+const matchSareesByCriteria = (saree, colorsArray, fabricsArray) => {
+  const sareeColors = saree.color.toLowerCase().split(/\s+and\s+|\s*,\s*/);
+
+  const colorMatch = sareeColors.some((color) => colorsArray.includes(color));
+
+  const fabricMatch = fabricsArray.includes(saree.fabric.toLowerCase());
+
+  return colorMatch || fabricMatch;
+};
+
+router.get("/sarees/day-wedding", async (req, res) => {
+  try {
+    const sarees = await Product.find({});
+    const filteredSarees = sarees.filter((saree) =>
+      matchSareesByCriteria(saree, dayWeddingColors, dayWeddingFabrics)
+    );
+    res.status(200).json(filteredSarees);
+  } catch (error) {
+    console.error("Error fetching day wedding sarees:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get("/sarees/night-wedding", async (req, res) => {
+  try {
+    const sarees = await Product.find({});
+    const filteredSarees = sarees.filter((saree) =>
+      matchSareesByCriteria(saree, nightWeddingColors, nightWeddingFabrics)
+    );
+    res.status(200).json(filteredSarees);
+  } catch (error) {
+    console.error("Error fetching night wedding sarees:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;

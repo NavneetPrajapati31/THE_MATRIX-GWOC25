@@ -165,11 +165,14 @@ const OrderDetails = () => {
           <div className="order-left-details">
             {order.products.map((item) => (
               <div key={item.product._id} className="product-card-details">
-                <img
-                  src={item.product.image}
-                  alt={item.product.title}
-                  className="product-image-details"
-                />
+                <Link to={`/product-details/${item.product._id}`}>
+                  <img
+                    src={item.product.image}
+                    alt={item.product.title}
+                    className="product-image-details"
+                  />
+                </Link>
+
                 <div className="product-info-details">
                   <span>{item.product.title}</span>
                   <p className="price-details">₹X,XXX x {item.quantity}</p>
@@ -204,7 +207,7 @@ const OrderDetails = () => {
               <p className="invoice">
                 <span onClick={() => handlePrintInvoice(order)}>
                   {" "}
-                  Invoice download <FaFileDownload />{" "}
+                  Print Invoice <FaFileDownload />{" "}
                 </span>
               </p>
             </div>

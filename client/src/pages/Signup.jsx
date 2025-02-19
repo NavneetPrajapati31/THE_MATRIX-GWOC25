@@ -78,7 +78,7 @@ export default function Signup() {
         return;
       }
 
-      // Proceed with registration after OTP verification
+      // Register user
       const registerRes = await fetch(`${URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -88,18 +88,24 @@ export default function Signup() {
           phone: form.phone,
           password: form.password,
         }),
+        credentials: "include", // If using cookies
       });
 
       const registerData = await registerRes.json();
       if (registerRes.ok) {
+        // Dispatch login action immediately after successful registration
+        dispatch(login({ token: registerData.token }));
+        dispatch(setUser(registerData.user));
+
         setMessage("Signup successful! Redirecting...");
-        setTimeout(() => navigate("/login"), 2000); // Redirect to login page
+        setTimeout(() => navigate("/"), 2000); // Redirect to home page
       } else {
         setMessage(registerData.message);
       }
     } catch (error) {
       setMessage("Error registering. Try again.");
     }
+
     setLoading(false);
   };
 
@@ -145,7 +151,7 @@ export default function Signup() {
           <div className="signup-banner">
             <div className="signup-banner-overlay"></div>
             <div className="signup-banner-content">
-              <h3 style={{ fontWeight: "300" }}>
+              <h3 style={{ fontWeight: "300", color: "white" }}>
                 Register & Be A Part Of The KASHVI Circle!
               </h3>
               <p>Join Now.</p>

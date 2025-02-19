@@ -54,6 +54,7 @@
 .flash-icon {
   width: 150px !important; /* Adjust as desired */
   height: auto;
+  max-height: 200px;
   margin-bottom: 20px;
 }
 

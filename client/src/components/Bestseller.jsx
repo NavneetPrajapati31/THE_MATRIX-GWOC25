@@ -1,35 +1,34 @@
 import { Link } from "react-router-dom";
 import "../styles/newproducts.css"; // Import custom CSS
+import { useEffect, useState } from "react";
 
-const products = [
-  {
-    img: "https://www.koskii.com/cdn/shop/products/koskii-lavender-mirrorwork-net-designer-saree-saus0021303_lavender_3_1800x1800.jpg?v=1661854696",
-    title: "Light Blue Crushed Tissue Saree Embro...",
-    price: "₹ 11,995",
-  },
-  {
-    img: "https://www.koskii.com/cdn/shop/products/koskii-lavender-mirrorwork-net-designer-saree-saus0021303_lavender_3_1800x1800.jpg?v=1661854696",
-    title: "Green Bandhani Lehenga Set With Za...",
-    price: "₹ 23,799",
-  },
-  {
-    img: "https://www.koskii.com/cdn/shop/products/koskii-lavender-mirrorwork-net-designer-saree-saus0021303_lavender_3_1800x1800.jpg?v=1661854696",
-    title: "Royal Blue Bandhani Lehenga Set Wit...",
-    price: "₹ 23,799",
-  },
-  {
-    img: "https://www.koskii.com/cdn/shop/products/koskii-lavender-mirrorwork-net-designer-saree-saus0021303_lavender_3_1800x1800.jpg?v=1661854696",
-    title: "Beige Palazzo Set With Beads Sequin...",
-    price: "₹ 22,499",
-  },
-  {
-    img: "https://www.koskii.com/cdn/shop/products/koskii-lavender-mirrorwork-net-designer-saree-saus0021303_lavender_3_1800x1800.jpg?v=1661854696",
-    title: "Orange Floral Print Pleated Gown Wit...",
-    price: "₹ 20,990",
-  },
-];
+const Bestseller = ({ bestSelling }) => {
+  const [products, setProducts] = useState([]);
+  const temp = import.meta.env.VITE_BACKEND_URL;
 
-const Bestseller = () => {
+  useEffect(() => {
+    const fetchBestSelling = async () => {
+      try {
+        const response = await fetch(
+          `${temp}/product-related/products/best-seller`,
+          {
+            method: "GET",
+          }
+        );
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error("error ");
+        }
+
+        console.log(data);
+        setProducts(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchBestSelling();
+  }, [bestSelling]);
+
   return (
     <div className="container mb-5">
       <h2
@@ -50,12 +49,12 @@ const Bestseller = () => {
             <Link to={`/product-details/${product._id}`}>
               <div key={index} className="product-card">
                 <img
-                  src={product.img}
-                  alt={product.title}
+                  src={product.images[0]}
+                  alt={product.name}
                   className="new-product-img"
                 />
                 {/* Product Name & Price */}
-                <p className="wishlist-item-name">{product.title}</p>
+                <p className="wishlist-item-name">{product.name}</p>
                 <p className="wishlist-item-price " style={{ marginTop: "0" }}>
                   MRP <span className="price">X,XXX</span>
                 </p>

@@ -93,7 +93,9 @@ export default function Login() {
           <div className="signup-banner">
             <div className="signup-banner-overlay"></div>
             <div className="signup-banner-content">
-              <h3 style={{ fontWeight: "300" }}>Welcome Back to KASHVI</h3>
+              <h3 style={{ fontWeight: "300", color: "white" }}>
+                Welcome Back to KASHVI
+              </h3>
               <p>Sign in to continue.</p>
             </div>
           </div>

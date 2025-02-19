@@ -1,4 +1,3 @@
-
 import "../styles/categorycards.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 

@@ -53,9 +53,7 @@ const Footer = () => {
             <Link to="/cart">Shopping Bag</Link>
             <Link to="/wishlist">Wishlist</Link>
             <Link to="/orders">Order History</Link>
-            <Link onClick={() => dispatch(logout())} to="/login">
-              Login as Admin
-            </Link>
+            <Link to="/login">Login as Admin</Link>
           </ul>
         </div>
       </div>

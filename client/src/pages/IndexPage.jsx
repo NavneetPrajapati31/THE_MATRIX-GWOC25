@@ -2,7 +2,9 @@ import Carousel from "../components/Carousel";
 import Navbar from "../includes/Navbar";
 import "../styles/navbar.css";
 
-import VideoCarousel from "../components/VideoCaraousel";
+import VideoCaraousel from "../components/VideoCaraousel";
+import TrendingVideoCarousel from "../components/TrendingVideoCarousel";
+
 import NewProducts from "../components/NewProducts";
 import Footer from "../includes/Footer";
 import FeaturedCollections from "../components/FeaturedCollections";
@@ -33,11 +35,13 @@ const IndexPage = () => {
       {/* <Spinner /> */}
       <Navbar />
       <Carousel />
-      <VideoCarousel />
+      <TrendingVideoCarousel />
+      {/* <VideoCaraousel /> */}
+
       <NewProducts type="latest" />
       <FeaturedCollections />
       <Wedding />
-      <Bestseller />
+      <Bestseller type="bestselling" />
       {/* <BridalWorld /> */}
       <InstagramBanner />
       <CustomerStories />

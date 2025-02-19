@@ -111,4 +111,16 @@ router.get("/get-saree-data", async (req, res) => {
   }
 });
 
+router.delete("/deleteSaree/:id", async (req, res) => {
+  try {
+    const saree = await Saree.findByIdAndDelete(req.params.id);
+    if (!saree) {
+      return res.status(404).json({ message: "Saree not found" });
+    }
+    res.json({ message: "Saree deleted successfully", deletedSaree: saree });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+});
+
 module.exports = router;

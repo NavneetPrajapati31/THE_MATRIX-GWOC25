@@ -3,6 +3,7 @@
   gap: 20px;
   position: relative;
   padding: 20px;
+  margin: 0 !important;
 }
 
 .accordion-item {
@@ -213,7 +214,7 @@
 .all-products-btn {
   width: 100%;
   margin-top: 20px;
-  padding: 8px 50px;
+  padding: 8px 10px;
   border: 1px solid #000000;
   border-radius: 20px;
   font-size: 13px;
@@ -272,7 +273,15 @@
     grid-template-columns: repeat(2, 1fr);
   }
   .product-img {
-    width: 150px;
+    width: 240px !important;
+  }
+
+  .product-card-wrapper-yash {
+    margin-top: 15px !important;
+  }
+
+  .filter-yash {
+    margin-right: 0 !important;
   }
 }
 
@@ -297,6 +306,52 @@
   padding: 0 10px;
 }
 
+@media (max-width: 425px) {
+  .product-grid-yash {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .product-card-wrapper-yash {
+    width: 100vw !important;
+    margin: 15px 0 0 0 !important;
+    padding: 0 !important;
+  }
+
+  .product-img {
+    width: 100% !important;
+  }
+
+  .filter-products-yash {
+    padding: 0 !important;
+  }
+
+  .products-col h2 {
+    font-size: 20px !important;
+    padding: 0 10px;
+  }
+
+  .body-text {
+    margin-bottom: 20px !important;
+  }
+
+  .products-col p {
+    font-size: 14px !important;
+    padding: 0 10px;
+    /* margin-bottom: 20px !important; */
+  }
+
+  .wishlist-item-name-card {
+    margin: 0 !important;
+    margin-top: 10px !important;
+    text-align: start !important;
+    padding: 0 !important;
+  }
+
+  .wishlist-item-price {
+    padding: 0 !important;
+  }
+}
+
 @media (max-width: 750px) {
   .filter-yash {
     display: none;
@@ -308,12 +363,12 @@
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #007bff;
+    background-color: #000000;
     color: white;
-    padding: 12px 20px;
-    font-size: 16px;
+    padding: 8px 20px;
+    font-size: 14px;
     border: none;
-    border-radius: 8px;
+    border-radius: 25px;
     cursor: pointer;
     z-index: 1050000;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -450,4 +505,10 @@
   font-size: 15px;
   font-weight: 400;
   color: #333;
+}
+
+@media (max-width: 600px) {
+  .custom-filter-sort {
+    padding-right: 20px !important;
+  }
 }

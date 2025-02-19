@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/wedding.css"; // Import custom CSS
 
 const Wedding = () => {
+  const navigate = useNavigate();
   return (
     <div className="wedding-container mb-5">
       <h2
@@ -25,7 +26,12 @@ const Wedding = () => {
               className="wedding-img"
             />
             <div className="wedding-title">Day Wedding</div>
-            <button className="shop-now-btn">SHOP NOW</button>
+            <button
+              className="shop-now-btn"
+              onClick={() => navigate("/product-listing/day-wedding")}
+            >
+              SHOP NOW
+            </button>
           </Link>
         </div>
         <div className="wedding-card wedding-image-container">
@@ -36,7 +42,12 @@ const Wedding = () => {
               className="wedding-img"
             />
             <div className="wedding-title">Night Wedding</div>
-            <button className="shop-now-btn">SHOP NOW</button>
+            <button
+              className="shop-now-btn"
+              onClick={() => navigate("/product-listing/night-wedding")}
+            >
+              SHOP NOW
+            </button>
           </Link>
         </div>
       </div>

@@ -89,7 +89,7 @@ const ProductCard = ({ product, userId }) => {
           </div>
         </div>
       )}
-      <div className="product-card">
+      <div className="product-card-filter">
         {/* Wishlist Icon */}
         <div className="wishlist-icon" onClick={handleWishlistToggle}>
           {isWishlisted ? (

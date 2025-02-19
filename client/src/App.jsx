@@ -66,6 +66,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/product-listing" element={<ProductListing />} />
           <Route
+            path="/product-listing/:sareeCategory"
+            element={<ProductListing />}
+          />
+          <Route
             path="/product-details/:productId"
             element={<ProductDetails />}
           />

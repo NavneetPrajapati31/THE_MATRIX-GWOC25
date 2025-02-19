@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import "../styles/filter.css";
 import FilterDropdowns from "./FilterDropdowns";
-import ProductCard from "./Productcard";
+import ProductCardFilter from "./ProductcardFilter";
 import Pagination from "./Pagination";
 import ExploreMore from "./ExploreMore";
 import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -97,6 +97,23 @@ const Filter = () => {
 
   const searchQuery = searchParams.get("search");
 
+  const { sareeCategory } = useParams();
+
+  console.log(sareeCategory);
+
+  const fetchSareesByCategory = async (sareeCategory) => {
+    try {
+      const response = await fetch(
+        `${temp}/product-related/sarees/${sareeCategory}`
+      );
+      const data = await response.json();
+      console.log(data);
+      setProducts(data);
+    } catch (error) {
+      console.error("Error fetching sarees:", error);
+    }
+  };
+
   useEffect(() => {
     if (searchQuery) {
       fetch(`${temp}/search-related/search?search=${searchQuery}`)
@@ -115,6 +132,8 @@ const Filter = () => {
       fetchProductsUrl = `${temp}/product-related/getProducts?category=${category}&page=${pageNumber}&limit=12`;
     } else if (occasion) {
       fetchProductsUrl = `${temp}/product-related/getProducts?occasion=${occasion}&page=${pageNumber}&limit=12`;
+    } else if (sareeCategory) {
+      fetchSareesByCategory(sareeCategory);
     } else {
       fetchProductsUrl = `${temp}/product-related/getProducts?page=${pageNumber}&limit=12`;
     }
@@ -394,13 +413,13 @@ const Filter = () => {
         </button>
 
         <div
-          className="col-md-9 disc-productList "
-          style={{ fontSize: "15px" }}
+          className="col-md-9 products-col"
+          style={{ marginLeft: "0", paddingLeft: "0", fontSize: "15px" }}
         >
           <h2 className="text-start mb-4 josefin-sans-josefin">
             Discover the Latest Saree Collection for Women
           </h2>
-          <p className="text-start mb-1">
+          <p className="text-start mb-1 body-text">
             Young or aged, preferring classic or contemporary, sarees are a
             versatile choice of Indian clothing that can cater to all kinds of
             personalities and preferences. Women have been enthralled with the
@@ -409,7 +428,7 @@ const Filter = () => {
             festival, or informal get-together.
           </p>
           <div className="filter-dropdowns-container w-100vw">
-            <div className="d-flex align-items-center justify-content-end  ">
+            <div className="d-flex align-items-center justify-content-end custom-filter-sort  ">
               <span className="me-2" style={{ fontSize: "13px" }}>
                 Sort By
               </span>
@@ -445,7 +464,7 @@ const Filter = () => {
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((product, index) => (
                   <div className="product-card-wrapper-yash" key={index}>
-                    <ProductCard product={product} userId={userId} />
+                    <ProductCardFilter product={product} userId={userId} />
                   </div>
                 ))
               ) : (

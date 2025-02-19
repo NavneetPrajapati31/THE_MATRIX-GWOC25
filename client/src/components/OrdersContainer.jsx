@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/orderContainer.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const OrderContainer = () => {
   const [orders, setOrders] = useState([]);
@@ -179,11 +179,13 @@ const OrderContainer = () => {
                 <span className="saree-id-admin bold">
                   Design-Id: {item.product.sareeId}
                 </span>
-                <img
-                  src={item.product.image || "fallback-image-url"}
-                  alt={item.product.title}
-                  className="order-product-image"
-                />
+                <Link to={`/product-details/${item.product._id}`}>
+                  <img
+                    src={item.product.image || "fallback-image-url"}
+                    alt={item.product.title}
+                    className="order-product-image"
+                  />
+                </Link>
               </div>
             ))}
             {order.products.length >= 2 && (

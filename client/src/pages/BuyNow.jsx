@@ -401,7 +401,7 @@ const BuyNow = () => {
                   <div className="col-12" key={i}>
                     <div
                       className={`add-panel rounded d-flex flex-column flex-md-row align-items-md-center cursor-pointer transition-all address-box ${
-                        selectedAddress?.id === address.id
+                        selectedAddress?._id === address._id
                           ? "border bg-success-light"
                           : "border-none"
                       }`}
@@ -424,7 +424,7 @@ const BuyNow = () => {
                         type="radio"
                         name="address"
                         id={`address-${address.id}`}
-                        checked={selectedAddress?.id === address.id}
+                        checked={selectedAddress?._id === address._id}
                         onChange={() => setSelectedAddress(address)}
                         className="ms-md-3 radio-btn"
                       />
@@ -448,18 +448,14 @@ const BuyNow = () => {
                     // img: "/images/razorpayImg.png",
                   },
                   {
-                    id: "STRIPE",
-                    label: "Stripe",
-                    // img: "/images/stripe.jpg",
-                    disabled: true,
-                  },
-                  {
                     id: "COD",
                     label: "Cash on Delivery",
                     // img: "/images/codImg.png",
                   },
                 ].map((method) => (
-                  <div
+                  <label
+                    // className="form-check-label"
+                    htmlFor={method.id}
                     key={method.id}
                     className={`form-check payment-method-item border ${
                       selectedPayment === method.id ? "selected-payment" : ""
@@ -476,28 +472,19 @@ const BuyNow = () => {
                       }
                       disabled={method.disabled}
                     />
-                    <label
-                      className="form-check-label"
-                      htmlFor={method.id}
-                      style={{
-                        opacity: method.disabled ? 0.6 : 1,
-                        fontWeight: "500",
-                        fontSize: "12px",
-                      }}
-                    >
-                      {/* <img
+
+                    {/* <img
                         src={method.img}
                         alt={method.label}
                         className="payment-logo"
                       />{" "} */}
-                      {method.label}
-                      {method.disabled && (
-                        <span className="ms-2 text-muted">
-                          (Temporarily Unavailable)
-                        </span>
-                      )}
-                    </label>
-                  </div>
+                    {method.label}
+                    {method.disabled && (
+                      <span className="ms-2 text-muted">
+                        (Temporarily Unavailable)
+                      </span>
+                    )}
+                  </label>
                 ))}
               </div>
 

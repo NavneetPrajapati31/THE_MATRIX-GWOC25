@@ -258,7 +258,7 @@ const Navbar = () => {
           </div>
 
           {/* Icons Section (Right-Aligned) */}
-          <div className="d-flex align-items-center ms-auto">
+          <div className="d-flex align-items-center justify-content-center">
             <Link to="https://api.whatsapp.com/send?phone=+919376421333&text=Hello%20to%20Kashvi%20Sarees">
               <WhatsAppIcon
                 className="me-3 nav-icons"
@@ -267,7 +267,7 @@ const Navbar = () => {
               />
             </Link>
 
-            <Link to="/wishlist">
+            <Link to={user && user._id ? "/wishlist" : "/login"}>
               <FavoriteBorderOutlinedIcon
                 className="me-3 nav-icons"
                 fontSize="medium"
@@ -275,7 +275,7 @@ const Navbar = () => {
               />
             </Link>
 
-            <Link to="/cart">
+            <Link to={user && user._id ? "/cart" : "/login"}>
               <ShoppingBagOutlinedIcon
                 className="me-3 nav-icons"
                 fontSize="medium"
@@ -304,9 +304,14 @@ const Navbar = () => {
                   {user && user._id ? (
                     <>
                       <p>Welcome {getFirstName(user.name)}!</p>
-                      <Link to="/dashboard" className="account-dropdown-item">
-                        Admin
-                      </Link>
+                      {user.role === "admin" ? (
+                        <Link to="/dashboard" className="account-dropdown-item">
+                          Admin Dashboard
+                        </Link>
+                      ) : (
+                        ""
+                      )}
+
                       <Link to="/orders" className="account-dropdown-item">
                         My Orders
                       </Link>

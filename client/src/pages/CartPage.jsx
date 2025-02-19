@@ -84,7 +84,7 @@ const CartPage = () => {
   return (
     <>
       <Navbar />
-      <div className="container" style={{ padding: "5px", margin: "0 10px" }}>
+      <div className="cart-container" style={{ padding: "5px", margin: "0 10px" }}>
         <div className="row cart-row mb-5 mt-4">
           {/* Left Section – Cart Products */}
           <div className="col-md-8">

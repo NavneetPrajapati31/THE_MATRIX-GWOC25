@@ -47,6 +47,26 @@ const InventoryProducts = () => {
       sortOrder === "low" ? a.price - b.price : b.price - a.price
     );
 
+  const deleteSaree = async (sareeProductId) => {
+    try {
+      const response = await fetch(
+        `${URL}/saree-related/deleteSaree/${sareeProductId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        throw new ERROR("some error");
+      }
+      alert("successfully deleted");
+
+      setSarees(sarees.filter((saree) => saree._id !== sareeProductId));
+    } catch (error) {
+      console.log("Error deleting saree!");
+    }
+  };
+
   return (
     <div className="inventory-container">
       {/* Search and Filter Section */}
@@ -128,7 +148,12 @@ const InventoryProducts = () => {
                     >
                       Edit
                     </button>
-                    <button className="delete-btn">✖</button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => deleteSaree(product._id)}
+                    >
+                      ✖
+                    </button>
                   </td>
                 </tr>
               ))

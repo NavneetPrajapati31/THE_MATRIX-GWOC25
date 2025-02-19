@@ -1,49 +1,111 @@
-/* Payment Policy Page Styles */
-policy-container{
-    text-align: left;
+.policy-container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 40px 20px;
 }
 
-.payment-policy-container {
-    max-width: 800px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
+.payment-policy {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+}
+
+.payment-policy h1 {
+  color: #000000;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+  border-bottom: 3px solid #e6e6e6;
+  padding-bottom: 15px;
+}
+
+.policy-content {
+  color: #333333;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.intro {
+  font-size: 1.1rem;
+  color: #555555;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.policy-section {
+  margin-bottom: 30px;
+}
+
+.policy-section:last-child {
+  margin-bottom: 0;
+}
+
+.policy-section h2 {
+  color: #000000;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 500;
+
+  padding-left: 0;
+}
+
+.policy-section p {
+  margin-bottom: 15px;
+}
+
+.policy-section ul {
+  padding: 0;
+}
+
+.policy-section li {
+  margin-bottom: 12px;
+  position: relative;
+  padding-left: 0;
+}
+
+.policy-section strong {
+  color: #000000;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .policy-container {
+    padding: 20px 15px;
+  }
+
+  .payment-policy {
+    padding: 25px;
+  }
+
+  .payment-policy h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .policy-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .intro {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-policy {
     padding: 20px;
-}
+  }
 
-.payment-policy-container h1 {
-    text-align: center;
-    color: #444;
-}
+  .payment-policy h1 {
+    font-size: 1.75rem;
+  }
 
-.payment-policy-container h2 {
-    margin-top: 20px;
-    color: #555;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 5px;
-}
-
-.payment-policy-container p {
-    margin: 10px 0;
-}
-
-.payment-policy-container ul {
-    list-style-type: disc;
-    margin: 10px 20px;
-}
-
-.payment-policy-container li {
-    margin-bottom: 5px;
-}
-
-.contact-info {
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-@media (max-width: 600px) {
-    .payment-policy-container {
-        padding: 10px;
-    }
+  .policy-section h2 {
+    font-size: 1.2rem;
+  }
 }

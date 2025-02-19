@@ -20,6 +20,16 @@ nav {
   margin: 0 auto;
 }
 
+@media (max-width: 392px) {
+  .navbar-brand h2 {
+    font-size: 22px !important;
+  }
+  .custom-navbar-width {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 /* Logo Styling */
 .navbar-brand h2 {
   margin-top: 5px;
@@ -189,10 +199,6 @@ ul li a:hover::after {
     display: none !important;
   }
 
-  ul li a {
-    display: none !important;
-  }
-
   /* If you use a menu-icon class, ensure it is visible */
   .menu-icon {
     display: block;
@@ -203,6 +209,10 @@ ul li a:hover::after {
   /* Hide any bottom navigation if present */
   .bottom-nav {
     display: none;
+  }
+
+  .nav-item {
+    display: none !important;
   }
 }
 
