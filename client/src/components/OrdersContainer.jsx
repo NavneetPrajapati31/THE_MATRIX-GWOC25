@@ -125,9 +125,9 @@ const OrderContainer = () => {
                             <tr>
                                 <th>#</th>
                                 <th>Product</th>
-                                <th>Price</th>
+                             
                                 <th>Qty</th>
-                                <th>Total</th>
+                            
                             </tr>
                             ${order.products
                               .map(
@@ -307,7 +307,7 @@ const OrderContainer = () => {
       {orders.length === totalOrders && (
         <a href="#" style={{ fontSize: "14px" }}>
           {" "}
-          GET TO TOP
+          END OF PRODUCT
         </a>
       )}
     </div>

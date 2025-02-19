@@ -95,10 +95,7 @@ const OrdersPage = () => {
     <>
       <Navbar />
       <div className="py-4 yash-orders-container">
-        <h2 className="mb-3 pb-2 fw-bold yash-orders-title">
-          <span className="my-title">MY</span>{" "}
-          <span className="fw-bold yash-orders-highlight">ORDERS ________</span>
-        </h2>
+        <h3 className="mb-3 pb-2 yash-orders-title">MY ORDERS</h3>
 
         <div className="order-fil-container">
           <div

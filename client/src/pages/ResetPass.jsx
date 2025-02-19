@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 export default function ResetPassword() {
   const temp = import.meta.env.VITE_BACKEND_URL;
@@ -25,22 +25,49 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="reset-password-container">
-      <h2>Reset Password</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="password"
-          placeholder="Enter new password"
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-          required
-        />
-        <button type="submit" disabled={loading}>
-          {" "}
-          {loading ? "Reseting your password" : "Reset Password"}{" "}
-        </button>
-      </form>
-      {message && <p>{message}</p>}
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light px-3">
+      <div
+        className="card p-5  text-center w-100"
+        style={{ maxWidth: "28rem", border: "1px solid #bbb" }}
+      >
+        {/* Brand Logo */}
+        <Link to="/" className="text-decoration-none mb-3">
+          <h4
+            className="text-uppercase"
+            style={{
+              fontFamily: "Bodoni Moda, serif",
+              fontSize: "26px",
+              color: "black",
+            }}
+          >
+            KASHVI
+          </h4>
+        </Link>
+
+        <h6 className="mb-3">Reset Password</h6>
+
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input
+              type="password"
+              className="form-control "
+              placeholder="Enter new password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn btn-dark  w-100"
+            disabled={loading}
+          >
+            {loading ? "Resetting your password..." : "Reset Password"}
+          </button>
+        </form>
+
+        {message && <div className="alert alert-info mt-3">{message}</div>}
+      </div>
     </div>
   );
 }

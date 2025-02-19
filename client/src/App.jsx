@@ -21,13 +21,13 @@ import BlogPage from "./pages/BlogPage";
 import BlogPostDetail from "./components/BlogPostDetail";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import ForgotPassword from "./pages/ForgetPassword.jsx";
-import ResetPassword from "./pages/ResetPass.jsx";
 import OrderDetails from "./pages/OrderDetails.jsx";
 import OrderDetailsAdmin from "./pages/OrderDetailsAdmin.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import ReturnPolicy from "./pages/ReturnPolicy.jsx";
 import PaymentPolicy from "./pages/PaymentPolicy.jsx";
 import TermsAndConditions from "./pages/TermsAndConditions.jsx";
+import ResetPassword from "./pages/ResetPass.jsx";
 
 function App() {
   const URL = import.meta.env.VITE_BACKEND_URL;
@@ -94,6 +94,8 @@ function App() {
           <Route path="/return-policy" element={<ReturnPolicy />} />
           <Route path="/payment-policy" element={<PaymentPolicy />} />
           <Route path="/terms" element={<TermsAndConditions />} />
+
+          {/* <Route path="/reset" element={<ResetPassword />} /> */}
         </Routes>
       </BrowserRouter>
     </>

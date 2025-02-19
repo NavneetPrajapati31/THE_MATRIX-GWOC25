@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ForgotPassword() {
   const temp = import.meta.env.VITE_BACKEND_URL;
@@ -21,22 +22,50 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="forgot-password-container">
-      <h2>Forgot Password</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <button type="submit" disabled={loading}>
-          {" "}
-          {loading ? "Resetting Link" : " Send Reset Link"}
-        </button>
-      </form>
-      {message && <p>{message}</p>}
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light px-3">
+      {/* Forgot Password Card */}
+      <div
+        className="card p-5 w-100 text-center"
+        style={{ maxWidth: "32rem", border: "1px solid #bbb" }}
+      >
+        {/* Brand Logo Inside the Card */}
+        <Link to="/" className="text-decoration-none mb-4">
+          <h4
+            className="text-uppercase"
+            style={{
+              fontFamily: "Bodoni Moda, serif",
+              fontSize: "26px",
+              color: "black",
+            }}
+          >
+            KASHVI
+          </h4>
+        </Link>
+
+        <h6 className="mb-3">Forgot Password</h6>
+
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn btn-dark w-100"
+            disabled={loading}
+          >
+            {loading ? "Resetting Link..." : "Send Reset Link"}
+          </button>
+        </form>
+
+        {message && <div className="alert alert-info mt-4">{message}</div>}
+      </div>
     </div>
   );
 }

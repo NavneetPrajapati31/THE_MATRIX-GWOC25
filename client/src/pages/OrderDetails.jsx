@@ -106,9 +106,9 @@ const OrderDetails = () => {
                           <th>#</th>
                           <th>Product</th>
                           <th>Design Id</th>
-                          <th>Price</th>
+                          
                           <th>Quantity</th>
-                          <th>Total</th>
+                        
                       </tr>
                       ${order.products
                         .map(

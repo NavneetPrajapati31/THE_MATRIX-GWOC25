@@ -284,13 +284,13 @@ router.post("/contact", async (req, res) => {
     port: 587,
     secure: false,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+      user: process.env.SMTP_LOGIN_NAVNEET,
+      pass: process.env.SMTP_PASS_NAVNEET,
     },
   });
 
   const mailOptions = {
-    from: `"Kashvi Contacts" <${process.env.OWNER_EMAIL}>`,
+    from: `"Kashvi Creation" <${process.env.OWNER_EMAIL}>`,
     to: "navneetprajapati46@gmail.com",
     replyTo: email,
     subject: "📩 New Contact Form Submission",

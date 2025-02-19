@@ -97,9 +97,9 @@ const OrderDetailsAdmin = () => {
                             <tr>
                                 <th>#</th>
                                 <th>Product</th>
-                                <th>Price</th>
+                                
                                 <th>Qty</th>
-                                <th>Total</th>
+                                
                             </tr>
                             ${order.products
                               .map(

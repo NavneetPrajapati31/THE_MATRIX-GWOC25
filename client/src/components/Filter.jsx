@@ -228,7 +228,9 @@ const Filter = () => {
     .filter((product) =>
       selectedOccasion ? product.occasion === selectedOccasion : true
     )
-    .filter((product) => (selectedType ? product.type === selectedType : true))
+    .filter((product) =>
+      selectedType ? product.workType === selectedType : true
+    )
     .sort((a, b) => {
       if (selectedSort === "Price: low to high") return a.price - b.price;
       if (selectedSort === "Price: high to low") return b.price - a.price;
