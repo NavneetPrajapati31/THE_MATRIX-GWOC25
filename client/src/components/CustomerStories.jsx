@@ -6,7 +6,7 @@ import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutl
 
 const reviews = [
   {
-    name: "Sant Das",
+    name: "Meera Kapoor",
     location: "Surat, India",
     review:
       "Every detail wowed! At the wedding, it stole the show; friends are eyeing KASHVI's collection online after this buzz.",
@@ -20,7 +20,7 @@ const reviews = [
     link: "https://th.bing.com/th/id/R.c19d879cd1482e7efd496a14cc3273a2?rik=DHmYFMrkXq7qvQ&riu=http%3a%2f%2fwww.koskii.com%2fcdn%2fshop%2fproducts%2fkoskii-sea-green-stonework-satin-designer-saree-saus0022632_sea_green__1.jpg%3fv%3d1670485220&ehk=Hkig7iWqkVfwtyPWVdW3RB%2fuaQ1Vkp6%2f4ibOu5XI4ig%3d&risl=&pid=ImgRaw&r=0",
   },
   {
-    name: "Arjun Mehta",
+    name: "Romika Nigam",
     location: "Surat, India",
     review:
       "The craftsmanship is just amazing. My wedding look was elevated with the perfect outfit from KASHVI.",
@@ -34,14 +34,14 @@ const reviews = [
     link: "https://www.koskii.com/cdn/shop/products/koskii-lavender-mirrorwork-net-designer-saree-saus0021303_lavender_3_1800x1800.jpg?v=1661854696",
   },
   {
-    name: "Rajiv Sharma",
+    name: "Romika Nigam",
     location: "Surat, India",
     review:
       "Best wedding collection ever! My suit was elegant, stylish, and perfectly tailored.",
     link: "https://www.koskii.com/cdn/shop/products/koskii-peach-threadwork-semi-crepe-designer-saree-saus0022636_peach__4_1400x.jpg?v=1670488483",
   },
   {
-    name: "Aisha Khan",
+    name: "Meera Kapoor",
     location: "Surat, India",
     review:
       "Absolutely stunning outfits! I received so many compliments on my wedding day.",
