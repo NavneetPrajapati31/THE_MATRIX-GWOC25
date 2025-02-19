@@ -273,7 +273,7 @@ ul li a:hover::after {
   }
 
   .nav-icons {
-    color: #222222;
+    color: black;
     font-size: 16px;
   }
 }

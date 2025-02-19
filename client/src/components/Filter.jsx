@@ -309,7 +309,7 @@ const Filter = () => {
                             onClick={() => handleSubcategory(item.name)}
                           >
                             {item.name}{" "}
-                            <span className="count">{item.count}</span>
+                            {/* <span className="count">{item.count}</span> */}
                           </button>
                         ))}
                       </div>
@@ -347,7 +347,7 @@ const Filter = () => {
                             onClick={() => handleFabricSelect(fabric.name)}
                           >
                             {fabric.name}{" "}
-                            <span className="count">{fabric.count}</span>
+                            {/* <span className="count">{fabric.count}</span> */}
                           </button>
                         ))}
                       </div>
@@ -364,7 +364,7 @@ const Filter = () => {
                             onClick={() => handleOccasion(occasion.name)}
                           >
                             {occasion.name}{" "}
-                            <span className="count">{occasion.count}</span>
+                            {/* <span className="count">{occasion.count}</span> */}
                           </button>
                         ))}
                       </div>
@@ -379,7 +379,7 @@ const Filter = () => {
                             onClick={() => handleType(type.name)}
                           >
                             {type.name}{" "}
-                            <span className="count">{type.count}</span>
+                            {/* <span className="count">{type.count}</span> */}
                           </button>
                         ))}
                       </div>

@@ -263,7 +263,7 @@ const Navbar = () => {
               <WhatsAppIcon
                 className="me-3 nav-icons"
                 fontSize="medium"
-                style={{ color: "#222222" }}
+                style={{ color: "#000" }}
               />
             </Link>
 
@@ -271,7 +271,7 @@ const Navbar = () => {
               <FavoriteBorderOutlinedIcon
                 className="me-3 nav-icons"
                 fontSize="medium"
-                style={{ color: "#222222" }}
+                style={{ color: "#000" }}
               />
             </Link>
 
@@ -279,7 +279,7 @@ const Navbar = () => {
               <ShoppingBagOutlinedIcon
                 className="me-3 nav-icons"
                 fontSize="medium"
-                style={{ color: "#222222" }}
+                style={{ color: "#000" }}
               />
             </Link>
 

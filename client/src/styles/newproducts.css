@@ -26,6 +26,7 @@
   height: auto; /* Maintains aspect ratio */
   max-height: 22rem; /* Adjust height to avoid excessive stretching */
   object-fit: cover;
+  object-position: top;
 }
 
 /* Title */
